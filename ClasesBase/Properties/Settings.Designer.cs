@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vistas.Properties {
+namespace ClasesBase.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -29,9 +29,9 @@ namespace Vistas.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Users\\Mayko\\Desktop\\VS2010\\projects-" +
             "solutions\\LPOOI_GRUPO_4\\optica.mdf;Integrated Security=True;Connect Timeout=30;U" +
             "ser Instance=True")]
-        public string opticaConnectionString {
+        public string conexion {
             get {
-                return ((string)(this["opticaConnectionString"]));
+                return ((string)(this["conexion"]));
             }
         }
     }
