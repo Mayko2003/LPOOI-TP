@@ -122,8 +122,6 @@ namespace Vistas
             panel4.Visible = true;
             txtDNI.Enabled = false; //se desabilita para evitar problemas de pk
         }
-        #endregion  
-
         private void dgwClientes_KeyDown(object sender, KeyEventArgs e)
         {
             if (this.indiceRowEliminar != -1 && e.KeyCode == Keys.Delete)
@@ -143,6 +141,7 @@ namespace Vistas
         {
             this.indiceRowEliminar = e.RowIndex;
         }
+        #endregion  
 
     }
 }
