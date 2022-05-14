@@ -12,6 +12,13 @@ namespace Vistas
 {
     public partial class FrmCliente : Form
     {
+        private int indiceRowEliminar = -1;
+        public int IndiceRowEliminar
+        {
+            set { this.indiceRowEliminar = value; }
+            get { return this.indiceRowEliminar; }
+        }
+
         public FrmCliente()
         {
             InitializeComponent();
@@ -97,7 +104,6 @@ namespace Vistas
             else
                 load_clientes();
         }
-        #endregion
 
         private void dgwClientes_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -116,11 +122,26 @@ namespace Vistas
             panel4.Visible = true;
             txtDNI.Enabled = false; //se desabilita para evitar problemas de pk
         }
+        private void dgwClientes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.indiceRowEliminar != -1 && e.KeyCode == Keys.Delete)
+            {
+                var mb = MessageBox.Show("De verdad desea eliminar el cliente seleccionado?", "Eliminar Cliente", MessageBoxButtons.OKCancel);
 
-        
+                if (mb == DialogResult.OK)
+                {
+                    var cell = this.dgwClientes.Rows[this.indiceRowEliminar].Cells[0];
+                    TrabajarCliente.delete_cliente(cell.Value.ToString());
+                    load_clientes();
+                }
+            }
+        }
 
-        
-
+        private void dgwClientes_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            this.indiceRowEliminar = e.RowIndex;
+        }
+        #endregion  
 
     }
 }

@@ -146,5 +146,23 @@ namespace ClasesBase
             if (dt.Rows.Count == 0) return false;
             return true;
         }
+
+        public static void delete_cliente(string pk)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "DELETE FROM Cliente WHERE cli_dni LIKE @dni";
+            cmd.Parameters.AddWithValue("@dni", pk);
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            cnn.Open();
+            cmd.ExecuteNonQuery();
+            cnn.Close();
+        }
     }
 }
