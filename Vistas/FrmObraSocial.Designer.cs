@@ -46,12 +46,18 @@
             this.btnRegistrarObraSocial = new System.Windows.Forms.Button();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.dgwObrasSocial = new System.Windows.Forms.DataGridView();
+            this.pnlBuscar = new System.Windows.Forms.Panel();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwObrasSocial)).BeginInit();
+            this.pnlBuscar.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel4
@@ -73,9 +79,9 @@
             this.panel4.Controls.Add(this.txtTelefono);
             this.panel4.Controls.Add(this.btnRegistrarObraSocial);
             this.panel4.Controls.Add(this.txtRazonSocial);
-            this.panel4.Location = new System.Drawing.Point(275, 195);
+            this.panel4.Location = new System.Drawing.Point(258, 207);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(531, 353);
+            this.panel4.Size = new System.Drawing.Size(531, 358);
             this.panel4.TabIndex = 11;
             // 
             // pictureBox4
@@ -227,24 +233,79 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(313, 63);
+            this.pictureBox5.Location = new System.Drawing.Point(305, 44);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(450, 120);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 12;
             this.pictureBox5.TabStop = false;
             // 
+            // dgwObrasSocial
+            // 
+            this.dgwObrasSocial.AllowUserToAddRows = false;
+            this.dgwObrasSocial.AllowUserToDeleteRows = false;
+            this.dgwObrasSocial.AllowUserToOrderColumns = true;
+            this.dgwObrasSocial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgwObrasSocial.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.dgwObrasSocial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgwObrasSocial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwObrasSocial.Location = new System.Drawing.Point(89, 207);
+            this.dgwObrasSocial.Name = "dgwObrasSocial";
+            this.dgwObrasSocial.ReadOnly = true;
+            this.dgwObrasSocial.Size = new System.Drawing.Size(859, 353);
+            this.dgwObrasSocial.TabIndex = 14;
+            this.dgwObrasSocial.Visible = false;
+            this.dgwObrasSocial.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwObrasSocial_RowHeaderMouseClick);
+            this.dgwObrasSocial.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwObrasSocial_RowHeaderMouseDoubleClick);
+            this.dgwObrasSocial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgwObrasSocial_KeyDown);
+            // 
+            // pnlBuscar
+            // 
+            this.pnlBuscar.Controls.Add(this.txtBuscar);
+            this.pnlBuscar.Controls.Add(this.btnBuscar);
+            this.pnlBuscar.Location = new System.Drawing.Point(89, 179);
+            this.pnlBuscar.Name = "pnlBuscar";
+            this.pnlBuscar.Size = new System.Drawing.Size(302, 22);
+            this.pnlBuscar.TabIndex = 15;
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Location = new System.Drawing.Point(0, 0);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(219, 22);
+            this.txtBuscar.TabIndex = 13;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.Chocolate;
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Location = new System.Drawing.Point(225, 0);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(77, 22);
+            this.btnBuscar.TabIndex = 11;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // FrmObraSocial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.ClientSize = new System.Drawing.Size(1080, 610);
+            this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.Controls.Add(this.dgwObrasSocial);
+            this.Controls.Add(this.pnlBuscar);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmObraSocial";
             this.Text = "FrmObraSocial";
+            this.Load += new System.EventHandler(this.frmObraSocial_Load);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -252,6 +313,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwObrasSocial)).EndInit();
+            this.pnlBuscar.ResumeLayout(false);
+            this.pnlBuscar.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -275,5 +339,9 @@
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Button btnRegistrarObraSocial;
         private System.Windows.Forms.TextBox txtRazonSocial;
+        private System.Windows.Forms.Panel pnlBuscar;
+        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.DataGridView dgwObrasSocial;
     }
 }
