@@ -88,13 +88,21 @@ namespace Vistas
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
             subMenuProducto.Visible = false;
+            frmProducto.Controls["panel4"].Visible = true;
+            frmProducto.Controls["dgwProductos"].Visible = false;
+            frmProducto.Controls["btnUpdateProd"].Visible = false;
+            frmProducto.Controls["btnDeleteProd"].Visible = false;
             AbrirForm(frmProducto);
         }
 
         private void btnMostrarProductos_Click(object sender, EventArgs e)
         {
             subMenuProducto.Visible = false;
-            //AbrirForm(frmCliente);
+            frmProducto.Controls["panel4"].Visible = false;
+            frmProducto.Controls["dgwProductos"].Visible = true;
+            frmProducto.Controls["btnUpdateProd"].Visible = true;
+            frmProducto.Controls["btnDeleteProd"].Visible = true;
+            AbrirForm(frmProducto);
         }
         #endregion
 
@@ -161,6 +169,7 @@ namespace Vistas
             Application.Exit();
         }
         #endregion
+
 
        
 

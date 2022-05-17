@@ -128,6 +128,7 @@
             this.mnuVertical.Name = "mnuVertical";
             this.mnuVertical.Size = new System.Drawing.Size(220, 610);
             this.mnuVertical.TabIndex = 3;
+           
             // 
             // pictureBox5
             // 

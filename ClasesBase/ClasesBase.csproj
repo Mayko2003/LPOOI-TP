@@ -58,6 +58,7 @@
     <Compile Include="Roles.cs" />
     <Compile Include="TrabajarCliente.cs" />
     <Compile Include="TrabajarObraSocial.cs" />
+    <Compile Include="TrabajarProducto.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
