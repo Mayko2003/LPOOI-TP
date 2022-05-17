@@ -47,7 +47,7 @@ namespace ClasesBase
             cmd.CommandText += "prod_codigo = @codigo, ";
             cmd.CommandText += "prod_categoria = @categoria, ";
             cmd.CommandText += "prod_descripcion = @descripcion, ";
-            cmd.CommandText += "prod_precio = @precio, ";
+            cmd.CommandText += "prod_precio = @precio ";
            
             cmd.CommandText += "WHERE prod_codigo LIKE @codigo";
 
