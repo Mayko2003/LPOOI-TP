@@ -46,12 +46,16 @@
             this.btnRegistrarProducto = new System.Windows.Forms.Button();
             this.txtCategoria = new System.Windows.Forms.TextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.dgwProductos = new System.Windows.Forms.DataGridView();
+            this.btnDeleteProd = new System.Windows.Forms.Button();
+            this.btnUpdateProd = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
@@ -73,9 +77,9 @@
             this.panel4.Controls.Add(this.txtPrecio);
             this.panel4.Controls.Add(this.btnRegistrarProducto);
             this.panel4.Controls.Add(this.txtCategoria);
-            this.panel4.Location = new System.Drawing.Point(267, 176);
+            this.panel4.Location = new System.Drawing.Point(233, 170);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(531, 353);
+            this.panel4.Size = new System.Drawing.Size(570, 357);
             this.panel4.TabIndex = 9;
             // 
             // pictureBox4
@@ -234,17 +238,49 @@
             this.pictureBox5.TabIndex = 10;
             this.pictureBox5.TabStop = false;
             // 
+            // dgwProductos
+            // 
+            this.dgwProductos.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.dgwProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwProductos.Location = new System.Drawing.Point(233, 170);
+            this.dgwProductos.Name = "dgwProductos";
+            this.dgwProductos.Size = new System.Drawing.Size(570, 357);
+            this.dgwProductos.TabIndex = 11;
+            this.dgwProductos.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwProductos_RowHeaderMouseDoubleClick_1);
+            // 
+            // btnDeleteProd
+            // 
+            this.btnDeleteProd.Location = new System.Drawing.Point(138, 218);
+            this.btnDeleteProd.Name = "btnDeleteProd";
+            this.btnDeleteProd.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteProd.TabIndex = 12;
+            this.btnDeleteProd.Text = "Eliminar";
+            this.btnDeleteProd.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateProd
+            // 
+            this.btnUpdateProd.Location = new System.Drawing.Point(138, 189);
+            this.btnUpdateProd.Name = "btnUpdateProd";
+            this.btnUpdateProd.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateProd.TabIndex = 13;
+            this.btnUpdateProd.Text = "Actualizar";
+            this.btnUpdateProd.UseVisualStyleBackColor = true;
+            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.Controls.Add(this.btnUpdateProd);
+            this.Controls.Add(this.btnDeleteProd);
+            this.Controls.Add(this.dgwProductos);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmProducto";
             this.Text = "FrmProducto";
+            this.Load += new System.EventHandler(this.FrmProducto_Load);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -252,6 +288,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwProductos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -275,5 +312,8 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Button btnRegistrarProducto;
         private System.Windows.Forms.TextBox txtCategoria;
+        private System.Windows.Forms.DataGridView dgwProductos;
+        private System.Windows.Forms.Button btnDeleteProd;
+        private System.Windows.Forms.Button btnUpdateProd;
     }
 }
