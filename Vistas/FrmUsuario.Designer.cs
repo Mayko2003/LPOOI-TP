@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuario));
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cmbRol_codigo = new System.Windows.Forms.ComboBox();
+            this.txtNumeroRol = new System.Windows.Forms.TextBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -46,18 +50,33 @@
             this.btnRegistrarUsuario = new System.Windows.Forms.Button();
             this.txtContraseña = new System.Windows.Forms.TextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.textBuscar = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dgwUsuarios = new System.Windows.Forms.DataGridView();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
             // 
             this.panel4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.panel4.BackColor = System.Drawing.SystemColors.Info;
+            this.panel4.Controls.Add(this.dgwUsuarios);
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Controls.Add(this.label7);
+            this.panel4.Controls.Add(this.cmbRol_codigo);
+            this.panel4.Controls.Add(this.txtNumeroRol);
+            this.panel4.Controls.Add(this.pictureBox7);
+            this.panel4.Controls.Add(this.pictureBox6);
             this.panel4.Controls.Add(this.pictureBox4);
             this.panel4.Controls.Add(this.pictureBox3);
             this.panel4.Controls.Add(this.pictureBox1);
@@ -73,10 +92,47 @@
             this.panel4.Controls.Add(this.txtRol);
             this.panel4.Controls.Add(this.btnRegistrarUsuario);
             this.panel4.Controls.Add(this.txtContraseña);
-            this.panel4.Location = new System.Drawing.Point(296, 144);
+            this.panel4.Location = new System.Drawing.Point(121, 200);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(531, 353);
+            this.panel4.Size = new System.Drawing.Size(835, 353);
             this.panel4.TabIndex = 1;
+            // 
+            // cmbRol_codigo
+            // 
+            this.cmbRol_codigo.DropDownWidth = 219;
+            this.cmbRol_codigo.FormattingEnabled = true;
+            this.cmbRol_codigo.Location = new System.Drawing.Point(643, 77);
+            this.cmbRol_codigo.Name = "cmbRol_codigo";
+            this.cmbRol_codigo.Size = new System.Drawing.Size(174, 21);
+            this.cmbRol_codigo.TabIndex = 10;
+            // 
+            // txtNumeroRol
+            // 
+            this.txtNumeroRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumeroRol.Location = new System.Drawing.Point(643, 127);
+            this.txtNumeroRol.Name = "txtNumeroRol";
+            this.txtNumeroRol.Size = new System.Drawing.Size(174, 22);
+            this.txtNumeroRol.TabIndex = 12;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::Vistas.Properties.Resources.bloquear;
+            this.pictureBox7.Location = new System.Drawing.Point(464, 116);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(38, 38);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 9;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox6.Location = new System.Drawing.Point(464, 61);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(38, 38);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 8;
+            this.pictureBox6.TabStop = false;
             // 
             // pictureBox4
             // 
@@ -143,21 +199,21 @@
             this.txtApellidoYNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApellidoYNombre.Location = new System.Drawing.Point(195, 183);
             this.txtApellidoYNombre.Name = "txtApellidoYNombre";
-            this.txtApellidoYNombre.Size = new System.Drawing.Size(293, 22);
+            this.txtApellidoYNombre.Size = new System.Drawing.Size(229, 22);
             this.txtApellidoYNombre.TabIndex = 2;
             // 
             // txtUsuario
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(195, 72);
+            this.txtUsuario.Location = new System.Drawing.Point(195, 77);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(293, 22);
+            this.txtUsuario.Size = new System.Drawing.Size(229, 22);
             this.txtUsuario.TabIndex = 0;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Chocolate;
-            this.panel5.Location = new System.Drawing.Point(178, 287);
+            this.panel5.Location = new System.Drawing.Point(592, 287);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(13, 40);
             this.panel5.TabIndex = 6;
@@ -166,7 +222,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(147, 16);
+            this.label3.Location = new System.Drawing.Point(326, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(245, 24);
             this.label3.TabIndex = 0;
@@ -197,7 +253,7 @@
             this.txtRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRol.Location = new System.Drawing.Point(195, 238);
             this.txtRol.Name = "txtRol";
-            this.txtRol.Size = new System.Drawing.Size(293, 22);
+            this.txtRol.Size = new System.Drawing.Size(229, 22);
             this.txtRol.TabIndex = 3;
             // 
             // btnRegistrarUsuario
@@ -208,7 +264,7 @@
             this.btnRegistrarUsuario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
             this.btnRegistrarUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrarUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarUsuario.Location = new System.Drawing.Point(178, 287);
+            this.btnRegistrarUsuario.Location = new System.Drawing.Point(562, 287);
             this.btnRegistrarUsuario.Name = "btnRegistrarUsuario";
             this.btnRegistrarUsuario.Size = new System.Drawing.Size(201, 40);
             this.btnRegistrarUsuario.TabIndex = 4;
@@ -221,18 +277,68 @@
             this.txtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContraseña.Location = new System.Drawing.Point(195, 127);
             this.txtContraseña.Name = "txtContraseña";
-            this.txtContraseña.Size = new System.Drawing.Size(293, 22);
+            this.txtContraseña.Size = new System.Drawing.Size(229, 22);
             this.txtContraseña.TabIndex = 1;
             // 
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(334, 12);
+            this.pictureBox5.Location = new System.Drawing.Point(301, 39);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(450, 120);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 8;
             this.pictureBox5.TabStop = false;
+            // 
+            // textBuscar
+            // 
+            this.textBuscar.Location = new System.Drawing.Point(121, 175);
+            this.textBuscar.Name = "textBuscar";
+            this.textBuscar.Size = new System.Drawing.Size(219, 20);
+            this.textBuscar.TabIndex = 9;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.Chocolate;
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.Location = new System.Drawing.Point(346, 174);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(75, 20);
+            this.btnBuscar.TabIndex = 10;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(510, 72);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 16);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "ROL";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(510, 127);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(95, 16);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Codigo de Rol";
+            // 
+            // dgwUsuarios
+            // 
+            this.dgwUsuarios.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.dgwUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgwUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwUsuarios.GridColor = System.Drawing.SystemColors.Info;
+            this.dgwUsuarios.Location = new System.Drawing.Point(0, 0);
+            this.dgwUsuarios.Name = "dgwUsuarios";
+            this.dgwUsuarios.Size = new System.Drawing.Size(835, 353);
+            this.dgwUsuarios.TabIndex = 17;
             // 
             // FrmUsuario
             // 
@@ -240,6 +346,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1080, 610);
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.textBuscar);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -247,12 +355,16 @@
             this.Text = "FrmUsuario";
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwUsuarios)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -275,5 +387,14 @@
         private System.Windows.Forms.Button btnRegistrarUsuario;
         private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.TextBox textBuscar;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.TextBox txtNumeroRol;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.ComboBox cmbRol_codigo;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dgwUsuarios;
     }
 }
