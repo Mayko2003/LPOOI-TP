@@ -70,18 +70,18 @@ namespace ClasesBase
             SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
 
             //operaciones
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Producto",cnn);
+            SqlCommand cmd = new SqlCommand();
 
-            /*
+            
             cmd.CommandText = "SELECT prod_codigo as 'Codigo', ";
             cmd.CommandText += "prod_categoria as 'Categoria', ";
             cmd.CommandText += "prod_descripcion as 'Descripcion', ";
-            cmd.CommandText += "prod_precio as 'Precio', ";
+            cmd.CommandText += "prod_precio as 'Precio' ";
             cmd.CommandText += "FROM Producto as P ";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cnn;
-             */
+             
              
 
             //ejecutar la consulta
@@ -106,7 +106,7 @@ namespace ClasesBase
 
             cmd.CommandText += "prod_categoria as 'Categoria', ";
             cmd.CommandText += "prod_descripcion as 'Descripcion', ";
-            cmd.CommandText += "prod_precio as 'Precio', ";
+            cmd.CommandText += "prod_precio as 'Precio' ";
             cmd.CommandText += "FROM Producto as P ";
   
             cmd.CommandText += "WHERE prod_codigo LIKE @codigoBuscado";
@@ -151,5 +151,22 @@ namespace ClasesBase
             else return true;
         }
 
+        public static void delete_producto(string codigoProd)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "DELETE FROM Producto WHERE prod_codigo LIKE @codigo";
+            cmd.Parameters.AddWithValue("@codigo", codigoProd);
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            cnn.Open();
+            cmd.ExecuteNonQuery();
+            cnn.Close();
+        }
     }
 }

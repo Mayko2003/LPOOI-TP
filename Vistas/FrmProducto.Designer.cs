@@ -47,8 +47,8 @@
             this.txtCategoria = new System.Windows.Forms.TextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.dgwProductos = new System.Windows.Forms.DataGridView();
-            this.btnDeleteProd = new System.Windows.Forms.Button();
-            this.btnUpdateProd = new System.Windows.Forms.Button();
+            this.btnBuscarProducto = new System.Windows.Forms.Button();
+            this.txtCodBuscado = new System.Windows.Forms.TextBox();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -240,31 +240,38 @@
             // 
             // dgwProductos
             // 
+            this.dgwProductos.AllowUserToAddRows = false;
+            this.dgwProductos.AllowUserToDeleteRows = false;
             this.dgwProductos.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dgwProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwProductos.Location = new System.Drawing.Point(233, 170);
             this.dgwProductos.Name = "dgwProductos";
+            this.dgwProductos.ReadOnly = true;
             this.dgwProductos.Size = new System.Drawing.Size(570, 357);
             this.dgwProductos.TabIndex = 11;
+            this.dgwProductos.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwProductos_RowHeaderMouseClick);
             this.dgwProductos.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwProductos_RowHeaderMouseDoubleClick_1);
+            this.dgwProductos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgwProductos_KeyDown);
             // 
-            // btnDeleteProd
+            // btnBuscarProducto
             // 
-            this.btnDeleteProd.Location = new System.Drawing.Point(138, 218);
-            this.btnDeleteProd.Name = "btnDeleteProd";
-            this.btnDeleteProd.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteProd.TabIndex = 12;
-            this.btnDeleteProd.Text = "Eliminar";
-            this.btnDeleteProd.UseVisualStyleBackColor = true;
+            this.btnBuscarProducto.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnBuscarProducto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnBuscarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarProducto.Location = new System.Drawing.Point(88, 141);
+            this.btnBuscarProducto.Name = "btnBuscarProducto";
+            this.btnBuscarProducto.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarProducto.TabIndex = 12;
+            this.btnBuscarProducto.Text = "Buscar";
+            this.btnBuscarProducto.UseVisualStyleBackColor = false;
+            this.btnBuscarProducto.Click += new System.EventHandler(this.btnBuscarProducto_Click);
             // 
-            // btnUpdateProd
+            // txtCodBuscado
             // 
-            this.btnUpdateProd.Location = new System.Drawing.Point(138, 189);
-            this.btnUpdateProd.Name = "btnUpdateProd";
-            this.btnUpdateProd.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdateProd.TabIndex = 13;
-            this.btnUpdateProd.Text = "Actualizar";
-            this.btnUpdateProd.UseVisualStyleBackColor = true;
+            this.txtCodBuscado.Location = new System.Drawing.Point(170, 143);
+            this.txtCodBuscado.Name = "txtCodBuscado";
+            this.txtCodBuscado.Size = new System.Drawing.Size(117, 20);
+            this.txtCodBuscado.TabIndex = 13;
             // 
             // FrmProducto
             // 
@@ -272,8 +279,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1064, 572);
-            this.Controls.Add(this.btnUpdateProd);
-            this.Controls.Add(this.btnDeleteProd);
+            this.Controls.Add(this.txtCodBuscado);
+            this.Controls.Add(this.btnBuscarProducto);
             this.Controls.Add(this.dgwProductos);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.panel4);
@@ -290,6 +297,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwProductos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -313,7 +321,7 @@
         private System.Windows.Forms.Button btnRegistrarProducto;
         private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.DataGridView dgwProductos;
-        private System.Windows.Forms.Button btnDeleteProd;
-        private System.Windows.Forms.Button btnUpdateProd;
+        private System.Windows.Forms.Button btnBuscarProducto;
+        private System.Windows.Forms.TextBox txtCodBuscado;
     }
 }
