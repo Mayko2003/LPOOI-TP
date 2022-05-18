@@ -118,13 +118,20 @@ namespace Vistas
         private void btnNuevaObraSocial_Click(object sender, EventArgs e)
         {
             subMenuObraSocial.Visible = false;
+            frmObraSocial.Controls["panel4"].Visible = true;
+            frmObraSocial.Controls["dgwObrasSocial"].Visible = false;
+            frmObraSocial.Controls["pnlBuscar"].Visible = false;
+            frmObraSocial.clear_data_form();
             AbrirForm(frmObraSocial);
         }
 
         private void btnMostrarObraSocial_Click(object sender, EventArgs e)
         {
             subMenuObraSocial.Visible = false;
-            //AbrirForm(frmCliente);
+            frmObraSocial.Controls["panel4"].Visible = false;
+            frmObraSocial.Controls["dgwObrasSocial"].Visible = true;
+            frmObraSocial.Controls["pnlBuscar"].Visible = true;
+            AbrirForm(frmObraSocial);
         }
         #endregion
 
