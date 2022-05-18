@@ -119,7 +119,7 @@ namespace Vistas
             //set propiedades
             pnlBuscar.Visible = false;
             dgwClientes.Visible = false;
-            panel4.Visible = true;
+            pnlClienteRegistrar.Visible = true;
             txtDNI.Enabled = false; //se desabilita para evitar problemas de pk
         }
         private void dgwClientes_KeyDown(object sender, KeyEventArgs e)

@@ -89,7 +89,7 @@ namespace Vistas
 
             pnlBuscar.Visible = false;
             dgwObrasSocial.Visible = false;
-            panel4.Visible = true;
+            pnlOSRegistrar.Visible = true;
             txtCuit.Enabled = false;
 
         }

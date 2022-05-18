@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuario));
-            this.panel4 = new System.Windows.Forms.Panel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.pnlUsuarioRegistrar = new System.Windows.Forms.Panel();
+            this.cmbRol = new System.Windows.Forms.ComboBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -42,41 +45,54 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtRol = new System.Windows.Forms.TextBox();
             this.btnRegistrarUsuario = new System.Windows.Forms.Button();
             this.txtContraseña = new System.Windows.Forms.TextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.panel4.SuspendLayout();
+            this.dgwUsuarios = new System.Windows.Forms.DataGridView();
+            this.pnlBuscar = new System.Windows.Forms.Panel();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.pnlUsuarioRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwUsuarios)).BeginInit();
+            this.pnlBuscar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel4
+            // pnlUsuarioRegistrar
             // 
-            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.panel4.BackColor = System.Drawing.SystemColors.Info;
-            this.panel4.Controls.Add(this.pictureBox4);
-            this.panel4.Controls.Add(this.pictureBox3);
-            this.panel4.Controls.Add(this.pictureBox1);
-            this.panel4.Controls.Add(this.pictureBox2);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.txtApellidoYNombre);
-            this.panel4.Controls.Add(this.txtUsuario);
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.txtRol);
-            this.panel4.Controls.Add(this.btnRegistrarUsuario);
-            this.panel4.Controls.Add(this.txtContraseña);
-            this.panel4.Location = new System.Drawing.Point(296, 144);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(531, 353);
-            this.panel4.TabIndex = 1;
+            this.pnlUsuarioRegistrar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pnlUsuarioRegistrar.BackColor = System.Drawing.SystemColors.Info;
+            this.pnlUsuarioRegistrar.Controls.Add(this.cmbRol);
+            this.pnlUsuarioRegistrar.Controls.Add(this.pictureBox4);
+            this.pnlUsuarioRegistrar.Controls.Add(this.pictureBox3);
+            this.pnlUsuarioRegistrar.Controls.Add(this.pictureBox1);
+            this.pnlUsuarioRegistrar.Controls.Add(this.pictureBox2);
+            this.pnlUsuarioRegistrar.Controls.Add(this.label5);
+            this.pnlUsuarioRegistrar.Controls.Add(this.label2);
+            this.pnlUsuarioRegistrar.Controls.Add(this.txtApellidoYNombre);
+            this.pnlUsuarioRegistrar.Controls.Add(this.txtUsuario);
+            this.pnlUsuarioRegistrar.Controls.Add(this.panel5);
+            this.pnlUsuarioRegistrar.Controls.Add(this.label3);
+            this.pnlUsuarioRegistrar.Controls.Add(this.label4);
+            this.pnlUsuarioRegistrar.Controls.Add(this.label1);
+            this.pnlUsuarioRegistrar.Controls.Add(this.btnRegistrarUsuario);
+            this.pnlUsuarioRegistrar.Controls.Add(this.txtContraseña);
+            this.pnlUsuarioRegistrar.Location = new System.Drawing.Point(296, 144);
+            this.pnlUsuarioRegistrar.Name = "pnlUsuarioRegistrar";
+            this.pnlUsuarioRegistrar.Size = new System.Drawing.Size(531, 353);
+            this.pnlUsuarioRegistrar.TabIndex = 1;
+            // 
+            // cmbRol
+            // 
+            this.cmbRol.FormattingEnabled = true;
+            this.cmbRol.Location = new System.Drawing.Point(195, 244);
+            this.cmbRol.Name = "cmbRol";
+            this.cmbRol.Size = new System.Drawing.Size(293, 21);
+            this.cmbRol.TabIndex = 8;
             // 
             // pictureBox4
             // 
@@ -192,14 +208,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Usuario";
             // 
-            // txtRol
-            // 
-            this.txtRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRol.Location = new System.Drawing.Point(195, 238);
-            this.txtRol.Name = "txtRol";
-            this.txtRol.Size = new System.Drawing.Size(293, 22);
-            this.txtRol.TabIndex = 3;
-            // 
             // btnRegistrarUsuario
             // 
             this.btnRegistrarUsuario.BackColor = System.Drawing.SystemColors.Info;
@@ -234,31 +242,108 @@
             this.pictureBox5.TabIndex = 8;
             this.pictureBox5.TabStop = false;
             // 
+            // dgwUsuarios
+            // 
+            this.dgwUsuarios.AllowUserToAddRows = false;
+            this.dgwUsuarios.AllowUserToDeleteRows = false;
+            this.dgwUsuarios.AllowUserToOrderColumns = true;
+            this.dgwUsuarios.AllowUserToResizeRows = false;
+            this.dgwUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgwUsuarios.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.dgwUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgwUsuarios.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgwUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwUsuarios.GridColor = System.Drawing.SystemColors.Info;
+            this.dgwUsuarios.Location = new System.Drawing.Point(89, 207);
+            this.dgwUsuarios.Name = "dgwUsuarios";
+            this.dgwUsuarios.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgwUsuarios.Size = new System.Drawing.Size(859, 353);
+            this.dgwUsuarios.TabIndex = 12;
+            this.dgwUsuarios.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwUsuarios_RowHeaderMouseClick);
+            this.dgwUsuarios.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwUsuarios_RowHeaderMouseDoubleClick);
+            this.dgwUsuarios.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgwUsuarios_KeyDown);
+            // 
+            // pnlBuscar
+            // 
+            this.pnlBuscar.Controls.Add(this.txtBuscar);
+            this.pnlBuscar.Controls.Add(this.btnBuscar);
+            this.pnlBuscar.Location = new System.Drawing.Point(89, 179);
+            this.pnlBuscar.Name = "pnlBuscar";
+            this.pnlBuscar.Size = new System.Drawing.Size(302, 22);
+            this.pnlBuscar.TabIndex = 15;
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Location = new System.Drawing.Point(0, 0);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(219, 22);
+            this.txtBuscar.TabIndex = 13;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.Chocolate;
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Location = new System.Drawing.Point(225, 0);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(77, 22);
+            this.btnBuscar.TabIndex = 11;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // FrmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1080, 610);
+            this.Controls.Add(this.pnlBuscar);
+            this.Controls.Add(this.dgwUsuarios);
             this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pnlUsuarioRegistrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmUsuario";
             this.Text = "FrmUsuario";
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.Load += new System.EventHandler(this.FrmUsuario_Load);
+            this.Click += new System.EventHandler(this.FrmUsuario_Click);
+            this.pnlUsuarioRegistrar.ResumeLayout(false);
+            this.pnlUsuarioRegistrar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwUsuarios)).EndInit();
+            this.pnlBuscar.ResumeLayout(false);
+            this.pnlBuscar.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlUsuarioRegistrar;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -271,9 +356,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtRol;
         private System.Windows.Forms.Button btnRegistrarUsuario;
         private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.ComboBox cmbRol;
+        private System.Windows.Forms.DataGridView dgwUsuarios;
+        private System.Windows.Forms.Panel pnlBuscar;
+        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }
