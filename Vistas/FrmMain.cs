@@ -29,12 +29,23 @@ namespace Vistas
 
         private void removerControlesPnlContenedor()
         {
-            while (pnlContenedor.Controls.Count > 4)
-                pnlContenedor.Controls.RemoveAt(4);
+            foreach (Control ctl in pnlContenedor.Controls)
+            {
+                if (ctl.Name == subMenuCliente.Name || ctl.Name == subMenuObraSocial.Name
+                   || ctl.Name == subMenuProducto.Name || ctl.Name == subMenuUsuario.Name)
+                {
+                    continue;
+                }
+
+                ctl.Visible = false;
+                pnlContenedor.Controls.Remove(ctl);
+            }
         }
 
         private void AbrirForm(Form form)
         {
+            if (form.Visible) return;
+
             removerControlesPnlContenedor();
 
             Form formHijo = form;
@@ -44,7 +55,7 @@ namespace Vistas
             //Añadimos los elementos del formulario hijo
             pnlContenedor.Controls.Add(formHijo);
             //mostramos el formulario
-            formHijo.Show();
+            formHijo.Visible = true;
         }
         #endregion
 
@@ -60,7 +71,6 @@ namespace Vistas
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
             subMenuCliente.Visible = false;
-            frmCliente.Controls["panel4"].Visible = true;
             frmCliente.Controls["dgwClientes"].Visible = false;
             frmCliente.Controls["pnlBuscar"].Visible = false;
             frmCliente.clear_data_form();
@@ -69,7 +79,6 @@ namespace Vistas
         private void btnMostrarClientes_Click(object sender, EventArgs e)
         {
             subMenuCliente.Visible = false;
-            frmCliente.Controls["panel4"].Visible = false;
             frmCliente.Controls["dgwClientes"].Visible = true;
             frmCliente.Controls["pnlBuscar"].Visible = true;
             AbrirForm(frmCliente);
@@ -88,7 +97,6 @@ namespace Vistas
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
             subMenuProducto.Visible = false;
-            frmProducto.Controls["panel4"].Visible = true;
             frmProducto.Controls["dgwProductos"].Visible = false;
             frmProducto.Controls["btnUpdateProd"].Visible = false;
             frmProducto.Controls["btnDeleteProd"].Visible = false;
@@ -98,7 +106,6 @@ namespace Vistas
         private void btnMostrarProductos_Click(object sender, EventArgs e)
         {
             subMenuProducto.Visible = false;
-            frmProducto.Controls["panel4"].Visible = false;
             frmProducto.Controls["dgwProductos"].Visible = true;
             frmProducto.Controls["btnUpdateProd"].Visible = true;
             frmProducto.Controls["btnDeleteProd"].Visible = true;
@@ -118,7 +125,6 @@ namespace Vistas
         private void btnNuevaObraSocial_Click(object sender, EventArgs e)
         {
             subMenuObraSocial.Visible = false;
-            frmObraSocial.Controls["panel4"].Visible = true;
             frmObraSocial.Controls["dgwObrasSocial"].Visible = false;
             frmObraSocial.Controls["pnlBuscar"].Visible = false;
             frmObraSocial.clear_data_form();
@@ -128,7 +134,6 @@ namespace Vistas
         private void btnMostrarObraSocial_Click(object sender, EventArgs e)
         {
             subMenuObraSocial.Visible = false;
-            frmObraSocial.Controls["panel4"].Visible = false;
             frmObraSocial.Controls["dgwObrasSocial"].Visible = true;
             frmObraSocial.Controls["pnlBuscar"].Visible = true;
             AbrirForm(frmObraSocial);
