@@ -66,6 +66,9 @@ namespace Vistas
         {
             //removerControlesPnlContenedor();
             subMenuCliente.Visible = !subMenuCliente.Visible;
+            subMenuObraSocial.Visible = false;
+            subMenuProducto.Visible = false;
+            subMenuUsuario.Visible = false;
         }
 
         private void btnNuevoCliente_Click(object sender, EventArgs e)
@@ -92,6 +95,9 @@ namespace Vistas
         {
             //abrimos el submenu
             subMenuProducto.Visible = !subMenuProducto.Visible;
+            subMenuObraSocial.Visible = false;
+            subMenuCliente.Visible = false;
+            subMenuUsuario.Visible = false;
         }
 
         private void btnNuevoProducto_Click(object sender, EventArgs e)
@@ -120,6 +126,9 @@ namespace Vistas
         {
             //abrimos el submenu
             subMenuObraSocial.Visible = !subMenuObraSocial.Visible;
+            subMenuCliente.Visible = false;
+            subMenuProducto.Visible = false;
+            subMenuUsuario.Visible = false;
         }
 
         private void btnNuevaObraSocial_Click(object sender, EventArgs e)
@@ -147,6 +156,9 @@ namespace Vistas
         {
             //abrimos el submenu
             subMenuUsuario.Visible = !subMenuUsuario.Visible;
+            subMenuObraSocial.Visible = false;
+            subMenuProducto.Visible = false;
+            subMenuCliente.Visible = false;
         }
 
         private void btnNuevoUsuario_Click(object sender, EventArgs e)
