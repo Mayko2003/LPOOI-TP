@@ -22,6 +22,9 @@ namespace Vistas
         public FrmCliente()
         {
             InitializeComponent();
+            this.Visible = false;
+            this.TopLevel = false;
+            this.Dock = DockStyle.Fill;
         }
         private void FrmCliente_Load(object sender, EventArgs e)
         {
@@ -40,6 +43,8 @@ namespace Vistas
         private void load_clientes()
         {
             dgwClientes.DataSource = TrabajarCliente.list_clientes();
+
+            var dt = dgwClientes.DataSource as DataTable;
         }
         internal void clear_data_form() 
         {

@@ -15,7 +15,13 @@ namespace Vistas
         public FrmProducto()
         {
             InitializeComponent();
+            this.Visible = false;
+            this.TopLevel = false;
+            this.Dock = DockStyle.Fill;
         }
+
+
+        #region Metodos Formulario
         private void FrmProducto_Load(object sender, EventArgs e)
         {
             load_productos();
@@ -35,6 +41,12 @@ namespace Vistas
             dgwProductos.DataSource = TrabajarProducto.list_productos();
             dgwProductos.Refresh();
         }
+
+        #endregion
+
+
+
+        #region Events
         private void btnRegistrarProducto_Click(object sender, EventArgs e)
         {
             Producto producto = new Producto();
@@ -80,23 +92,23 @@ namespace Vistas
             }
         }
 
-        //ERROR: SINTAXIS EN PALABRA CLAVE WHERE
-
         private void dgwProductos_RowHeaderMouseDoubleClick_1(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewRow row = dgwProductos.Rows[e.RowIndex];
 
-            txtCodigo.Text = row.Cells["prod_codigo"].Value as string;
-            txtCategoria.Text = row.Cells["prod_categoria"].Value as string;
-            txtDescripcion.Text = row.Cells["prod_descripcion"].Value as string;
-            txtPrecio.Text = row.Cells["prod_precio"].Value as string;
+            txtCodigo.Text = row.Cells["Codigo"].Value as string;
+            txtCategoria.Text = row.Cells["Categoria"].Value as string;
+            txtDescripcion.Text = row.Cells["Descripcion"].Value as string;
+            txtPrecio.Text = row.Cells["Precio"].Value as string;
 
             //set propiedades
 
             dgwProductos.Visible = false;
-            panel4.Visible = true;
+            pnlProductoRegistrar.Visible = true;
             txtCodigo.Enabled = false; //se desabilita para evitar problemas de pk
         }
+
+        #endregion
 
     }
 }

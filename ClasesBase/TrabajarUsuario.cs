@@ -70,7 +70,6 @@ namespace ClasesBase
 
             cmd.CommandText = "SELECT usu_id as 'ID', ";
             cmd.CommandText += "usu_nombreUsuario as 'Nombre Usuario', ";
-            cmd.CommandText += "usu_contrasenia as 'Contraseña', ";
             cmd.CommandText += "usu_apellidoNombre as 'Apellido y Nombre', ";
             cmd.CommandText += "R.rol_descripcion as 'Rol' ";
             cmd.CommandText += "FROM Usuario as U ";
@@ -118,6 +117,29 @@ namespace ClasesBase
             return dt;
         }
 
+        public static bool check_credenciales(string username, string password)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "SELECT * FROM Usuario WHERE usu_nombreUsuario = @username AND usu_contrasenia = @password";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            if (dt.Rows.Count == 0) return false;
+            return true;
+        
+        }
 
         public static bool exist_usuario(string nombreUsuario)
         {

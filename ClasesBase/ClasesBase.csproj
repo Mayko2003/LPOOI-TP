@@ -61,7 +61,11 @@
     <Compile Include="TrabajarProducto.cs" />
     <Compile Include="TrabajarRol.cs" />
     <Compile Include="TrabajarUsuario.cs" />
+    <Compile Include="TrabajarVenta.cs" />
+    <Compile Include="TrabajarVentaDetalle.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="Venta.cs" />
+    <Compile Include="VentaDetalle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -174,6 +174,7 @@
             this.btnIngresar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIngresar.FlatAppearance.BorderSize = 0;
             this.btnIngresar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Info;
+            this.btnIngresar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
             this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIngresar.Location = new System.Drawing.Point(102, 194);
@@ -183,8 +184,6 @@
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = false;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click_1);
-            this.btnIngresar.MouseLeave += new System.EventHandler(this.btnIngresar_MouseLeave);
-            this.btnIngresar.MouseHover += new System.EventHandler(this.btnIngresar_MouseHover);
             // 
             // txtPassword
             // 
@@ -193,6 +192,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(171, 22);
             this.txtPassword.TabIndex = 1;
+            this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             // 
             // pictureBox1
             // 

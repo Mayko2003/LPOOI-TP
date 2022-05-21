@@ -1,0 +1,101 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using System.Data.SqlClient;
+namespace ClasesBase
+{
+    public class TrabajarVenta
+    {
+
+        public static void insert_venta(Venta venta)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            // crear query
+            cmd.CommandText = "INSERT INTO Venta(ven_fecha,cli_dni) VALUES(@fecha,@dni)";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            
+            cmd.Parameters.AddWithValue("@fecha", venta.Ven_Fecha);
+            cmd.Parameters.AddWithValue("@dni", venta.Cli_DNI);
+
+
+            cnn.Open();//abrir conexion
+            cmd.ExecuteNonQuery(); //ejecutar transaccion
+            cnn.Close(); // cerrar conexion
+
+        }
+
+        public static DataTable list_ventas()
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            // crear query
+            cmd.CommandText = "SELECT ven_nro as 'Nro.', ";
+            cmd.CommandText += "ven_fecha as 'Fecha', ";
+            cmd.CommandText += "cli_dni as 'DNI Cliente' ";
+            cmd.CommandText += "FROM Venta";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
+        }
+
+        public static void delete_venta(string venNro)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "DELETE FROM Venta WHERE ven_nro LIKE @ven_nro";
+            cmd.Parameters.AddWithValue("@ven_nro", venNro);
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            cnn.Open();
+            cmd.ExecuteNonQuery();
+            cnn.Close();
+        }
+
+        public static int get_current_index()
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            // crear query
+            cmd.CommandText = "SELECT ven_nro FROM Venta ORDER BY ven_nro DESC";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return Convert.ToInt32(dt.Rows[0][0].ToString());
+        }
+    }
+}

@@ -21,6 +21,9 @@ namespace Vistas
         public FrmObraSocial()
         {
             InitializeComponent();
+            this.Visible = false;
+            this.TopLevel = false;
+            this.Dock = DockStyle.Fill;
         }
         internal void clear_data_form() 
         { 

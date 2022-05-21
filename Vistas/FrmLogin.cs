@@ -18,54 +18,53 @@ namespace Vistas
             InitializeComponent();
         }
 
+        #region Metodos formulario
+        private void clear_data_form()
+        {
+            txtPassword.Text = "";
+            txtUserName.Text = "";
+        }
+        #endregion
+
+        #region Events
         private void btnIngresar_Click_1(object sender, EventArgs e)
         {
-
-            if (TrabajarUsuario.exist_usuario(txtUserName.Text))
+            if (txtUserName.Text == "" || txtPassword.Text == "")
+                MessageBox.Show("Ingrese sus credenciales!");
+            else if(TrabajarUsuario.check_credenciales(txtUserName.Text,txtPassword.Text))
             {
+                FrmMain frmMain = new FrmMain();
+
                 DataTable dt = TrabajarUsuario.search_usuarios(txtUserName.Text);
-                //como busca por username primero y ya sabemos que existe, entonces
-                //evaluamos el primer registro en la contraseña
-                string password = dt.Rows[0]["Contraseña"].ToString();
-
-                if (password == txtPassword.Text)
-                {
-                    MessageBox.Show("Bienvenido: " + dt.Rows[0]["Apellido y Nombre"].ToString(), "Bienvenida");
-                    FrmMain frmMain = new FrmMain();
                     
-                    //creacion del usuario logeado y del rol
-                    Usuario logeado = new Usuario();
-                    logeado.Usu_ID = Convert.ToInt32(dt.Rows[0]["ID"]);
-                    logeado.Usu_Contraseña = dt.Rows[0]["Contraseña"].ToString();
-                    logeado.Usu_NombreUsuario = dt.Rows[0]["Nombre Usuario"].ToString();
-                    logeado.Usu_Contraseña = dt.Rows[0]["Apellido y Nombre"].ToString();
+                //creacion del usuario logeado y del rol, fila 0 porque busca primero por username
+                Usuario logeado = new Usuario();
+                logeado.Usu_ID = Convert.ToInt32(dt.Rows[0]["ID"]);
+                logeado.Usu_Contraseña = dt.Rows[0]["Contraseña"].ToString();
+                logeado.Usu_NombreUsuario = dt.Rows[0]["Nombre Usuario"].ToString();
+                logeado.Usu_Contraseña = dt.Rows[0]["Apellido y Nombre"].ToString();
 
-                    frmMain.UsuarioLogeado = logeado;
-                    frmMain.RolLogeado = dt.Rows[0]["Rol"].ToString();
-                    //se cargan las funcionalidades segun el rol y se lo muestra al form
-                    frmMain.LoadFuncionalidades();
-                    this.Hide();
-                }
-                else MessageBox.Show("Contraseña incorrecta");
+                frmMain.UsuarioLogeado = logeado;
+                frmMain.RolLogeado = dt.Rows[0]["Rol"].ToString();
+
+                //se oculta el login y se carga el formulario principal segun el rol
+                this.Hide();
+                frmMain.LoadSegunRol();
+                this.Show();
             }
-            else MessageBox.Show("El usuario no existe");
+            else MessageBox.Show("Usuario o contraseña incorrectas");
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-        private void btnIngresar_MouseHover(object sender, EventArgs e)
+        private void txtPassword_Enter(object sender, EventArgs e)
         {
-            btnIngresar.BackColor = Color.Chocolate;
+            txtPassword.UseSystemPasswordChar = true;
         }
+        #endregion
 
-        private void btnIngresar_MouseLeave(object sender, EventArgs e)
-        {
-            btnIngresar.BackColor = SystemColors.Info;
-        }
-
-
+        
     }
 }

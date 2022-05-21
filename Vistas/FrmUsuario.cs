@@ -23,6 +23,9 @@ namespace Vistas
         public FrmUsuario()
         {
             InitializeComponent();
+            this.Visible = false;
+            this.TopLevel = false;
+            this.Dock = DockStyle.Fill;
         }
 
         #region Metodos Formulario
