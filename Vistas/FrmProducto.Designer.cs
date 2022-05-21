@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProducto));
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.pnlProductoRegistrar = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -45,42 +47,40 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.btnRegistrarProducto = new System.Windows.Forms.Button();
             this.txtCategoria = new System.Windows.Forms.TextBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.dgwProductos = new System.Windows.Forms.DataGridView();
-            this.btnDeleteProd = new System.Windows.Forms.Button();
-            this.btnUpdateProd = new System.Windows.Forms.Button();
-            this.panel4.SuspendLayout();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pnlProductoRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel4
+            // pnlProductoRegistrar
             // 
-            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.panel4.BackColor = System.Drawing.SystemColors.Info;
-            this.panel4.Controls.Add(this.pictureBox4);
-            this.panel4.Controls.Add(this.pictureBox3);
-            this.panel4.Controls.Add(this.pictureBox1);
-            this.panel4.Controls.Add(this.pictureBox2);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.txtDescripcion);
-            this.panel4.Controls.Add(this.txtCodigo);
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.txtPrecio);
-            this.panel4.Controls.Add(this.btnRegistrarProducto);
-            this.panel4.Controls.Add(this.txtCategoria);
-            this.panel4.Location = new System.Drawing.Point(233, 170);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(570, 357);
-            this.panel4.TabIndex = 9;
+            this.pnlProductoRegistrar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pnlProductoRegistrar.BackColor = System.Drawing.SystemColors.Info;
+            this.pnlProductoRegistrar.Controls.Add(this.pictureBox4);
+            this.pnlProductoRegistrar.Controls.Add(this.pictureBox3);
+            this.pnlProductoRegistrar.Controls.Add(this.pictureBox1);
+            this.pnlProductoRegistrar.Controls.Add(this.pictureBox2);
+            this.pnlProductoRegistrar.Controls.Add(this.label5);
+            this.pnlProductoRegistrar.Controls.Add(this.label2);
+            this.pnlProductoRegistrar.Controls.Add(this.txtDescripcion);
+            this.pnlProductoRegistrar.Controls.Add(this.txtCodigo);
+            this.pnlProductoRegistrar.Controls.Add(this.panel5);
+            this.pnlProductoRegistrar.Controls.Add(this.label3);
+            this.pnlProductoRegistrar.Controls.Add(this.label4);
+            this.pnlProductoRegistrar.Controls.Add(this.label1);
+            this.pnlProductoRegistrar.Controls.Add(this.txtPrecio);
+            this.pnlProductoRegistrar.Controls.Add(this.btnRegistrarProducto);
+            this.pnlProductoRegistrar.Controls.Add(this.txtCategoria);
+            this.pnlProductoRegistrar.Location = new System.Drawing.Point(233, 170);
+            this.pnlProductoRegistrar.Name = "pnlProductoRegistrar";
+            this.pnlProductoRegistrar.Size = new System.Drawing.Size(570, 357);
+            this.pnlProductoRegistrar.TabIndex = 9;
             // 
             // pictureBox4
             // 
@@ -228,6 +228,41 @@
             this.txtCategoria.Size = new System.Drawing.Size(293, 22);
             this.txtCategoria.TabIndex = 1;
             // 
+            // dgwProductos
+            // 
+            this.dgwProductos.AllowUserToAddRows = false;
+            this.dgwProductos.AllowUserToDeleteRows = false;
+            this.dgwProductos.AllowUserToResizeColumns = false;
+            this.dgwProductos.AllowUserToResizeRows = false;
+            this.dgwProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgwProductos.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.dgwProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgwProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgwProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwProductos.GridColor = System.Drawing.SystemColors.Info;
+            this.dgwProductos.Location = new System.Drawing.Point(89, 207);
+            this.dgwProductos.Name = "dgwProductos";
+            this.dgwProductos.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgwProductos.Size = new System.Drawing.Size(859, 390);
+            this.dgwProductos.TabIndex = 11;
+            this.dgwProductos.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwProductos_RowHeaderMouseDoubleClick_1);
+            // 
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
@@ -238,57 +273,27 @@
             this.pictureBox5.TabIndex = 10;
             this.pictureBox5.TabStop = false;
             // 
-            // dgwProductos
-            // 
-            this.dgwProductos.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.dgwProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwProductos.Location = new System.Drawing.Point(233, 170);
-            this.dgwProductos.Name = "dgwProductos";
-            this.dgwProductos.Size = new System.Drawing.Size(570, 357);
-            this.dgwProductos.TabIndex = 11;
-            this.dgwProductos.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwProductos_RowHeaderMouseDoubleClick_1);
-            // 
-            // btnDeleteProd
-            // 
-            this.btnDeleteProd.Location = new System.Drawing.Point(138, 218);
-            this.btnDeleteProd.Name = "btnDeleteProd";
-            this.btnDeleteProd.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteProd.TabIndex = 12;
-            this.btnDeleteProd.Text = "Eliminar";
-            this.btnDeleteProd.UseVisualStyleBackColor = true;
-            // 
-            // btnUpdateProd
-            // 
-            this.btnUpdateProd.Location = new System.Drawing.Point(138, 189);
-            this.btnUpdateProd.Name = "btnUpdateProd";
-            this.btnUpdateProd.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdateProd.TabIndex = 13;
-            this.btnUpdateProd.Text = "Actualizar";
-            this.btnUpdateProd.UseVisualStyleBackColor = true;
-            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1064, 572);
-            this.Controls.Add(this.btnUpdateProd);
-            this.Controls.Add(this.btnDeleteProd);
             this.Controls.Add(this.dgwProductos);
             this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pnlProductoRegistrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmProducto";
             this.Text = "FrmProducto";
             this.Load += new System.EventHandler(this.FrmProducto_Load);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.pnlProductoRegistrar.ResumeLayout(false);
+            this.pnlProductoRegistrar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwProductos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -296,7 +301,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlProductoRegistrar;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -313,7 +318,5 @@
         private System.Windows.Forms.Button btnRegistrarProducto;
         private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.DataGridView dgwProductos;
-        private System.Windows.Forms.Button btnDeleteProd;
-        private System.Windows.Forms.Button btnUpdateProd;
     }
 }

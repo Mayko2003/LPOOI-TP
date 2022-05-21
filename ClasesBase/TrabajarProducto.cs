@@ -70,18 +70,16 @@ namespace ClasesBase
             SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
 
             //operaciones
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Producto",cnn);
+            SqlCommand cmd = new SqlCommand();
 
-            /*
             cmd.CommandText = "SELECT prod_codigo as 'Codigo', ";
             cmd.CommandText += "prod_categoria as 'Categoria', ";
             cmd.CommandText += "prod_descripcion as 'Descripcion', ";
-            cmd.CommandText += "prod_precio as 'Precio', ";
+            cmd.CommandText += "prod_precio as 'Precio' ";
             cmd.CommandText += "FROM Producto as P ";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cnn;
-             */
              
 
             //ejecutar la consulta

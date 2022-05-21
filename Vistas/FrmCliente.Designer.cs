@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCliente));
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.pnlClienteRegistrar = new System.Windows.Forms.Panel();
             this.cmbOS_Cuit = new System.Windows.Forms.ComboBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -58,7 +58,7 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.pnlBuscar = new System.Windows.Forms.Panel();
-            this.panel4.SuspendLayout();
+            this.pnlClienteRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -70,35 +70,35 @@
             this.pnlBuscar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel4
+            // pnlClienteRegistrar
             // 
-            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.panel4.BackColor = System.Drawing.SystemColors.Info;
-            this.panel4.Controls.Add(this.cmbOS_Cuit);
-            this.panel4.Controls.Add(this.pictureBox4);
-            this.panel4.Controls.Add(this.pictureBox8);
-            this.panel4.Controls.Add(this.pictureBox3);
-            this.panel4.Controls.Add(this.pictureBox1);
-            this.panel4.Controls.Add(this.pictureBox6);
-            this.panel4.Controls.Add(this.pictureBox2);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.label8);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.txtNombre);
-            this.panel4.Controls.Add(this.txtDNI);
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.txtDireccion);
-            this.panel4.Controls.Add(this.txtNumeroCarnet);
-            this.panel4.Controls.Add(this.btnRegistrarProducto);
-            this.panel4.Controls.Add(this.txtApellido);
-            this.panel4.Location = new System.Drawing.Point(89, 207);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(859, 353);
-            this.panel4.TabIndex = 11;
+            this.pnlClienteRegistrar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pnlClienteRegistrar.BackColor = System.Drawing.SystemColors.Info;
+            this.pnlClienteRegistrar.Controls.Add(this.cmbOS_Cuit);
+            this.pnlClienteRegistrar.Controls.Add(this.pictureBox4);
+            this.pnlClienteRegistrar.Controls.Add(this.pictureBox8);
+            this.pnlClienteRegistrar.Controls.Add(this.pictureBox3);
+            this.pnlClienteRegistrar.Controls.Add(this.pictureBox1);
+            this.pnlClienteRegistrar.Controls.Add(this.pictureBox6);
+            this.pnlClienteRegistrar.Controls.Add(this.pictureBox2);
+            this.pnlClienteRegistrar.Controls.Add(this.label5);
+            this.pnlClienteRegistrar.Controls.Add(this.label8);
+            this.pnlClienteRegistrar.Controls.Add(this.label2);
+            this.pnlClienteRegistrar.Controls.Add(this.txtNombre);
+            this.pnlClienteRegistrar.Controls.Add(this.txtDNI);
+            this.pnlClienteRegistrar.Controls.Add(this.panel5);
+            this.pnlClienteRegistrar.Controls.Add(this.label3);
+            this.pnlClienteRegistrar.Controls.Add(this.label6);
+            this.pnlClienteRegistrar.Controls.Add(this.label4);
+            this.pnlClienteRegistrar.Controls.Add(this.label1);
+            this.pnlClienteRegistrar.Controls.Add(this.txtDireccion);
+            this.pnlClienteRegistrar.Controls.Add(this.txtNumeroCarnet);
+            this.pnlClienteRegistrar.Controls.Add(this.btnRegistrarProducto);
+            this.pnlClienteRegistrar.Controls.Add(this.txtApellido);
+            this.pnlClienteRegistrar.Location = new System.Drawing.Point(89, 207);
+            this.pnlClienteRegistrar.Name = "pnlClienteRegistrar";
+            this.pnlClienteRegistrar.Size = new System.Drawing.Size(859, 353);
+            this.pnlClienteRegistrar.TabIndex = 11;
             // 
             // cmbOS_Cuit
             // 
@@ -392,14 +392,14 @@
             this.Controls.Add(this.pnlBuscar);
             this.Controls.Add(this.dgwClientes);
             this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pnlClienteRegistrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmCliente";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "FrmCliente";
             this.Load += new System.EventHandler(this.FrmCliente_Load);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.pnlClienteRegistrar.ResumeLayout(false);
+            this.pnlClienteRegistrar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -417,7 +417,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlClienteRegistrar;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;

@@ -12,39 +12,71 @@ namespace Vistas
 {
     public partial class FrmMain : Form
     {
+
+        #region Atributos y Propiedades
+
+        private Usuario usuarioLogeado;
+        private string rolLogeado;
+
+        public Usuario UsuarioLogeado
+        {
+            get { return this.usuarioLogeado; }
+            set { this.usuarioLogeado = value; }
+        }
+        public string RolLogeado 
+        {
+            get { return this.rolLogeado; }
+            set { this.rolLogeado = value; }
+        }
+
         #region Forms
         private FrmCliente frmCliente = new FrmCliente();
         private FrmProducto frmProducto = new FrmProducto();
         private FrmObraSocial frmObraSocial = new FrmObraSocial();
         private FrmUsuario frmUsuario = new FrmUsuario();
         private FrmInicio frmInicio = new FrmInicio();
+        private FrmVenta frmVenta = new FrmVenta();
         #endregion
 
+
+        #endregion
         public FrmMain()
         {
             InitializeComponent();
+            pnlContenedor.Controls.Add(frmCliente);
+            pnlContenedor.Controls.Add(frmInicio);
+            pnlContenedor.Controls.Add(frmObraSocial);
+            pnlContenedor.Controls.Add(frmUsuario);
+            pnlContenedor.Controls.Add(frmProducto);
+            pnlContenedor.Controls.Add(frmVenta);
         }
 
         #region Metodos Formulario
 
-        private void removerControlesPnlContenedor()
+        internal void LoadSegunRol()
         {
-            while (pnlContenedor.Controls.Count > 4)
-                pnlContenedor.Controls.RemoveAt(4);
+            if (rolLogeado == "Operario")
+            {
+                // eliminamos los controles de gestionar usuarios
+                mnuVertical.Controls.Remove(pnlBtnUsuario);
+                mnuVertical.Controls.Remove(pnlBtnProducto);
+            }
+            else if (rolLogeado == "Administrador")
+            {
+                mnuVertical.Controls.Remove(pnlBtnCliente);
+                mnuVertical.Controls.Remove(pnlBtnOS);
+                mnuVertical.Controls.Remove(pnlBtnVenta);
+            }
+            this.ShowDialog();
         }
 
         private void AbrirForm(Form form)
         {
-            removerControlesPnlContenedor();
-
-            Form formHijo = form;
-            formHijo.TopLevel = false;
-            //Hacemos que el formulario ocupe todo el espacio del contenedor
-            formHijo.Dock = DockStyle.Fill;
-            //Añadimos los elementos del formulario hijo
-            pnlContenedor.Controls.Add(formHijo);
-            //mostramos el formulario
-            formHijo.Show();
+            foreach (Control ctl in pnlContenedor.Controls)
+            {
+                if (ctl.Name == form.Name) form.Visible = true;
+                else ctl.Visible = false;
+            }
         }
         #endregion
 
@@ -55,23 +87,27 @@ namespace Vistas
         {
             //removerControlesPnlContenedor();
             subMenuCliente.Visible = !subMenuCliente.Visible;
+            subMenuObraSocial.Visible = false;
+            subMenuProducto.Visible = false;
+            subMenuUsuario.Visible = false;
+            subMenuVenta.Visible = false;
         }
 
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
             subMenuCliente.Visible = false;
-            frmCliente.Controls["panel4"].Visible = true;
             frmCliente.Controls["dgwClientes"].Visible = false;
             frmCliente.Controls["pnlBuscar"].Visible = false;
+            frmCliente.Controls["pnlClienteRegistrar"].Visible = true;
             frmCliente.clear_data_form();
             AbrirForm(frmCliente);
         }
         private void btnMostrarClientes_Click(object sender, EventArgs e)
         {
             subMenuCliente.Visible = false;
-            frmCliente.Controls["panel4"].Visible = false;
             frmCliente.Controls["dgwClientes"].Visible = true;
             frmCliente.Controls["pnlBuscar"].Visible = true;
+            frmCliente.Controls["pnlClienteRegistrar"].Visible = false;
             AbrirForm(frmCliente);
         }
         #endregion
@@ -83,25 +119,25 @@ namespace Vistas
         {
             //abrimos el submenu
             subMenuProducto.Visible = !subMenuProducto.Visible;
+            subMenuObraSocial.Visible = false;
+            subMenuCliente.Visible = false;
+            subMenuUsuario.Visible = false;
+            subMenuVenta.Visible = false;
         }
 
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
             subMenuProducto.Visible = false;
-            frmProducto.Controls["panel4"].Visible = true;
             frmProducto.Controls["dgwProductos"].Visible = false;
-            frmProducto.Controls["btnUpdateProd"].Visible = false;
-            frmProducto.Controls["btnDeleteProd"].Visible = false;
+            frmProducto.Controls["pnlProductoRegistrar"].Visible = true;
             AbrirForm(frmProducto);
         }
 
         private void btnMostrarProductos_Click(object sender, EventArgs e)
         {
             subMenuProducto.Visible = false;
-            frmProducto.Controls["panel4"].Visible = false;
             frmProducto.Controls["dgwProductos"].Visible = true;
-            frmProducto.Controls["btnUpdateProd"].Visible = true;
-            frmProducto.Controls["btnDeleteProd"].Visible = true;
+            frmProducto.Controls["pnlProductoRegistrar"].Visible = false;
             AbrirForm(frmProducto);
         }
         #endregion
@@ -113,14 +149,18 @@ namespace Vistas
         {
             //abrimos el submenu
             subMenuObraSocial.Visible = !subMenuObraSocial.Visible;
+            subMenuCliente.Visible = false;
+            subMenuProducto.Visible = false;
+            subMenuUsuario.Visible = false;
+            subMenuVenta.Visible = false;
         }
 
         private void btnNuevaObraSocial_Click(object sender, EventArgs e)
         {
             subMenuObraSocial.Visible = false;
-            frmObraSocial.Controls["panel4"].Visible = true;
             frmObraSocial.Controls["dgwObrasSocial"].Visible = false;
             frmObraSocial.Controls["pnlBuscar"].Visible = false;
+            frmObraSocial.Controls["pnlOSRegistrar"].Visible = true;
             frmObraSocial.clear_data_form();
             AbrirForm(frmObraSocial);
         }
@@ -128,9 +168,9 @@ namespace Vistas
         private void btnMostrarObraSocial_Click(object sender, EventArgs e)
         {
             subMenuObraSocial.Visible = false;
-            frmObraSocial.Controls["panel4"].Visible = false;
             frmObraSocial.Controls["dgwObrasSocial"].Visible = true;
             frmObraSocial.Controls["pnlBuscar"].Visible = true;
+            frmObraSocial.Controls["pnlOSRegistrar"].Visible = false;
             AbrirForm(frmObraSocial);
         }
         #endregion
@@ -142,18 +182,65 @@ namespace Vistas
         {
             //abrimos el submenu
             subMenuUsuario.Visible = !subMenuUsuario.Visible;
+            subMenuObraSocial.Visible = false;
+            subMenuProducto.Visible = false;
+            subMenuCliente.Visible = false;
+            subMenuVenta.Visible = false;
         }
 
         private void btnNuevoUsuario_Click(object sender, EventArgs e)
         {
             subMenuUsuario.Visible = false;
+            frmUsuario.Controls["pnlUsuarioRegistrar"].Visible = true;
+            frmUsuario.Controls["pnlBuscar"].Visible = false;
+            frmUsuario.Controls["dgwUsuarios"].Visible = false;
+            frmUsuario.clear_data_form();
             AbrirForm(frmUsuario);
         }
 
         private void btnMostrarUsuarios_Click(object sender, EventArgs e)
         {
             subMenuUsuario.Visible = false;
-            //AbrirForm(frmCliente);
+            frmUsuario.Controls["pnlUsuarioRegistrar"].Visible = false;
+            frmUsuario.Controls["pnlBuscar"].Visible = true;
+            frmUsuario.Controls["dgwUsuarios"].Visible = true;
+            AbrirForm(frmUsuario);
+        }
+        #endregion
+
+
+        #region Venta Form events
+        // -------------Venta-------------------
+        private void btnVenta_click(object sender, EventArgs e)
+        {
+            //abrimos el submenu
+            subMenuVenta.Visible = !subMenuVenta.Visible;
+            subMenuUsuario.Visible = false;
+            subMenuObraSocial.Visible = false;
+            subMenuProducto.Visible = false;
+            subMenuCliente.Visible = false;
+        }
+
+        private void btnNuevaVenta_click(object sender, EventArgs e)
+        {
+            subMenuVenta.Visible = false;
+            frmVenta.Controls["pnlVentaRegistrar"].Visible = true;
+            frmVenta.Controls["pnlBuscar"].Visible = false;
+            frmVenta.Controls["dgwVentas"].Visible = false;
+
+            frmVenta.clear_data_form();
+            AbrirForm(frmVenta);
+        }
+
+        private void btnMostrarVentas_click(object sender, EventArgs e)
+        {
+            subMenuUsuario.Visible = false;
+            frmVenta.Controls["pnlVentaRegistrar"].Visible = false;
+            frmVenta.Controls["pnlBuscar"].Visible = true;
+            frmVenta.Controls["dgwVentas"].Visible = true;
+
+
+            AbrirForm(frmVenta);
         }
         #endregion
 
@@ -169,16 +256,14 @@ namespace Vistas
         #region Eventos adicionales
         private void btnSalir1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
         #endregion
 
-
-       
 
     }
 }

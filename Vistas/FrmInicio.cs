@@ -14,6 +14,9 @@ namespace Vistas
         public FrmInicio()
         {
             InitializeComponent();
+            this.Visible = false;
+            this.TopLevel = false;
+            this.Dock = DockStyle.Fill;
         }
     }
 }

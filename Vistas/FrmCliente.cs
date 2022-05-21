@@ -22,6 +22,9 @@ namespace Vistas
         public FrmCliente()
         {
             InitializeComponent();
+            this.Visible = false;
+            this.TopLevel = false;
+            this.Dock = DockStyle.Fill;
         }
         private void FrmCliente_Load(object sender, EventArgs e)
         {
@@ -40,6 +43,8 @@ namespace Vistas
         private void load_clientes()
         {
             dgwClientes.DataSource = TrabajarCliente.list_clientes();
+
+            var dt = dgwClientes.DataSource as DataTable;
         }
         internal void clear_data_form() 
         {
@@ -119,7 +124,7 @@ namespace Vistas
             //set propiedades
             pnlBuscar.Visible = false;
             dgwClientes.Visible = false;
-            panel4.Visible = true;
+            pnlClienteRegistrar.Visible = true;
             txtDNI.Enabled = false; //se desabilita para evitar problemas de pk
         }
         private void dgwClientes_KeyDown(object sender, KeyEventArgs e)

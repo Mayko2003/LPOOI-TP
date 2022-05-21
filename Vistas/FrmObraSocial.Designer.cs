@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmObraSocial));
-            this.panel4 = new System.Windows.Forms.Panel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.pnlOSRegistrar = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -50,7 +52,7 @@
             this.pnlBuscar = new System.Windows.Forms.Panel();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.panel4.SuspendLayout();
+            this.pnlOSRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -60,29 +62,29 @@
             this.pnlBuscar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel4
+            // pnlOSRegistrar
             // 
-            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.panel4.BackColor = System.Drawing.SystemColors.Info;
-            this.panel4.Controls.Add(this.pictureBox4);
-            this.panel4.Controls.Add(this.pictureBox3);
-            this.panel4.Controls.Add(this.pictureBox1);
-            this.panel4.Controls.Add(this.pictureBox2);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.txtDireccion);
-            this.panel4.Controls.Add(this.txtCuit);
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.txtTelefono);
-            this.panel4.Controls.Add(this.btnRegistrarObraSocial);
-            this.panel4.Controls.Add(this.txtRazonSocial);
-            this.panel4.Location = new System.Drawing.Point(258, 207);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(531, 358);
-            this.panel4.TabIndex = 11;
+            this.pnlOSRegistrar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pnlOSRegistrar.BackColor = System.Drawing.SystemColors.Info;
+            this.pnlOSRegistrar.Controls.Add(this.pictureBox4);
+            this.pnlOSRegistrar.Controls.Add(this.pictureBox3);
+            this.pnlOSRegistrar.Controls.Add(this.pictureBox1);
+            this.pnlOSRegistrar.Controls.Add(this.pictureBox2);
+            this.pnlOSRegistrar.Controls.Add(this.label5);
+            this.pnlOSRegistrar.Controls.Add(this.label2);
+            this.pnlOSRegistrar.Controls.Add(this.txtDireccion);
+            this.pnlOSRegistrar.Controls.Add(this.txtCuit);
+            this.pnlOSRegistrar.Controls.Add(this.panel5);
+            this.pnlOSRegistrar.Controls.Add(this.label3);
+            this.pnlOSRegistrar.Controls.Add(this.label4);
+            this.pnlOSRegistrar.Controls.Add(this.label1);
+            this.pnlOSRegistrar.Controls.Add(this.txtTelefono);
+            this.pnlOSRegistrar.Controls.Add(this.btnRegistrarObraSocial);
+            this.pnlOSRegistrar.Controls.Add(this.txtRazonSocial);
+            this.pnlOSRegistrar.Location = new System.Drawing.Point(258, 207);
+            this.pnlOSRegistrar.Name = "pnlOSRegistrar";
+            this.pnlOSRegistrar.Size = new System.Drawing.Size(531, 358);
+            this.pnlOSRegistrar.TabIndex = 11;
             // 
             // pictureBox4
             // 
@@ -245,13 +247,32 @@
             this.dgwObrasSocial.AllowUserToAddRows = false;
             this.dgwObrasSocial.AllowUserToDeleteRows = false;
             this.dgwObrasSocial.AllowUserToOrderColumns = true;
+            this.dgwObrasSocial.AllowUserToResizeColumns = false;
+            this.dgwObrasSocial.AllowUserToResizeRows = false;
             this.dgwObrasSocial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwObrasSocial.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dgwObrasSocial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgwObrasSocial.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwObrasSocial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgwObrasSocial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwObrasSocial.Location = new System.Drawing.Point(89, 207);
             this.dgwObrasSocial.Name = "dgwObrasSocial";
             this.dgwObrasSocial.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwObrasSocial.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgwObrasSocial.Size = new System.Drawing.Size(859, 353);
             this.dgwObrasSocial.TabIndex = 14;
             this.dgwObrasSocial.Visible = false;
@@ -301,13 +322,13 @@
             this.Controls.Add(this.dgwObrasSocial);
             this.Controls.Add(this.pnlBuscar);
             this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pnlOSRegistrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmObraSocial";
             this.Text = "FrmObraSocial";
             this.Load += new System.EventHandler(this.frmObraSocial_Load);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.pnlOSRegistrar.ResumeLayout(false);
+            this.pnlOSRegistrar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -323,7 +344,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlOSRegistrar;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;

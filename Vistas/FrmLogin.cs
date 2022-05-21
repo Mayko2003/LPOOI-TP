@@ -12,72 +12,59 @@ namespace Vistas
 {
     public partial class FrmLogin : Form
     {
+
         public FrmLogin()
         {
             InitializeComponent();
         }
 
-        private void txtUserName_TextChanged(object sender, EventArgs e)
+        #region Metodos formulario
+        private void clear_data_form()
         {
-
+            txtPassword.Text = "";
+            txtUserName.Text = "";
         }
+        #endregion
 
-        private void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        #region Events
         private void btnIngresar_Click_1(object sender, EventArgs e)
         {
-            Boolean userFound = false;
+            if (txtUserName.Text == "" || txtPassword.Text == "")
+                MessageBox.Show("Ingrese sus credenciales!");
+            else if(TrabajarUsuario.check_credenciales(txtUserName.Text,txtPassword.Text))
+            {
+                FrmMain frmMain = new FrmMain();
 
-            Usuario oUser1 = new Usuario("administrador", "1234");
-            Usuario oUser2 = new Usuario("operador", "1234");
-            Usuario oUser3 = new Usuario("auditor", "1234");
+                DataTable dt = TrabajarUsuario.search_usuarios(txtUserName.Text);
+                    
+                //creacion del usuario logeado y del rol, fila 0 porque busca primero por username
+                Usuario logeado = new Usuario();
+                logeado.Usu_ID = Convert.ToInt32(dt.Rows[0]["ID"]);
+                logeado.Usu_Contraseña = dt.Rows[0]["Contraseña"].ToString();
+                logeado.Usu_NombreUsuario = dt.Rows[0]["Nombre Usuario"].ToString();
+                logeado.Usu_Contraseña = dt.Rows[0]["Apellido y Nombre"].ToString();
 
-            FrmMain oFrmMain = new FrmMain();
-            FrmLogin oFrmLogin = new FrmLogin();
+                frmMain.UsuarioLogeado = logeado;
+                frmMain.RolLogeado = dt.Rows[0]["Rol"].ToString();
 
-            if (oUser1.Usu_NombreUsuario == txtUserName.Text && oUser1.Usu_Contraseña == txtPassword.Text)
-            {
-                userFound = true;
+                //se oculta el login y se carga el formulario principal segun el rol
+                this.Hide();
+                frmMain.LoadSegunRol();
+                this.Show();
             }
-            else if (oUser2.Usu_NombreUsuario == txtUserName.Text && oUser2.Usu_Contraseña == txtPassword.Text)
-            {
-                userFound = true;
-            }
-            else if (oUser3.Usu_NombreUsuario == txtUserName.Text && oUser3.Usu_Contraseña == txtPassword.Text)
-            {
-                userFound = true;
-            }
-
-            if (userFound)
-            {
-                MessageBox.Show(txtUserName.Text, "Bienvenido/a: ");
-                oFrmMain.Show();
-            }
-            else
-            {
-                MessageBox.Show("Datos de acceso incorrectos");
-            }
-            this.Hide();
+            else MessageBox.Show("Usuario o contraseña incorrectas");
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-        private void btnIngresar_MouseHover(object sender, EventArgs e)
+        private void txtPassword_Enter(object sender, EventArgs e)
         {
-            btnIngresar.BackColor = Color.Chocolate;
+            txtPassword.UseSystemPasswordChar = true;
         }
+        #endregion
 
-        private void btnIngresar_MouseLeave(object sender, EventArgs e)
-        {
-            btnIngresar.BackColor = SystemColors.Info;
-        }
-
-
+        
     }
 }

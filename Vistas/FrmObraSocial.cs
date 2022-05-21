@@ -21,6 +21,9 @@ namespace Vistas
         public FrmObraSocial()
         {
             InitializeComponent();
+            this.Visible = false;
+            this.TopLevel = false;
+            this.Dock = DockStyle.Fill;
         }
         internal void clear_data_form() 
         { 
@@ -89,7 +92,7 @@ namespace Vistas
 
             pnlBuscar.Visible = false;
             dgwObrasSocial.Visible = false;
-            panel4.Visible = true;
+            pnlOSRegistrar.Visible = true;
             txtCuit.Enabled = false;
 
         }
