@@ -28,17 +28,51 @@ namespace Vistas
         }
         private void FrmCliente_Load(object sender, EventArgs e)
         {
-            load_combo_os();
+            load_combos();
             load_clientes();
         }
 
 
         #region Metodos Formulario
-        private void load_combo_os()
+        private void load_combos()
         {
+            //load combo para Obra Social
             cmbOS_Cuit.DisplayMember = "os_cuit";
             cmbOS_Cuit.ValueMember = "os_cuit";
             cmbOS_Cuit.DataSource = TrabajarObraSocial.list_obra_social();
+
+            //load combo para Ordenar
+            DataTable dt = new DataTable();
+
+            //Agregar las columnas de la tabla
+            dt.Columns.Add("col_name");
+
+            //Agregar las filas de la tabla
+            dt.Rows.Add("DNI");
+            dt.Rows.Add("Apellido");
+            dt.Rows.Add("Nombre");
+            dt.Rows.Add("Direccion");
+            dt.Rows.Add("OS Cuit");
+            dt.Rows.Add("Nro. Carnet");
+
+            cmbOrderBy.DisplayMember = "col_name";
+            cmbOrderBy.ValueMember = "col_name";
+            cmbOrderBy.DataSource = dt;
+
+            //load combo orden
+            dt = new DataTable();
+
+            //Agregar las columnas de la tabla
+            dt.Columns.Add("orden");
+
+            //Agregar las filas de la tabla
+            dt.Rows.Add("ASC");
+            dt.Rows.Add("DESC");
+
+            cmbOrden.DisplayMember = "orden";
+            cmbOrden.ValueMember = "orden";
+            cmbOrden.DataSource = dt;
+
         }
         private void load_clientes()
         {
@@ -146,7 +180,22 @@ namespace Vistas
         {
             this.indiceRowEliminar = e.RowIndex;
         }
+
+        private void cmbOrderBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbOrden.SelectedValue != null)
+            dgwClientes.DataSource = TrabajarCliente.sort_by(
+                cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
+        }
+        private void cmbOrden_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgwClientes.DataSource = TrabajarCliente.sort_by(
+                cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
+        }
         #endregion  
 
+        
+
+        
     }
 }

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCliente));
             this.pnlClienteRegistrar = new System.Windows.Forms.Panel();
             this.cmbOS_Cuit = new System.Windows.Forms.ComboBox();
@@ -58,6 +58,11 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.pnlBuscar = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbOrderBy = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmbOrden = new System.Windows.Forms.ComboBox();
+            this.pnlSortCliente = new System.Windows.Forms.Panel();
             this.pnlClienteRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -68,6 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgwClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.pnlBuscar.SuspendLayout();
+            this.pnlSortCliente.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlClienteRegistrar
@@ -307,33 +313,34 @@
             // 
             this.dgwClientes.AllowUserToAddRows = false;
             this.dgwClientes.AllowUserToDeleteRows = false;
-            this.dgwClientes.AllowUserToOrderColumns = true;
+            this.dgwClientes.AllowUserToResizeColumns = false;
             this.dgwClientes.AllowUserToResizeRows = false;
             this.dgwClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwClientes.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dgwClientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgwClientes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgwClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwClientes.GridColor = System.Drawing.SystemColors.Info;
             this.dgwClientes.Location = new System.Drawing.Point(89, 207);
+            this.dgwClientes.MultiSelect = false;
             this.dgwClientes.Name = "dgwClientes";
             this.dgwClientes.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgwClientes.Size = new System.Drawing.Size(859, 353);
             this.dgwClientes.TabIndex = 11;
             this.dgwClientes.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwClientes_RowHeaderMouseClick);
@@ -352,6 +359,8 @@
             // 
             // txtBuscar
             // 
+            this.txtBuscar.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.Location = new System.Drawing.Point(0, 0);
             this.txtBuscar.Name = "txtBuscar";
@@ -383,12 +392,64 @@
             this.pnlBuscar.Size = new System.Drawing.Size(302, 22);
             this.pnlBuscar.TabIndex = 14;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 5);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 17);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Ordenar Por: ";
+            // 
+            // cmbOrderBy
+            // 
+            this.cmbOrderBy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbOrderBy.FormattingEnabled = true;
+            this.cmbOrderBy.Location = new System.Drawing.Point(104, 0);
+            this.cmbOrderBy.Name = "cmbOrderBy";
+            this.cmbOrderBy.Size = new System.Drawing.Size(124, 21);
+            this.cmbOrderBy.TabIndex = 16;
+            this.cmbOrderBy.SelectedIndexChanged += new System.EventHandler(this.cmbOrderBy_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(248, 4);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 17);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Orden:";
+            // 
+            // cmbOrden
+            // 
+            this.cmbOrden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbOrden.FormattingEnabled = true;
+            this.cmbOrden.Location = new System.Drawing.Point(306, 0);
+            this.cmbOrden.Name = "cmbOrden";
+            this.cmbOrden.Size = new System.Drawing.Size(81, 21);
+            this.cmbOrden.TabIndex = 18;
+            this.cmbOrden.SelectedIndexChanged += new System.EventHandler(this.cmbOrden_SelectedIndexChanged);
+            // 
+            // pnlSortCliente
+            // 
+            this.pnlSortCliente.Controls.Add(this.label7);
+            this.pnlSortCliente.Controls.Add(this.cmbOrden);
+            this.pnlSortCliente.Controls.Add(this.cmbOrderBy);
+            this.pnlSortCliente.Controls.Add(this.label9);
+            this.pnlSortCliente.Location = new System.Drawing.Point(561, 179);
+            this.pnlSortCliente.Name = "pnlSortCliente";
+            this.pnlSortCliente.Size = new System.Drawing.Size(387, 22);
+            this.pnlSortCliente.TabIndex = 19;
+            // 
             // FrmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.Controls.Add(this.pnlSortCliente);
             this.Controls.Add(this.pnlBuscar);
             this.Controls.Add(this.dgwClientes);
             this.Controls.Add(this.pictureBox5);
@@ -410,6 +471,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
+            this.pnlSortCliente.ResumeLayout(false);
+            this.pnlSortCliente.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -443,5 +506,10 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Panel pnlBuscar;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbOrderBy;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cmbOrden;
+        private System.Windows.Forms.Panel pnlSortCliente;
     }
 }

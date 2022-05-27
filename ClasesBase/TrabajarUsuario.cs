@@ -70,6 +70,7 @@ namespace ClasesBase
 
             cmd.CommandText = "SELECT usu_id as 'ID', ";
             cmd.CommandText += "usu_nombreUsuario as 'Nombre Usuario', ";
+            cmd.CommandText += "usu_contrasenia as 'Contraseña', ";
             cmd.CommandText += "usu_apellidoNombre as 'Apellido y Nombre', ";
             cmd.CommandText += "R.rol_descripcion as 'Rol' ";
             cmd.CommandText += "FROM Usuario as U ";

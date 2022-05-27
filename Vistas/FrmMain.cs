@@ -57,15 +57,36 @@ namespace Vistas
         {
             if (rolLogeado == "Operario")
             {
-                // eliminamos los controles de gestionar usuarios
+                //alinear botones y paneles
+                pnlBtnVenta.Location = pnlBtnProducto.Location;
+                pnlContenedor.Controls["subMenuVenta"].Location = pnlContenedor.Controls["subMenuProducto"].Location;
+
+
+                // eliminamos los controles que no corresponden
                 mnuVertical.Controls.Remove(pnlBtnUsuario);
                 mnuVertical.Controls.Remove(pnlBtnProducto);
+                mnuVertical.Controls.Remove(pnlBtnOS);
+                pnlContenedor.Controls.RemoveByKey("subMenuUsuario");
+                pnlContenedor.Controls.RemoveByKey("subMenuProducto");
+                pnlContenedor.Controls.RemoveByKey("subMenuObraSocial");
             }
             else if (rolLogeado == "Administrador")
             {
+                //alinear botones y paneles
+                pnlBtnUsuario.Location = pnlBtnProducto.Location;
+                pnlContenedor.Controls["subMenuUsuario"].Location = pnlContenedor.Controls["subMenuProducto"].Location;
+
+                pnlBtnProducto.Location = pnlBtnCliente.Location;
+                pnlContenedor.Controls["subMenuProducto"].Location = pnlContenedor.Controls["subMenuCliente"].Location;
+                
+
+                //eliminamos los controles que no corresponden
                 mnuVertical.Controls.Remove(pnlBtnCliente);
                 mnuVertical.Controls.Remove(pnlBtnOS);
                 mnuVertical.Controls.Remove(pnlBtnVenta);
+                pnlContenedor.Controls.RemoveByKey("subMenuCliente");
+                pnlContenedor.Controls.RemoveByKey("subMenuObraSocial");
+                pnlContenedor.Controls.RemoveByKey("subMenuVenta");
             }
             this.ShowDialog();
         }
@@ -98,6 +119,7 @@ namespace Vistas
             subMenuCliente.Visible = false;
             frmCliente.Controls["dgwClientes"].Visible = false;
             frmCliente.Controls["pnlBuscar"].Visible = false;
+            frmCliente.Controls["pnlSortCliente"].Visible = false;
             frmCliente.Controls["pnlClienteRegistrar"].Visible = true;
             frmCliente.clear_data_form();
             AbrirForm(frmCliente);
@@ -107,6 +129,7 @@ namespace Vistas
             subMenuCliente.Visible = false;
             frmCliente.Controls["dgwClientes"].Visible = true;
             frmCliente.Controls["pnlBuscar"].Visible = true;
+            frmCliente.Controls["pnlSortCliente"].Visible = true;
             frmCliente.Controls["pnlClienteRegistrar"].Visible = false;
             AbrirForm(frmCliente);
         }
@@ -129,6 +152,7 @@ namespace Vistas
         {
             subMenuProducto.Visible = false;
             frmProducto.Controls["dgwProductos"].Visible = false;
+            frmProducto.Controls["pnlSortProducto"].Visible = false;
             frmProducto.Controls["pnlProductoRegistrar"].Visible = true;
             AbrirForm(frmProducto);
         }
@@ -137,6 +161,7 @@ namespace Vistas
         {
             subMenuProducto.Visible = false;
             frmProducto.Controls["dgwProductos"].Visible = true;
+            frmProducto.Controls["pnlSortProducto"].Visible = true;
             frmProducto.Controls["pnlProductoRegistrar"].Visible = false;
             AbrirForm(frmProducto);
         }

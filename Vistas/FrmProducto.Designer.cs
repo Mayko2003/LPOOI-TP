@@ -49,6 +49,11 @@
             this.txtCategoria = new System.Windows.Forms.TextBox();
             this.dgwProductos = new System.Windows.Forms.DataGridView();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pnlSortProducto = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbOrden = new System.Windows.Forms.ComboBox();
+            this.cmbOrderBy = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.pnlProductoRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -56,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.pnlSortProducto.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlProductoRegistrar
@@ -77,7 +83,7 @@
             this.pnlProductoRegistrar.Controls.Add(this.txtPrecio);
             this.pnlProductoRegistrar.Controls.Add(this.btnRegistrarProducto);
             this.pnlProductoRegistrar.Controls.Add(this.txtCategoria);
-            this.pnlProductoRegistrar.Location = new System.Drawing.Point(233, 170);
+            this.pnlProductoRegistrar.Location = new System.Drawing.Point(258, 207);
             this.pnlProductoRegistrar.Name = "pnlProductoRegistrar";
             this.pnlProductoRegistrar.Size = new System.Drawing.Size(570, 357);
             this.pnlProductoRegistrar.TabIndex = 9;
@@ -249,6 +255,7 @@
             this.dgwProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwProductos.GridColor = System.Drawing.SystemColors.Info;
             this.dgwProductos.Location = new System.Drawing.Point(89, 207);
+            this.dgwProductos.MultiSelect = false;
             this.dgwProductos.Name = "dgwProductos";
             this.dgwProductos.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -261,7 +268,9 @@
             this.dgwProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgwProductos.Size = new System.Drawing.Size(859, 390);
             this.dgwProductos.TabIndex = 11;
+            this.dgwProductos.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwProductos_RowHeaderMouseClick);
             this.dgwProductos.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwProductos_RowHeaderMouseDoubleClick_1);
+            this.dgwProductos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgwProductos_KeyDown);
             // 
             // pictureBox5
             // 
@@ -273,12 +282,64 @@
             this.pictureBox5.TabIndex = 10;
             this.pictureBox5.TabStop = false;
             // 
+            // pnlSortProducto
+            // 
+            this.pnlSortProducto.Controls.Add(this.label7);
+            this.pnlSortProducto.Controls.Add(this.cmbOrden);
+            this.pnlSortProducto.Controls.Add(this.cmbOrderBy);
+            this.pnlSortProducto.Controls.Add(this.label9);
+            this.pnlSortProducto.Location = new System.Drawing.Point(561, 179);
+            this.pnlSortProducto.Name = "pnlSortProducto";
+            this.pnlSortProducto.Size = new System.Drawing.Size(387, 22);
+            this.pnlSortProducto.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 5);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 17);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Ordenar Por: ";
+            // 
+            // cmbOrden
+            // 
+            this.cmbOrden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbOrden.FormattingEnabled = true;
+            this.cmbOrden.Location = new System.Drawing.Point(306, 0);
+            this.cmbOrden.Name = "cmbOrden";
+            this.cmbOrden.Size = new System.Drawing.Size(81, 21);
+            this.cmbOrden.TabIndex = 18;
+            this.cmbOrden.SelectedIndexChanged += new System.EventHandler(this.cmbOrden_SelectedIndexChanged);
+            // 
+            // cmbOrderBy
+            // 
+            this.cmbOrderBy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbOrderBy.FormattingEnabled = true;
+            this.cmbOrderBy.Location = new System.Drawing.Point(104, 0);
+            this.cmbOrderBy.Name = "cmbOrderBy";
+            this.cmbOrderBy.Size = new System.Drawing.Size(124, 21);
+            this.cmbOrderBy.TabIndex = 16;
+            this.cmbOrderBy.SelectedIndexChanged += new System.EventHandler(this.cmbOrderBy_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(248, 4);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 17);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Orden:";
+            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.Controls.Add(this.pnlSortProducto);
             this.Controls.Add(this.dgwProductos);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pnlProductoRegistrar);
@@ -294,6 +355,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.pnlSortProducto.ResumeLayout(false);
+            this.pnlSortProducto.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -318,5 +381,10 @@
         private System.Windows.Forms.Button btnRegistrarProducto;
         private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.DataGridView dgwProductos;
+        private System.Windows.Forms.Panel pnlSortProducto;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbOrden;
+        private System.Windows.Forms.ComboBox cmbOrderBy;
+        private System.Windows.Forms.Label label9;
     }
 }

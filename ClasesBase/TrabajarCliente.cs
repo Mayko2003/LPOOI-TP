@@ -165,5 +165,39 @@ namespace ClasesBase
             cmd.ExecuteNonQuery();
             cnn.Close();
         }
+
+        public static DataTable sort_by(string by, string orden)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = cnn;
+            cmd.CommandText = "OrdenarClientes";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            //PARAMS para el SP
+            SqlParameter param;
+            param = new SqlParameter("@by",SqlDbType.VarChar);
+            param.Direction = ParameterDirection.Input;
+            param.Value = by;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@orden", SqlDbType.VarChar);
+            param.Direction = ParameterDirection.Input;
+            param.Value = orden;
+
+            cmd.Parameters.Add(param);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
+        }
     }
 }

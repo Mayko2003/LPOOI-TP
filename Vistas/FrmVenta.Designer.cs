@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVenta));
             this.pnlVentaRegistrar = new System.Windows.Forms.Panel();
             this.dgwVentaDetalles = new System.Windows.Forms.DataGridView();
@@ -46,11 +46,18 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
+            this.mcRango = new System.Windows.Forms.MonthCalendar();
             this.dgwVentas = new System.Windows.Forms.DataGridView();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.pnlBuscar = new System.Windows.Forms.Panel();
+            this.pnlSortCliente = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbFiltrarCliente = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.pnlVentaRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwVentaDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -58,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgwVentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.pnlBuscar.SuspendLayout();
+            this.pnlSortCliente.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlVentaRegistrar
@@ -89,26 +97,26 @@
             this.dgwVentaDetalles.BackgroundColor = System.Drawing.SystemColors.HighlightText;
             this.dgwVentaDetalles.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgwVentaDetalles.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwVentaDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwVentaDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgwVentaDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwVentaDetalles.GridColor = System.Drawing.SystemColors.HighlightText;
             this.dgwVentaDetalles.Location = new System.Drawing.Point(432, 136);
             this.dgwVentaDetalles.Name = "dgwVentaDetalles";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwVentaDetalles.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwVentaDetalles.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgwVentaDetalles.Size = new System.Drawing.Size(413, 197);
             this.dgwVentaDetalles.TabIndex = 15;
             // 
@@ -228,6 +236,16 @@
             this.btnRegistrarVenta.UseVisualStyleBackColor = false;
             this.btnRegistrarVenta.Click += new System.EventHandler(this.btnRegistrarVenta_Click);
             // 
+            // mcRango
+            // 
+            this.mcRango.Location = new System.Drawing.Point(652, 207);
+            this.mcRango.MaxSelectionCount = 10000;
+            this.mcRango.Name = "mcRango";
+            this.mcRango.TabIndex = 21;
+            this.mcRango.TitleBackColor = System.Drawing.Color.DarkSalmon;
+            this.mcRango.Visible = false;
+            this.mcRango.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.mcRango_DateSelected);
+            // 
             // dgwVentas
             // 
             this.dgwVentas.AllowUserToAddRows = false;
@@ -238,27 +256,27 @@
             this.dgwVentas.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dgwVentas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgwVentas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgwVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwVentas.GridColor = System.Drawing.SystemColors.Info;
             this.dgwVentas.Location = new System.Drawing.Point(89, 207);
             this.dgwVentas.Name = "dgwVentas";
             this.dgwVentas.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwVentas.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwVentas.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgwVentas.Size = new System.Drawing.Size(859, 353);
             this.dgwVentas.TabIndex = 11;
             this.dgwVentas.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwVentas_RowHeaderMouseClick);
@@ -307,12 +325,93 @@
             this.pnlBuscar.Size = new System.Drawing.Size(302, 22);
             this.pnlBuscar.TabIndex = 14;
             // 
+            // pnlSortCliente
+            // 
+            this.pnlSortCliente.Controls.Add(this.button2);
+            this.pnlSortCliente.Controls.Add(this.button1);
+            this.pnlSortCliente.Controls.Add(this.btnFiltrar);
+            this.pnlSortCliente.Controls.Add(this.label7);
+            this.pnlSortCliente.Controls.Add(this.cmbFiltrarCliente);
+            this.pnlSortCliente.Location = new System.Drawing.Point(457, 179);
+            this.pnlSortCliente.Name = "pnlSortCliente";
+            this.pnlSortCliente.Size = new System.Drawing.Size(491, 22);
+            this.pnlSortCliente.TabIndex = 20;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DarkSalmon;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(194, 1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 22);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Rango Fechas";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.BackColor = System.Drawing.Color.Chocolate;
+            this.btnFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltrar.FlatAppearance.BorderSize = 0;
+            this.btnFiltrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrar.Location = new System.Drawing.Point(336, 0);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(77, 22);
+            this.btnFiltrar.TabIndex = 22;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = false;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 5);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 17);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Cliente:";
+            // 
+            // cmbFiltrarCliente
+            // 
+            this.cmbFiltrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbFiltrarCliente.FormattingEnabled = true;
+            this.cmbFiltrarCliente.Location = new System.Drawing.Point(64, 2);
+            this.cmbFiltrarCliente.Name = "cmbFiltrarCliente";
+            this.cmbFiltrarCliente.Size = new System.Drawing.Size(124, 21);
+            this.cmbFiltrarCliente.TabIndex = 16;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Chocolate;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(419, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(77, 22);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "Limpiar";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FrmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.Controls.Add(this.mcRango);
+            this.Controls.Add(this.pnlSortCliente);
             this.Controls.Add(this.pnlBuscar);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pnlVentaRegistrar);
@@ -332,6 +431,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
+            this.pnlSortCliente.ResumeLayout(false);
+            this.pnlSortCliente.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -356,5 +457,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAgregarDetalle;
         private System.Windows.Forms.DataGridView dgwVentaDetalles;
+        private System.Windows.Forms.Panel pnlSortCliente;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbFiltrarCliente;
+        private System.Windows.Forms.MonthCalendar mcRango;
+        private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

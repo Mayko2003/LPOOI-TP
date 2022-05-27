@@ -22,6 +22,8 @@ namespace Vistas
             set { this.indiceRowEliminar = value; }
             get { return this.indiceRowEliminar; }
         }
+
+        private bool fechasSeleccionadas = false;
         #endregion
 
         public FrmVenta()
@@ -38,9 +40,17 @@ namespace Vistas
         #region Metodos Formulario
         private void load_cmb_cliente()
         {
+            DataTable dt = TrabajarCliente.list_clientes();
+            //load combo para DNI de Detalles de venta
             cmbDNICliente.DisplayMember = "DNI";
             cmbDNICliente.ValueMember = "DNI";
-            cmbDNICliente.DataSource = TrabajarCliente.list_clientes();
+            cmbDNICliente.DataSource = dt;
+            
+            //load combo para el DNI de filtrar venta
+            cmbFiltrarCliente.DisplayMember = "DNI";
+            cmbFiltrarCliente.ValueMember = "DNI";
+            dt.Rows.Add("----");
+            cmbFiltrarCliente.DataSource = dt; 
         }
         internal void load_detalles()
         {
@@ -133,9 +143,46 @@ namespace Vistas
         {
             this.indiceRowEliminar = e.RowIndex;
         }
+
+        private void filtrarRangoFecha(string dni)
+        {
+            if (this.fechasSeleccionadas)
+            {
+                DateTime end = new DateTime(
+                    mcRango.SelectionRange.End.Year,
+                    mcRango.SelectionRange.End.Month,
+                    mcRango.SelectionRange.End.Day,
+                    23, 59, 59);
+
+                dgwVentas.DataSource = TrabajarVenta.filter_by_dni_date(dni,mcRango.SelectionRange.Start,end);
+            }
+            else
+            {
+               dgwVentas.DataSource = TrabajarVenta.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
+            }
+            fechasSeleccionadas = false;
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if (cmbFiltrarCliente.SelectedValue.ToString() == "----") filtrarRangoFecha("%%");
+            else filtrarRangoFecha(cmbFiltrarCliente.SelectedValue.ToString());
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            mcRango.Visible = !mcRango.Visible;
+        }
+        private void mcRango_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            mcRango.Visible = false;
+            this.fechasSeleccionadas = true;
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            load_ventas();
+        }
         #endregion  
 
-
-
+        
     }
 }

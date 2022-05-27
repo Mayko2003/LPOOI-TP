@@ -12,6 +12,11 @@ namespace Vistas
 {
     public partial class FrmProducto : Form
     {
+
+        #region Atributos
+        private int indiceRowEliminar = -1;
+        #endregion
+
         public FrmProducto()
         {
             InitializeComponent();
@@ -25,7 +30,7 @@ namespace Vistas
         private void FrmProducto_Load(object sender, EventArgs e)
         {
             load_productos();
-            
+            load_combos();
         }
 
         internal void clear_data_form()
@@ -42,8 +47,40 @@ namespace Vistas
             dgwProductos.Refresh();
         }
 
-        #endregion
+        private void load_combos()
+        {
+            //load combo para Ordenar
+            DataTable dt = new DataTable();
 
+            //Agregar las columnas de la tabla
+            dt.Columns.Add("col_name");
+
+            //Agregar las filas de la tabla
+            dt.Rows.Add("Codigo");
+            dt.Rows.Add("Categoria");
+            dt.Rows.Add("Descripcion");
+            dt.Rows.Add("Precio");
+
+            cmbOrderBy.DisplayMember = "col_name";
+            cmbOrderBy.ValueMember = "col_name";
+            cmbOrderBy.DataSource = dt;
+
+            //load combo orden
+            dt = new DataTable();
+
+            //Agregar las columnas de la tabla
+            dt.Columns.Add("orden");
+
+            //Agregar las filas de la tabla
+            dt.Rows.Add("ASC");
+            dt.Rows.Add("DESC");
+
+            cmbOrden.DisplayMember = "orden";
+            cmbOrden.ValueMember = "orden";
+            cmbOrden.DataSource = dt;
+        }
+
+        #endregion
 
 
         #region Events
@@ -96,19 +133,59 @@ namespace Vistas
         {
             DataGridViewRow row = dgwProductos.Rows[e.RowIndex];
 
-            txtCodigo.Text = row.Cells["Codigo"].Value as string;
-            txtCategoria.Text = row.Cells["Categoria"].Value as string;
-            txtDescripcion.Text = row.Cells["Descripcion"].Value as string;
-            txtPrecio.Text = row.Cells["Precio"].Value as string;
+            txtCodigo.Text = row.Cells["Codigo"].Value.ToString();
+            txtCategoria.Text = row.Cells["Categoria"].Value.ToString();
+            txtDescripcion.Text = row.Cells["Descripcion"].Value.ToString();
+            txtPrecio.Text = row.Cells["Precio"].Value.ToString();
 
             //set propiedades
-
+            pnlSortProducto.Visible = false;
             dgwProductos.Visible = false;
             pnlProductoRegistrar.Visible = true;
             txtCodigo.Enabled = false; //se desabilita para evitar problemas de pk
         }
+        private void dgwProductos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.indiceRowEliminar != -1 && e.KeyCode == Keys.Delete)
+            {
+                var mb = MessageBox.Show("De verdad desea eliminar el producto seleccionado?", "Eliminar Producto", MessageBoxButtons.OKCancel);
 
+                if (mb == DialogResult.OK)
+                {
+                    var cell = this.dgwProductos.Rows[this.indiceRowEliminar].Cells[0];
+                    try
+                    {
+                        TrabajarProducto.delete_producto(cell.Value.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Hay ventas que ocupan el producto, primero revise las ventas");
+                    }
+                    load_productos();
+                }
+            }
+        }
+
+        private void dgwProductos_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            this.indiceRowEliminar = e.RowIndex;
+        }
+
+        private void cmbOrderBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbOrden.SelectedValue != null)
+                dgwProductos.DataSource = TrabajarProducto.sort_by(
+                    cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
+        }
+
+        private void cmbOrden_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgwProductos.DataSource = TrabajarProducto.sort_by(
+                    cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
+        }
         #endregion
+
+        
 
     }
 }

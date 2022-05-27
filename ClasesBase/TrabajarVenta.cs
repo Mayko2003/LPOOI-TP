@@ -97,5 +97,45 @@ namespace ClasesBase
 
             return Convert.ToInt32(dt.Rows[0][0].ToString());
         }
+
+        public static DataTable filter_by_dni_date(string dni, DateTime start, DateTime end)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            // crear query
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = cnn;
+
+            cmd.CommandText = "FiltrarVentaDNIFecha";
+
+            SqlParameter param = new SqlParameter("@dni", SqlDbType.VarChar);
+            param.Value = dni;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@start", SqlDbType.DateTime);
+            param.Value = start;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@end", SqlDbType.DateTime);
+            param.Value = end;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
+
+        }
     }
 }

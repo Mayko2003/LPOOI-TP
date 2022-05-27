@@ -109,6 +109,7 @@ namespace Vistas
         {
             DataGridViewRow row = dgwUsuarios.Rows[e.RowIndex];
 
+
             txtUsuario.Text = row.Cells["Nombre Usuario"].Value as string;
             txtContraseña.Text = row.Cells["Contraseña"].Value as string;
             txtApellidoYNombre.Text = row.Cells["Apellido y Nombre"].Value as string;
@@ -143,7 +144,18 @@ namespace Vistas
         {
             this.indiceRowEliminar = -1;
         }
+        private void dgwUsuarios_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 2 && e.Value != null)
+            {
+                dgwUsuarios.Rows[e.RowIndex].Tag = e.Value;
+                char systemPasswordChar = (new TextBox() { UseSystemPasswordChar = true }).PasswordChar;
+                e.Value = new String(systemPasswordChar, e.Value.ToString().Length);
+            }
+        }
         #endregion  
+
+        
 
     }
 }

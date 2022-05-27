@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
-
+using System.Diagnostics;
 namespace ClasesBase
 {
     public class TrabajarProducto
@@ -19,14 +19,39 @@ namespace ClasesBase
             SqlCommand cmd = new SqlCommand();
 
             // crear query
-            cmd.CommandText = "INSERT INTO Producto(prod_codigo,prod_categoria,prod_descripcion,prod_precio) VALUES(@codigo,@categoria,@descripcion,@precio)";
-            cmd.CommandType = CommandType.Text;
+            
+            cmd.CommandType = CommandType.StoredProcedure; // Sin SP -> Text
             cmd.Connection = cnn;
 
+            /* SIN SP
+            cmd.CommandText = "INSERT INTO Producto(prod_codigo,prod_categoria,prod_descripcion,prod_precio) VALUES(@codigo,@categoria,@descripcion,@precio)";
             cmd.Parameters.AddWithValue("@codigo", producto.Prod_Codigo);
             cmd.Parameters.AddWithValue("@categoria", producto.Prod_Categoria);
             cmd.Parameters.AddWithValue("@descripcion",producto.Prod_Descripcion);
             cmd.Parameters.AddWithValue("@precio",producto.Prod_precio);
+             */
+
+            //CON SP
+            cmd.CommandText = "AgregarProducto";
+            SqlParameter param = new SqlParameter("@codigo", SqlDbType.VarChar);
+            param.Value = producto.Prod_Codigo;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@categoria", SqlDbType.VarChar);
+            param.Value = producto.Prod_Categoria;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@descripcion", SqlDbType.VarChar);
+            param.Value = producto.Prod_Descripcion;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@precio", SqlDbType.Decimal);
+            param.Value = producto.Prod_precio;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
 
             cnn.Open();//abrir conexion
             cmd.ExecuteNonQuery(); //ejecutar transaccion
@@ -41,7 +66,10 @@ namespace ClasesBase
 
             //operaciones
             SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure; // SIN SP-> Text
+            cmd.Connection = cnn;
 
+            /* SIN SP
             cmd.CommandText = "UPDATE Producto SET ";
 
             cmd.CommandText += "prod_codigo = @codigo, ";
@@ -50,14 +78,39 @@ namespace ClasesBase
             cmd.CommandText += "prod_precio = @precio ";
            
             cmd.CommandText += "WHERE prod_codigo LIKE @codigo";
-
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = cnn;
-
+             
             cmd.Parameters.AddWithValue("@codigo", producto.Prod_Codigo);
             cmd.Parameters.AddWithValue("@categoria", producto.Prod_Categoria);
             cmd.Parameters.AddWithValue("@descripcion", producto.Prod_Descripcion);
             cmd.Parameters.AddWithValue("@precio", producto.Prod_precio);
+             
+             */
+
+            //CON SP
+            cmd.CommandText = "UpdateProducto";
+
+            
+
+            SqlParameter param = new SqlParameter("@codigo", SqlDbType.VarChar);
+            param.Value = producto.Prod_Codigo;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@categoria", SqlDbType.VarChar);
+            param.Value = producto.Prod_Categoria;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@descripcion", SqlDbType.VarChar);
+            param.Value = producto.Prod_Descripcion;
+            
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@precio", SqlDbType.Decimal);
+            param.Value = producto.Prod_precio;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
 
             cnn.Open();
             cmd.ExecuteNonQuery();
@@ -147,6 +200,83 @@ namespace ClasesBase
 
             if (dt.Rows.Count == 0) return false;
             else return true;
+        }
+
+        public static void delete_producto(string codigo)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandType = CommandType.StoredProcedure; // SIN SP -> Text
+            cmd.Connection = cnn;
+
+            /*SIN SP
+            cmd.CommandText = "DELETE FROM Producto WHERE prod_codigo = @codigo"
+            cmd.Parameters.AddWithValue("@codigo",codigo);
+            */
+
+            //CON SP
+            cmd.CommandText = "DeleteProducto";
+            SqlParameter param = new SqlParameter("@codigo", SqlDbType.VarChar);
+            param.Value = codigo;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                cnn.Close();
+            }
+            catch (SqlException e)
+            {
+                throw;
+            }
+            
+        }
+
+        public static DataTable sort_by(string by, string orden)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = cnn;
+            cmd.CommandText = "OrdenarProductos";
+
+            //asignar parametros
+
+            SqlParameter param;
+            param = new SqlParameter("@by", SqlDbType.VarChar);
+            param.Direction = ParameterDirection.Input;
+            param.Value = by;
+
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@orden", SqlDbType.VarChar);
+            param.Direction = ParameterDirection.Input;
+            param.Value = orden;
+
+            cmd.Parameters.Add(param);
+
+            //crear y retornar data table
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
+        
         }
 
     }
