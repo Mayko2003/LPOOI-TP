@@ -42,7 +42,7 @@ namespace ClasesBase
             SqlCommand cmd = new SqlCommand();
 
             // crear query
-            cmd.CommandText = "SELECT ven_nro as 'Nro.', ";
+            cmd.CommandText = "SELECT ven_nro as 'Nro. Venta', ";
             cmd.CommandText += "ven_fecha as 'Fecha', ";
             cmd.CommandText += "cli_dni as 'DNI Cliente' ";
             cmd.CommandText += "FROM Venta";

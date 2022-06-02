@@ -15,6 +15,7 @@ namespace Vistas
 
         #region Atributos
         private int indiceRowEliminar = -1;
+        private bool fechasSeleccionadas = false;
         #endregion
 
         public FrmProducto()
@@ -140,6 +141,7 @@ namespace Vistas
 
             //set propiedades
             pnlSortProducto.Visible = false;
+            pnlFiltrarProducto.Visible = false;
             dgwProductos.Visible = false;
             pnlProductoRegistrar.Visible = true;
             txtCodigo.Enabled = false; //se desabilita para evitar problemas de pk
@@ -183,7 +185,31 @@ namespace Vistas
             dgwProductos.DataSource = TrabajarProducto.sort_by(
                     cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            load_productos();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            mcRango.Visible = !mcRango.Visible;
+
+        }
+
+        private void mcRango_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            mcRango.Visible = false;
+            this.fechasSeleccionadas = true;
+        }
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
+
+        
+
+
 
         
 

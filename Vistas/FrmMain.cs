@@ -153,7 +153,9 @@ namespace Vistas
             subMenuProducto.Visible = false;
             frmProducto.Controls["dgwProductos"].Visible = false;
             frmProducto.Controls["pnlSortProducto"].Visible = false;
+            frmProducto.Controls["pnlFiltrarProducto"].Visible = false;
             frmProducto.Controls["pnlProductoRegistrar"].Visible = true;
+            frmProducto.clear_data_form();
             AbrirForm(frmProducto);
         }
 
@@ -162,6 +164,7 @@ namespace Vistas
             subMenuProducto.Visible = false;
             frmProducto.Controls["dgwProductos"].Visible = true;
             frmProducto.Controls["pnlSortProducto"].Visible = true;
+            frmProducto.Controls["pnlFiltrarProducto"].Visible = true;
             frmProducto.Controls["pnlProductoRegistrar"].Visible = false;
             AbrirForm(frmProducto);
         }

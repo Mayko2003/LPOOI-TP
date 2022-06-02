@@ -12,7 +12,6 @@ namespace Vistas
 {
     public partial class FrmVentaDetalle : Form
     {
-        private int indiceRowEliminar = -1;
 
         public FrmVentaDetalle()
         {

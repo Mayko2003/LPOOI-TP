@@ -30,9 +30,9 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVenta));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVenta));
             this.pnlVentaRegistrar = new System.Windows.Forms.Panel();
             this.dgwVentaDetalles = new System.Windows.Forms.DataGridView();
             this.btnAgregarDetalle = new System.Windows.Forms.Button();
@@ -52,12 +52,12 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.pnlBuscar = new System.Windows.Forms.Panel();
-            this.pnlSortCliente = new System.Windows.Forms.Panel();
+            this.pnlFiltrarProducto = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbFiltrarCliente = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.pnlVentaRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwVentaDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -65,7 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgwVentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.pnlBuscar.SuspendLayout();
-            this.pnlSortCliente.SuspendLayout();
+            this.pnlFiltrarProducto.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlVentaRegistrar
@@ -164,7 +164,7 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.Location = new System.Drawing.Point(16, 122);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(38, 38);
@@ -174,7 +174,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(16, 61);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(38, 38);
@@ -286,7 +286,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(305, 44);
+            this.pictureBox5.Location = new System.Drawing.Point(307, 44);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(450, 120);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -325,17 +325,33 @@
             this.pnlBuscar.Size = new System.Drawing.Size(302, 22);
             this.pnlBuscar.TabIndex = 14;
             // 
-            // pnlSortCliente
+            // pnlFiltrarProducto
             // 
-            this.pnlSortCliente.Controls.Add(this.button2);
-            this.pnlSortCliente.Controls.Add(this.button1);
-            this.pnlSortCliente.Controls.Add(this.btnFiltrar);
-            this.pnlSortCliente.Controls.Add(this.label7);
-            this.pnlSortCliente.Controls.Add(this.cmbFiltrarCliente);
-            this.pnlSortCliente.Location = new System.Drawing.Point(457, 179);
-            this.pnlSortCliente.Name = "pnlSortCliente";
-            this.pnlSortCliente.Size = new System.Drawing.Size(491, 22);
-            this.pnlSortCliente.TabIndex = 20;
+            this.pnlFiltrarProducto.Controls.Add(this.button2);
+            this.pnlFiltrarProducto.Controls.Add(this.button1);
+            this.pnlFiltrarProducto.Controls.Add(this.btnFiltrar);
+            this.pnlFiltrarProducto.Controls.Add(this.label7);
+            this.pnlFiltrarProducto.Controls.Add(this.cmbFiltrarCliente);
+            this.pnlFiltrarProducto.Location = new System.Drawing.Point(457, 179);
+            this.pnlFiltrarProducto.Name = "pnlFiltrarProducto";
+            this.pnlFiltrarProducto.Size = new System.Drawing.Size(491, 22);
+            this.pnlFiltrarProducto.TabIndex = 20;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Chocolate;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(419, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(77, 22);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "Limpiar";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -345,7 +361,7 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(194, 1);
+            this.button1.Location = new System.Drawing.Point(195, -1);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 22);
             this.button1.TabIndex = 23;
@@ -388,34 +404,18 @@
             this.cmbFiltrarCliente.Size = new System.Drawing.Size(124, 21);
             this.cmbFiltrarCliente.TabIndex = 16;
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Chocolate;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(419, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(77, 22);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "Limpiar";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // FrmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1064, 572);
-            this.Controls.Add(this.mcRango);
-            this.Controls.Add(this.pnlSortCliente);
+            this.Controls.Add(this.pnlFiltrarProducto);
             this.Controls.Add(this.pnlBuscar);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pnlVentaRegistrar);
             this.Controls.Add(this.dgwVentas);
+            this.Controls.Add(this.mcRango);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmVenta";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -431,8 +431,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
-            this.pnlSortCliente.ResumeLayout(false);
-            this.pnlSortCliente.PerformLayout();
+            this.pnlFiltrarProducto.ResumeLayout(false);
+            this.pnlFiltrarProducto.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -457,7 +457,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAgregarDetalle;
         private System.Windows.Forms.DataGridView dgwVentaDetalles;
-        private System.Windows.Forms.Panel pnlSortCliente;
+        private System.Windows.Forms.Panel pnlFiltrarProducto;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbFiltrarCliente;
         private System.Windows.Forms.MonthCalendar mcRango;
