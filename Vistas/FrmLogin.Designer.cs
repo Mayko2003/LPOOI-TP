@@ -193,6 +193,7 @@
             this.txtPassword.Size = new System.Drawing.Size(171, 22);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
             // pictureBox1
             // 
