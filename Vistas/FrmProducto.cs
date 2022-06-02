@@ -98,7 +98,7 @@ namespace Vistas
 
             //agregar filas
             dt.Rows.Add("Buscar");
-            dt.Rows.Add("Filtrar");
+            dt.Rows.Add("Filtrar por Venta (DNI o Fechas)");
             dt.Rows.Add("Ordenar");
 
             cmbOptions.DisplayMember = "option";
