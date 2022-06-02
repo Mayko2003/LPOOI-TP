@@ -260,6 +260,7 @@ namespace Vistas
             frmVenta.Controls["pnlBuscar"].Visible = false;
             frmVenta.Controls["dgwVentas"].Visible = false;
 
+            frmVenta.Action = "new";
             frmVenta.clear_data_form();
             AbrirForm(frmVenta);
         }

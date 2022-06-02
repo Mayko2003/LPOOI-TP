@@ -101,6 +101,33 @@ namespace ClasesBase
 
             return dt;
         }
+        public static void update_venta(Venta venta)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            // crear query
+            cmd.CommandText = "UPDATE Venta SET ";
+            cmd.CommandText += "cli_dni = @cli_dni, ";
+            cmd.CommandText += "ven_fecha = @ven_fecha ";
+            cmd.CommandText += "WHERE ven_nro = @ven_nro";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            cmd.Parameters.AddWithValue("@ven_nro", venta.Ven_Nro);
+            cmd.Parameters.AddWithValue("@ven_fecha", venta.Ven_Fecha);
+            cmd.Parameters.AddWithValue("@cli_dni", venta.Cli_DNI);
+
+            cnn.Open();
+
+            cmd.ExecuteNonQuery();
+
+            cnn.Close();
+        }
+
         public static int get_current_index()
         {
             // conexion a la base de datos

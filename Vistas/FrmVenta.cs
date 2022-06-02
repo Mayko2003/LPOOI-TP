@@ -13,8 +13,15 @@ namespace Vistas
     public partial class FrmVenta : Form
     {
         #region Atributos
+
         private FrmVentaDetalle frmVentaDetalle = new FrmVentaDetalle();
         internal static int nroCompraActual = -1;
+        private string action = "new";
+        public string Action
+        {
+            set { this.action = value; }
+            get { return this.action; }
+        }
 
         private int indiceRowEliminar = -1;
         public int IndiceRowEliminar
@@ -24,6 +31,7 @@ namespace Vistas
         }
 
         private bool fechasSeleccionadas = false;
+
         #endregion
 
         public FrmVenta()
@@ -62,6 +70,7 @@ namespace Vistas
             btnAgregarDetalle.Enabled = false;
             dgwVentaDetalles.DataSource = null;
             txtBuscar.Text = "Buscar por Nro. Venta";
+            dtpFecha.Value = DateTime.Now;
         }
         private void load_ventas()
         {
@@ -95,17 +104,29 @@ namespace Vistas
 
             venta.Cli_DNI = cmbDNICliente.SelectedValue.ToString();
             venta.Ven_Fecha = dtpFecha.Value;
+            venta.Ven_Nro = FrmVenta.nroCompraActual;
 
+            string msg = this.action == "new" ? "Desea agregar la venta?" : "Confirme actualizacion";
             var mb = MessageBox.Show(
-                "Desea agregar la venta?", "Confirmacion", MessageBoxButtons.OKCancel);
+                msg, "Confirmacion", MessageBoxButtons.OKCancel);
 
             if (mb == DialogResult.OK)
             {
-                TrabajarVenta.insert_venta(venta);
-                FrmVenta.nroCompraActual = TrabajarVenta.get_current_index();
-                btnAgregarDetalle.Enabled = true;
-                load_ventas();
-                load_detalles();
+                if (this.action == "new")
+                {
+                    TrabajarVenta.insert_venta(venta);
+                    FrmVenta.nroCompraActual = TrabajarVenta.get_current_index();
+                    btnAgregarDetalle.Enabled = true;
+                    load_ventas();
+                    load_detalles();
+                }
+                else if (this.action == "edit")
+                {
+                    TrabajarVenta.update_venta(venta);
+                    clear_data_form();
+                    load_ventas();
+                }
+                
             }
         }
         private void dgwVentas_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -122,6 +143,7 @@ namespace Vistas
             FrmVenta.nroCompraActual = Convert.ToInt32(row.Cells["Nro. Venta"].Value);
             btnAgregarDetalle.Enabled = true;
             load_detalles();
+            this.action = "edit";
             pnlVentaRegistrar.Visible = true;
            
         }

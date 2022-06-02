@@ -82,10 +82,14 @@ namespace Vistas
             cmbOrden.DataSource = dt;
 
             //load combo clientes
+            dt = TrabajarCliente.list_clientes_resumen();
             cmbFiltrarCliente.DisplayMember = "Abreviacion";
             cmbFiltrarCliente.ValueMember = "DNI";
-            cmbFiltrarCliente.DataSource = TrabajarCliente.list_clientes_resumen();
 
+            dt.Rows.Add("------", "%%");
+
+            cmbFiltrarCliente.DataSource = dt;
+            
             //load combo opciones
             dt = new DataTable();
 
@@ -220,8 +224,9 @@ namespace Vistas
             mcRango.Visible = false;
             this.fechasSeleccionadas = true;
         }
-        private void FiltrarRangoFecha(string dni)
+        private void btnFiltrar_Click(object sender, EventArgs e)
         {
+            string dni = cmbFiltrarCliente.SelectedValue.ToString();
             if (this.fechasSeleccionadas)
             {
                 //se obtiene la fecha de fin del rango pero se crea una nueva que 
@@ -240,11 +245,6 @@ namespace Vistas
                 dgwProductos.DataSource = TrabajarProducto.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
             }
             fechasSeleccionadas = false;
-        }
-        private void btnFiltrar_Click(object sender, EventArgs e)
-        {
-            if (cmbFiltrarCliente.SelectedValue == null) FiltrarRangoFecha("%%");
-            else FiltrarRangoFecha(cmbFiltrarCliente.SelectedValue.ToString());
         }
         private void cmbOptions_SelectedValueChanged(object sender, EventArgs e)
         {
