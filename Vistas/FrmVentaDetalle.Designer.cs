@@ -139,7 +139,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox2.Image = global::Vistas.Properties.Resources.os_cuit;
             this.pictureBox2.Location = new System.Drawing.Point(16, 61);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(38, 38);
@@ -149,7 +149,7 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox6.Image = global::Vistas.Properties.Resources.os_cuit;
             this.pictureBox6.Location = new System.Drawing.Point(16, 116);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(38, 38);
@@ -159,7 +159,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::Vistas.Properties.Resources.bloquear;
+            this.pictureBox3.Image = global::Vistas.Properties.Resources.os_cuit;
             this.pictureBox3.Location = new System.Drawing.Point(445, 116);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 38);
@@ -206,7 +206,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Vistas.Properties.Resources.bloquear;
+            this.pictureBox1.Image = global::Vistas.Properties.Resources.os_cuit;
             this.pictureBox1.Location = new System.Drawing.Point(445, 61);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(38, 38);
