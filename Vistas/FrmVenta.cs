@@ -118,7 +118,7 @@ namespace Vistas
             //set propiedades
             pnlBuscar.Visible = false;
             dgwVentas.Visible = false;
-            FrmVenta.nroCompraActual = Convert.ToInt32(row.Cells["Nro."].Value);
+            FrmVenta.nroCompraActual = Convert.ToInt32(row.Cells["Nro. Venta"].Value);
             btnAgregarDetalle.Enabled = true;
             load_detalles();
             pnlVentaRegistrar.Visible = true;

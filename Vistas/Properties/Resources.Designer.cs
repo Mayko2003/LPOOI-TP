@@ -63,6 +63,16 @@ namespace Vistas.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cantidad {
+            get {
+                object obj = ResourceManager.GetObject("cantidad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap date {
             get {
                 object obj = ResourceManager.GetObject("date", resourceCulture);
@@ -196,6 +206,16 @@ namespace Vistas.Properties {
         internal static System.Drawing.Bitmap telephone {
             get {
                 object obj = ResourceManager.GetObject("telephone", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap total {
+            get {
+                object obj = ResourceManager.GetObject("total", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
