@@ -52,6 +52,7 @@ namespace Vistas
             txtUsuario.Text = "";
             txtContraseña.Text = "";
             txtApellidoYNombre.Text = "";
+            txtBuscar.Text = "Buscar por Nombre Usuario o AyN";
         }
 
         #endregion
@@ -100,7 +101,7 @@ namespace Vistas
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (txtBuscar.Text != "")
+            if (txtBuscar.Text != "Buscar por Nombre Usuario o AyN")
                 dgwUsuarios.DataSource = TrabajarUsuario.search_usuarios(txtBuscar.Text);
             else
                 load_usuarios();
@@ -152,6 +153,17 @@ namespace Vistas
                 char systemPasswordChar = (new TextBox() { UseSystemPasswordChar = true }).PasswordChar;
                 e.Value = new String(systemPasswordChar, e.Value.ToString().Length);
             }
+        }
+        private void txtBuscar_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "Buscar por Nombre Usuario o AyN")
+                txtBuscar.Text = "";
+        }
+
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "")
+                txtBuscar.Text = "Buscar por Nombre Usuario o AyN";
         }
         #endregion  
 

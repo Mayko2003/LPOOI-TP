@@ -88,6 +88,7 @@ namespace Vistas
             txtDireccion.Text = "";
             txtNombre.Text = "";
             txtNumeroCarnet.Text = "";
+            txtBuscar.Text = "Buscar por DNI o Apellido";
         }
         #endregion
 
@@ -138,7 +139,7 @@ namespace Vistas
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (txtBuscar.Text != "")
+            if (txtBuscar.Text != "Buscar por DNI o Apellido")
                 dgwClientes.DataSource = TrabajarCliente.search_clientes(txtBuscar.Text);
             else
                 load_clientes();
@@ -192,6 +193,17 @@ namespace Vistas
         {
             dgwClientes.DataSource = TrabajarCliente.sort_by(
                 cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
+        }
+        private void txtBuscar_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "Buscar por DNI o Apellido")
+                txtBuscar.Text = "";
+        }
+
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "")
+                txtBuscar.Text = "Buscar por DNI o Apellido";
         }
         #endregion  
 

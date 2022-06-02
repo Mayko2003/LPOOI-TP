@@ -61,11 +61,6 @@
             this.panel17 = new System.Windows.Forms.Panel();
             this.btnNuevaVenta = new System.Windows.Forms.Button();
             this.panel18 = new System.Windows.Forms.Panel();
-            this.subMenuProducto = new System.Windows.Forms.Panel();
-            this.btnNuevoProducto = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.btnEditarProducto = new System.Windows.Forms.Button();
             this.subMenuUsuario = new System.Windows.Forms.Panel();
             this.btnEditarUsuario = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -76,6 +71,11 @@
             this.btnNuevaObraSocial = new System.Windows.Forms.Button();
             this.btnEditarObraSocial = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.subMenuProducto = new System.Windows.Forms.Panel();
+            this.btnNuevoProducto = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.btnEditarProducto = new System.Windows.Forms.Button();
             this.subMenuCliente = new System.Windows.Forms.Panel();
             this.btnMostrarClientes = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -97,9 +97,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnInicio)).BeginInit();
             this.pnlContenedor.SuspendLayout();
             this.subMenuVenta.SuspendLayout();
-            this.subMenuProducto.SuspendLayout();
             this.subMenuUsuario.SuspendLayout();
             this.subMenuObraSocial.SuspendLayout();
+            this.subMenuProducto.SuspendLayout();
             this.subMenuCliente.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -474,64 +474,6 @@
             this.panel18.Size = new System.Drawing.Size(13, 25);
             this.panel18.TabIndex = 5;
             // 
-            // subMenuProducto
-            // 
-            this.subMenuProducto.Controls.Add(this.btnNuevoProducto);
-            this.subMenuProducto.Controls.Add(this.panel5);
-            this.subMenuProducto.Controls.Add(this.panel8);
-            this.subMenuProducto.Controls.Add(this.btnEditarProducto);
-            this.subMenuProducto.Location = new System.Drawing.Point(0, 214);
-            this.subMenuProducto.Name = "subMenuProducto";
-            this.subMenuProducto.Size = new System.Drawing.Size(200, 51);
-            this.subMenuProducto.TabIndex = 6;
-            this.subMenuProducto.Visible = false;
-            // 
-            // btnNuevoProducto
-            // 
-            this.btnNuevoProducto.BackColor = System.Drawing.SystemColors.Info;
-            this.btnNuevoProducto.FlatAppearance.BorderSize = 0;
-            this.btnNuevoProducto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
-            this.btnNuevoProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNuevoProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoProducto.Location = new System.Drawing.Point(12, 0);
-            this.btnNuevoProducto.Name = "btnNuevoProducto";
-            this.btnNuevoProducto.Size = new System.Drawing.Size(188, 25);
-            this.btnNuevoProducto.TabIndex = 8;
-            this.btnNuevoProducto.Text = "Nuevo Producto";
-            this.btnNuevoProducto.UseVisualStyleBackColor = false;
-            this.btnNuevoProducto.Click += new System.EventHandler(this.btnNuevoProducto_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.Chocolate;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(13, 25);
-            this.panel5.TabIndex = 5;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.Chocolate;
-            this.panel8.Location = new System.Drawing.Point(0, 26);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(13, 25);
-            this.panel8.TabIndex = 5;
-            // 
-            // btnEditarProducto
-            // 
-            this.btnEditarProducto.BackColor = System.Drawing.SystemColors.Info;
-            this.btnEditarProducto.FlatAppearance.BorderSize = 0;
-            this.btnEditarProducto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
-            this.btnEditarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditarProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarProducto.Location = new System.Drawing.Point(12, 26);
-            this.btnEditarProducto.Name = "btnEditarProducto";
-            this.btnEditarProducto.Size = new System.Drawing.Size(188, 25);
-            this.btnEditarProducto.TabIndex = 9;
-            this.btnEditarProducto.Text = "Mostrar Productos";
-            this.btnEditarProducto.UseVisualStyleBackColor = false;
-            this.btnEditarProducto.Click += new System.EventHandler(this.btnMostrarProductos_Click);
-            // 
             // subMenuUsuario
             // 
             this.subMenuUsuario.Controls.Add(this.btnEditarUsuario);
@@ -648,6 +590,64 @@
             this.panel9.Size = new System.Drawing.Size(13, 25);
             this.panel9.TabIndex = 5;
             // 
+            // subMenuProducto
+            // 
+            this.subMenuProducto.Controls.Add(this.btnNuevoProducto);
+            this.subMenuProducto.Controls.Add(this.panel5);
+            this.subMenuProducto.Controls.Add(this.panel8);
+            this.subMenuProducto.Controls.Add(this.btnEditarProducto);
+            this.subMenuProducto.Location = new System.Drawing.Point(0, 214);
+            this.subMenuProducto.Name = "subMenuProducto";
+            this.subMenuProducto.Size = new System.Drawing.Size(200, 51);
+            this.subMenuProducto.TabIndex = 6;
+            this.subMenuProducto.Visible = false;
+            // 
+            // btnNuevoProducto
+            // 
+            this.btnNuevoProducto.BackColor = System.Drawing.SystemColors.Info;
+            this.btnNuevoProducto.FlatAppearance.BorderSize = 0;
+            this.btnNuevoProducto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.btnNuevoProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevoProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoProducto.Location = new System.Drawing.Point(12, 0);
+            this.btnNuevoProducto.Name = "btnNuevoProducto";
+            this.btnNuevoProducto.Size = new System.Drawing.Size(188, 25);
+            this.btnNuevoProducto.TabIndex = 8;
+            this.btnNuevoProducto.Text = "Nuevo Producto";
+            this.btnNuevoProducto.UseVisualStyleBackColor = false;
+            this.btnNuevoProducto.Click += new System.EventHandler(this.btnNuevoProducto_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Chocolate;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(13, 25);
+            this.panel5.TabIndex = 5;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.Chocolate;
+            this.panel8.Location = new System.Drawing.Point(0, 26);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(13, 25);
+            this.panel8.TabIndex = 5;
+            // 
+            // btnEditarProducto
+            // 
+            this.btnEditarProducto.BackColor = System.Drawing.SystemColors.Info;
+            this.btnEditarProducto.FlatAppearance.BorderSize = 0;
+            this.btnEditarProducto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.btnEditarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditarProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarProducto.Location = new System.Drawing.Point(12, 26);
+            this.btnEditarProducto.Name = "btnEditarProducto";
+            this.btnEditarProducto.Size = new System.Drawing.Size(188, 25);
+            this.btnEditarProducto.TabIndex = 9;
+            this.btnEditarProducto.Text = "Mostrar Productos";
+            this.btnEditarProducto.UseVisualStyleBackColor = false;
+            this.btnEditarProducto.Click += new System.EventHandler(this.btnMostrarProductos_Click);
+            // 
             // subMenuCliente
             // 
             this.subMenuCliente.BackColor = System.Drawing.SystemColors.Info;
@@ -740,9 +740,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnInicio)).EndInit();
             this.pnlContenedor.ResumeLayout(false);
             this.subMenuVenta.ResumeLayout(false);
-            this.subMenuProducto.ResumeLayout(false);
             this.subMenuUsuario.ResumeLayout(false);
             this.subMenuObraSocial.ResumeLayout(false);
+            this.subMenuProducto.ResumeLayout(false);
             this.subMenuCliente.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -145,6 +145,30 @@ namespace ClasesBase
             
             return ds.Tables[0];
         }
+        public static DataTable list_productos_resumen()
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "SELECT * FROM ProductoResumenView";
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+
+            //ejecutar la consulta
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            //llenar el data table
+            DataSet ds = new DataSet(); //lo cambie por data Set
+            da.Fill(ds);
+
+
+            return ds.Tables[0];
+        }
 
         public static DataTable search_productos(string codigoBuscado)
         {
@@ -154,12 +178,10 @@ namespace ClasesBase
             //operaciones
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT prod_codigo as 'Codigo', ";
-
             cmd.CommandText += "prod_categoria as 'Categoria', ";
             cmd.CommandText += "prod_descripcion as 'Descripcion', ";
-            cmd.CommandText += "prod_precio as 'Precio', ";
-            cmd.CommandText += "FROM Producto as P ";
-  
+            cmd.CommandText += "prod_precio as 'Precio' ";
+            cmd.CommandText += "FROM Producto ";
             cmd.CommandText += "WHERE prod_codigo LIKE @codigoBuscado";
 
             cmd.CommandType = CommandType.Text;
@@ -277,6 +299,46 @@ namespace ClasesBase
 
             return dt;
         
+        }
+
+        public static DataTable filter_by_dni_date(string dni, DateTime start, DateTime end)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            // crear query
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = cnn;
+
+            cmd.CommandText = "FiltrarProductoDNIFecha";
+
+            SqlParameter param = new SqlParameter("@dni", SqlDbType.VarChar);
+            param.Value = dni;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@start", SqlDbType.DateTime);
+            param.Value = start;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@end", SqlDbType.DateTime);
+            param.Value = end;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
+
         }
 
     }

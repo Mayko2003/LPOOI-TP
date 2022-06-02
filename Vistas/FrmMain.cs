@@ -131,6 +131,7 @@ namespace Vistas
             frmCliente.Controls["pnlBuscar"].Visible = true;
             frmCliente.Controls["pnlSortCliente"].Visible = true;
             frmCliente.Controls["pnlClienteRegistrar"].Visible = false;
+            frmCliente.clear_data_form();
             AbrirForm(frmCliente);
         }
         #endregion
@@ -152,8 +153,8 @@ namespace Vistas
         {
             subMenuProducto.Visible = false;
             frmProducto.Controls["dgwProductos"].Visible = false;
-            frmProducto.Controls["pnlSortProducto"].Visible = false;
-            frmProducto.Controls["pnlFiltrarProducto"].Visible = false;
+            frmProducto.Controls["pnlOptions"].Visible = false;
+
             frmProducto.Controls["pnlProductoRegistrar"].Visible = true;
             frmProducto.clear_data_form();
             AbrirForm(frmProducto);
@@ -163,9 +164,9 @@ namespace Vistas
         {
             subMenuProducto.Visible = false;
             frmProducto.Controls["dgwProductos"].Visible = true;
-            frmProducto.Controls["pnlSortProducto"].Visible = true;
-            frmProducto.Controls["pnlFiltrarProducto"].Visible = true;
+            frmProducto.Controls["pnlOptions"].Visible = true;
             frmProducto.Controls["pnlProductoRegistrar"].Visible = false;
+            frmProducto.clear_data_form();
             AbrirForm(frmProducto);
         }
         #endregion
@@ -199,6 +200,7 @@ namespace Vistas
             frmObraSocial.Controls["dgwObrasSocial"].Visible = true;
             frmObraSocial.Controls["pnlBuscar"].Visible = true;
             frmObraSocial.Controls["pnlOSRegistrar"].Visible = false;
+            frmObraSocial.clear_data_form();
             AbrirForm(frmObraSocial);
         }
         #endregion
@@ -232,6 +234,7 @@ namespace Vistas
             frmUsuario.Controls["pnlUsuarioRegistrar"].Visible = false;
             frmUsuario.Controls["pnlBuscar"].Visible = true;
             frmUsuario.Controls["dgwUsuarios"].Visible = true;
+            frmUsuario.clear_data_form();
             AbrirForm(frmUsuario);
         }
         #endregion
@@ -253,6 +256,7 @@ namespace Vistas
         {
             subMenuVenta.Visible = false;
             frmVenta.Controls["pnlVentaRegistrar"].Visible = true;
+            frmVenta.Controls["pnlFiltrarVenta"].Visible = false;
             frmVenta.Controls["pnlBuscar"].Visible = false;
             frmVenta.Controls["dgwVentas"].Visible = false;
 
@@ -264,10 +268,11 @@ namespace Vistas
         {
             subMenuUsuario.Visible = false;
             frmVenta.Controls["pnlVentaRegistrar"].Visible = false;
+            frmVenta.Controls["pnlFiltrarVenta"].Visible = true;
             frmVenta.Controls["pnlBuscar"].Visible = true;
             frmVenta.Controls["dgwVentas"].Visible = true;
 
-
+            frmVenta.clear_data_form();
             AbrirForm(frmVenta);
         }
         #endregion

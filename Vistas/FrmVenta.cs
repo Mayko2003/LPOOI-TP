@@ -40,16 +40,15 @@ namespace Vistas
         #region Metodos Formulario
         private void load_cmb_cliente()
         {
-            DataTable dt = TrabajarCliente.list_clientes();
+            DataTable dt = TrabajarCliente.list_clientes_resumen();
             //load combo para DNI de Detalles de venta
-            cmbDNICliente.DisplayMember = "DNI";
+            cmbDNICliente.DisplayMember = "Abreviacion";
             cmbDNICliente.ValueMember = "DNI";
             cmbDNICliente.DataSource = dt;
             
             //load combo para el DNI de filtrar venta
-            cmbFiltrarCliente.DisplayMember = "DNI";
+            cmbFiltrarCliente.DisplayMember = "Abreviacion";
             cmbFiltrarCliente.ValueMember = "DNI";
-            dt.Rows.Add("----");
             cmbFiltrarCliente.DataSource = dt; 
         }
         internal void load_detalles()
@@ -62,6 +61,7 @@ namespace Vistas
             FrmVenta.nroCompraActual = -1;
             btnAgregarDetalle.Enabled = false;
             dgwVentaDetalles.DataSource = null;
+            txtBuscar.Text = "Buscar por Nro. Venta";
         }
         private void load_ventas()
         {
@@ -117,6 +117,7 @@ namespace Vistas
 
             //set propiedades
             pnlBuscar.Visible = false;
+            pnlFiltrarVenta.Visible = false;
             dgwVentas.Visible = false;
             FrmVenta.nroCompraActual = Convert.ToInt32(row.Cells["Nro. Venta"].Value);
             btnAgregarDetalle.Enabled = true;
@@ -165,7 +166,7 @@ namespace Vistas
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            if (cmbFiltrarCliente.SelectedValue.ToString() == "----") filtrarRangoFecha("%%");
+            if (cmbFiltrarCliente.SelectedValue == null) filtrarRangoFecha("%%");
             else filtrarRangoFecha(cmbFiltrarCliente.SelectedValue.ToString());
         }
         private void button1_Click(object sender, EventArgs e)
@@ -181,7 +182,33 @@ namespace Vistas
         {
             load_ventas();
         }
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text != "Buscar por Nro. Venta")
+                dgwVentas.DataSource = TrabajarVenta.search_ventas(Convert.ToInt32(txtBuscar.Text));
+            else
+                load_ventas();
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar) || char.IsControl(e.KeyChar)) e.Handled = false;
+            else e.Handled = true;
+        }
+        private void txtBuscar_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "Buscar por Nro. Venta")
+                txtBuscar.Text = "";
+        }
+
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "")
+                txtBuscar.Text = "Buscar por Nro. Venta";
+        }
         #endregion  
+
+
 
         
     }

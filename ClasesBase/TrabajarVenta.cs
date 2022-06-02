@@ -75,7 +75,32 @@ namespace ClasesBase
             cmd.ExecuteNonQuery();
             cnn.Close();
         }
+        public static DataTable search_ventas(int nro)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
 
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            // crear query
+            cmd.CommandText = "SELECT ven_nro as 'Nro. Venta', ";
+            cmd.CommandText += "ven_fecha as 'Fecha', ";
+            cmd.CommandText += "cli_dni as 'DNI Cliente' ";
+            cmd.CommandText += "FROM Venta WHERE ven_nro = @ven_nro";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            cmd.Parameters.AddWithValue("@ven_nro", nro);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
+        }
         public static int get_current_index()
         {
             // conexion a la base de datos

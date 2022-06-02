@@ -41,6 +41,7 @@ namespace Vistas
             txtCategoria.Text = "";
             txtDescripcion.Text = "";
             txtPrecio.Text = "";
+            txtBuscar.Text = "Buscar por Codigo";
         }
         private void load_productos()
         {
@@ -79,6 +80,26 @@ namespace Vistas
             cmbOrden.DisplayMember = "orden";
             cmbOrden.ValueMember = "orden";
             cmbOrden.DataSource = dt;
+
+            //load combo clientes
+            cmbFiltrarCliente.DisplayMember = "Abreviacion";
+            cmbFiltrarCliente.ValueMember = "DNI";
+            cmbFiltrarCliente.DataSource = TrabajarCliente.list_clientes_resumen();
+
+            //load combo opciones
+            dt = new DataTable();
+
+            //agregar columnas
+            dt.Columns.Add("option");
+
+            //agregar filas
+            dt.Rows.Add("Buscar");
+            dt.Rows.Add("Filtrar");
+            dt.Rows.Add("Ordenar");
+
+            cmbOptions.DisplayMember = "option";
+            cmbOptions.ValueMember = "option";
+            cmbOptions.DataSource = dt;
         }
 
         #endregion
@@ -140,8 +161,7 @@ namespace Vistas
             txtPrecio.Text = row.Cells["Precio"].Value.ToString();
 
             //set propiedades
-            pnlSortProducto.Visible = false;
-            pnlFiltrarProducto.Visible = false;
+            pnlOptions.Visible = false;
             dgwProductos.Visible = false;
             pnlProductoRegistrar.Visible = true;
             txtCodigo.Enabled = false; //se desabilita para evitar problemas de pk
@@ -193,7 +213,6 @@ namespace Vistas
         private void button1_Click(object sender, EventArgs e)
         {
             mcRango.Visible = !mcRango.Visible;
-
         }
 
         private void mcRango_DateSelected(object sender, DateRangeEventArgs e)
@@ -201,17 +220,77 @@ namespace Vistas
             mcRango.Visible = false;
             this.fechasSeleccionadas = true;
         }
+        private void FiltrarRangoFecha(string dni)
+        {
+            if (this.fechasSeleccionadas)
+            {
+                //se obtiene la fecha de fin del rango pero se crea una nueva que 
+                // incluye el dia completo es decir el dia de fin pero no a las 00:00
+                //sino a las 23:59:59
+                DateTime end = new DateTime(
+                    mcRango.SelectionRange.End.Year,
+                    mcRango.SelectionRange.End.Month,
+                    mcRango.SelectionRange.End.Day,
+                    23, 59, 59);
+
+                dgwProductos.DataSource = TrabajarProducto.filter_by_dni_date(dni, mcRango.SelectionRange.Start, end);
+            }
+            else
+            {
+                dgwProductos.DataSource = TrabajarProducto.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
+            }
+            fechasSeleccionadas = false;
+        }
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
+            if (cmbFiltrarCliente.SelectedValue == null) FiltrarRangoFecha("%%");
+            else FiltrarRangoFecha(cmbFiltrarCliente.SelectedValue.ToString());
+        }
+        private void cmbOptions_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmbOptions.SelectedValue == null) return;
+            if (cmbOptions.SelectedValue.ToString() == "Buscar")
+            {
+                pnlBuscar.Visible = true;
+                pnlFiltrarProducto.Visible = pnlSortProducto.Visible = false;
+            }
+            else if (cmbOptions.SelectedValue.ToString() == "Ordenar")
+            {
+                pnlSortProducto.Visible = true;
+                pnlBuscar.Visible = pnlFiltrarProducto.Visible = false;
+            }
+            else
+            {
+                pnlFiltrarProducto.Visible = true;
+                pnlBuscar.Visible = pnlSortProducto.Visible = false;
+            }
+        }
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "")
+                txtBuscar.Text = "Buscar por Codigo";
+        }
 
+        private void txtBuscar_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "Buscar por Codigo")
+                txtBuscar.Text = "";
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text != "Buscar por Codigo")
+                dgwProductos.DataSource = TrabajarProducto.search_productos(txtBuscar.Text);
+            else
+                load_productos();
+        }
+        private void mcRango_DateSelected_1(object sender, DateRangeEventArgs e)
+        {
+            this.fechasSeleccionadas = true;
+            this.mcRango.Visible = false;
         }
         #endregion
 
         
-
-
-
-        
-
     }
 }

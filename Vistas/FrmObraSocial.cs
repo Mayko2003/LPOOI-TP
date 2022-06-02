@@ -25,13 +25,27 @@ namespace Vistas
             this.TopLevel = false;
             this.Dock = DockStyle.Fill;
         }
+        private void frmObraSocial_Load(object sender, EventArgs e)
+        {
+            cargar_obrasSocial();
+        }
+
+        #region Metodos Formulario
+        private void cargar_obrasSocial()
+        {
+            dgwObrasSocial.DataSource = TrabajarObraSocial.list_obrasSocial();
+        }
         internal void clear_data_form() 
         { 
             txtCuit.Text = "";
             txtDireccion.Text = "";
             txtRazonSocial.Text = "";
             txtTelefono.Text = "";
+            txtBuscar.Text = "Buscar por CUIT";
         }
+        #endregion
+
+        #region Events
         private void btnRegistrarObraSocial_Click(object sender, EventArgs e)
         {
             ObraSocial obraSocial = new ObraSocial();
@@ -66,17 +80,12 @@ namespace Vistas
             clear_data_form();
         }
 
-        private void frmObraSocial_Load(object sender, EventArgs e)
-        {
-            cargar_obrasSocial();
-        }
-        private void cargar_obrasSocial(){
-            dgwObrasSocial.DataSource = TrabajarObraSocial.list_obrasSocial();
-        }
+
+        
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (txtBuscar.Text != "")
+            if (txtBuscar.Text != "Buscar por CUIT")
                 dgwObrasSocial.DataSource = TrabajarObraSocial.search_obrasSocial(txtBuscar.Text);
             else
                 cargar_obrasSocial();
@@ -122,5 +131,17 @@ namespace Vistas
         {
             this.indiceRowEliminar = e.RowIndex;
         }
+        private void txtBuscar_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "Buscar por CUIT")
+                txtBuscar.Text = "";
+        }
+
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "")
+                txtBuscar.Text = "Buscar por CUIT";
+        }
+        #endregion
     }
 }
