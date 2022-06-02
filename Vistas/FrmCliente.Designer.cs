@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCliente));
             this.pnlClienteRegistrar = new System.Windows.Forms.Panel();
             this.cmbOS_Cuit = new System.Windows.Forms.ComboBox();
@@ -54,10 +54,15 @@
             this.btnRegistrarProducto = new System.Windows.Forms.Button();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.dgwClientes = new System.Windows.Forms.DataGridView();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.pnlBuscar = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbOrderBy = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmbOrden = new System.Windows.Forms.ComboBox();
+            this.pnlSortCliente = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pnlClienteRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -66,8 +71,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwClientes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.pnlBuscar.SuspendLayout();
+            this.pnlSortCliente.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlClienteRegistrar
@@ -110,7 +116,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::Vistas.Properties.Resources.bloquear;
+            this.pictureBox4.Image = global::Vistas.Properties.Resources.direction;
             this.pictureBox4.Location = new System.Drawing.Point(16, 227);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(38, 38);
@@ -120,7 +126,7 @@
             // 
             // pictureBox8
             // 
-            this.pictureBox8.Image = global::Vistas.Properties.Resources.bloquear;
+            this.pictureBox8.Image = global::Vistas.Properties.Resources.nro_carnet;
             this.pictureBox8.Location = new System.Drawing.Point(445, 113);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(38, 38);
@@ -130,7 +136,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::Vistas.Properties.Resources.bloquear;
+            this.pictureBox3.Image = global::Vistas.Properties.Resources.name;
             this.pictureBox3.Location = new System.Drawing.Point(16, 116);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 38);
@@ -140,7 +146,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox1.Image = global::Vistas.Properties.Resources.name;
             this.pictureBox1.Location = new System.Drawing.Point(16, 172);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(38, 38);
@@ -150,7 +156,7 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox6.Image = global::Vistas.Properties.Resources.os_cuit;
             this.pictureBox6.Location = new System.Drawing.Point(445, 58);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(38, 38);
@@ -160,7 +166,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox2.Image = global::Vistas.Properties.Resources.dni;
             this.pictureBox2.Location = new System.Drawing.Point(16, 61);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(38, 38);
@@ -307,56 +313,51 @@
             // 
             this.dgwClientes.AllowUserToAddRows = false;
             this.dgwClientes.AllowUserToDeleteRows = false;
-            this.dgwClientes.AllowUserToOrderColumns = true;
+            this.dgwClientes.AllowUserToResizeColumns = false;
             this.dgwClientes.AllowUserToResizeRows = false;
             this.dgwClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwClientes.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dgwClientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgwClientes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgwClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwClientes.GridColor = System.Drawing.SystemColors.Info;
             this.dgwClientes.Location = new System.Drawing.Point(89, 207);
+            this.dgwClientes.MultiSelect = false;
             this.dgwClientes.Name = "dgwClientes";
             this.dgwClientes.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgwClientes.Size = new System.Drawing.Size(859, 353);
             this.dgwClientes.TabIndex = 11;
             this.dgwClientes.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwClientes_RowHeaderMouseClick);
             this.dgwClientes.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwClientes_RowHeaderMouseDoubleClick);
             this.dgwClientes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgwClientes_KeyDown);
             // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(305, 44);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(450, 120);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 12;
-            this.pictureBox5.TabStop = false;
-            // 
             // txtBuscar
             // 
+            this.txtBuscar.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.Location = new System.Drawing.Point(0, 0);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(219, 22);
             this.txtBuscar.TabIndex = 13;
+            this.txtBuscar.Enter += new System.EventHandler(this.txtBuscar_Enter);
+            this.txtBuscar.Leave += new System.EventHandler(this.txtBuscar_Leave);
             // 
             // btnBuscar
             // 
@@ -383,16 +384,78 @@
             this.pnlBuscar.Size = new System.Drawing.Size(302, 22);
             this.pnlBuscar.TabIndex = 14;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 5);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 17);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Ordenar Por: ";
+            // 
+            // cmbOrderBy
+            // 
+            this.cmbOrderBy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbOrderBy.FormattingEnabled = true;
+            this.cmbOrderBy.Location = new System.Drawing.Point(104, 0);
+            this.cmbOrderBy.Name = "cmbOrderBy";
+            this.cmbOrderBy.Size = new System.Drawing.Size(124, 21);
+            this.cmbOrderBy.TabIndex = 16;
+            this.cmbOrderBy.SelectedIndexChanged += new System.EventHandler(this.cmbOrderBy_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(248, 4);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 17);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Orden:";
+            // 
+            // cmbOrden
+            // 
+            this.cmbOrden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbOrden.FormattingEnabled = true;
+            this.cmbOrden.Location = new System.Drawing.Point(306, 0);
+            this.cmbOrden.Name = "cmbOrden";
+            this.cmbOrden.Size = new System.Drawing.Size(81, 21);
+            this.cmbOrden.TabIndex = 18;
+            this.cmbOrden.SelectedIndexChanged += new System.EventHandler(this.cmbOrden_SelectedIndexChanged);
+            // 
+            // pnlSortCliente
+            // 
+            this.pnlSortCliente.Controls.Add(this.label7);
+            this.pnlSortCliente.Controls.Add(this.cmbOrden);
+            this.pnlSortCliente.Controls.Add(this.cmbOrderBy);
+            this.pnlSortCliente.Controls.Add(this.label9);
+            this.pnlSortCliente.Location = new System.Drawing.Point(561, 179);
+            this.pnlSortCliente.Name = "pnlSortCliente";
+            this.pnlSortCliente.Size = new System.Drawing.Size(387, 22);
+            this.pnlSortCliente.TabIndex = 19;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(305, 44);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(450, 120);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 12;
+            this.pictureBox5.TabStop = false;
+            // 
             // FrmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.Controls.Add(this.pnlSortCliente);
             this.Controls.Add(this.pnlBuscar);
-            this.Controls.Add(this.dgwClientes);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pnlClienteRegistrar);
+            this.Controls.Add(this.dgwClientes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmCliente";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -407,9 +470,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwClientes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
+            this.pnlSortCliente.ResumeLayout(false);
+            this.pnlSortCliente.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -443,5 +508,10 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Panel pnlBuscar;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbOrderBy;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cmbOrden;
+        private System.Windows.Forms.Panel pnlSortCliente;
     }
 }

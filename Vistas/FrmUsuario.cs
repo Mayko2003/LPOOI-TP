@@ -52,6 +52,7 @@ namespace Vistas
             txtUsuario.Text = "";
             txtContraseña.Text = "";
             txtApellidoYNombre.Text = "";
+            txtBuscar.Text = "Buscar por Nombre Usuario o AyN";
         }
 
         #endregion
@@ -100,7 +101,7 @@ namespace Vistas
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (txtBuscar.Text != "")
+            if (txtBuscar.Text != "Buscar por Nombre Usuario o AyN")
                 dgwUsuarios.DataSource = TrabajarUsuario.search_usuarios(txtBuscar.Text);
             else
                 load_usuarios();
@@ -108,6 +109,7 @@ namespace Vistas
         private void dgwUsuarios_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewRow row = dgwUsuarios.Rows[e.RowIndex];
+
 
             txtUsuario.Text = row.Cells["Nombre Usuario"].Value as string;
             txtContraseña.Text = row.Cells["Contraseña"].Value as string;
@@ -143,7 +145,29 @@ namespace Vistas
         {
             this.indiceRowEliminar = -1;
         }
+        private void dgwUsuarios_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 2 && e.Value != null)
+            {
+                dgwUsuarios.Rows[e.RowIndex].Tag = e.Value;
+                char systemPasswordChar = (new TextBox() { UseSystemPasswordChar = true }).PasswordChar;
+                e.Value = new String(systemPasswordChar, e.Value.ToString().Length);
+            }
+        }
+        private void txtBuscar_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "Buscar por Nombre Usuario o AyN")
+                txtBuscar.Text = "";
+        }
+
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "")
+                txtBuscar.Text = "Buscar por Nombre Usuario o AyN";
+        }
         #endregion  
+
+        
 
     }
 }

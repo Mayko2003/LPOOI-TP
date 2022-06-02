@@ -95,6 +95,27 @@ namespace ClasesBase
 
             return dt;
         }
+        public static DataTable list_clientes_resumen()
+        {
+        // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "SELECT * FROM ClienteResumenView";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            //ejecutar la consulta
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            //llenar el data table
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            return dt;
+        }
 
         public static DataTable search_clientes(string sPattern)
         {
@@ -111,7 +132,7 @@ namespace ClasesBase
             cmd.CommandText += "C.os_cuit as 'OS Cuit' ";
             cmd.CommandText += "FROM Cliente as C ";
             cmd.CommandText += "LEFT JOIN ObraSocial as OS ON (OS.os_cuit=C.os_cuit) ";
-            cmd.CommandText += "WHERE cli_nombre LIKE @pattern OR cli_dni LIKE @pattern";
+            cmd.CommandText += "WHERE cli_apellido LIKE @pattern OR cli_dni LIKE @pattern";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cnn;
@@ -164,6 +185,40 @@ namespace ClasesBase
             cnn.Open();
             cmd.ExecuteNonQuery();
             cnn.Close();
+        }
+
+        public static DataTable sort_by(string by, string orden)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = cnn;
+            cmd.CommandText = "OrdenarClientes";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            //PARAMS para el SP
+            SqlParameter param;
+            param = new SqlParameter("@by",SqlDbType.VarChar);
+            param.Direction = ParameterDirection.Input;
+            param.Value = by;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@orden", SqlDbType.VarChar);
+            param.Direction = ParameterDirection.Input;
+            param.Value = orden;
+
+            cmd.Parameters.Add(param);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
         }
     }
 }

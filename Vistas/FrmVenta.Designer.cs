@@ -46,11 +46,18 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
+            this.mcRango = new System.Windows.Forms.MonthCalendar();
             this.dgwVentas = new System.Windows.Forms.DataGridView();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.pnlBuscar = new System.Windows.Forms.Panel();
+            this.pnlFiltrarVenta = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbFiltrarCliente = new System.Windows.Forms.ComboBox();
             this.pnlVentaRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwVentaDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -58,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgwVentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.pnlBuscar.SuspendLayout();
+            this.pnlFiltrarVenta.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlVentaRegistrar
@@ -156,7 +164,7 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox6.Image = global::Vistas.Properties.Resources.dni;
             this.pictureBox6.Location = new System.Drawing.Point(16, 122);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(38, 38);
@@ -166,7 +174,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox2.Image = global::Vistas.Properties.Resources.date;
             this.pictureBox2.Location = new System.Drawing.Point(16, 61);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(38, 38);
@@ -228,6 +236,16 @@
             this.btnRegistrarVenta.UseVisualStyleBackColor = false;
             this.btnRegistrarVenta.Click += new System.EventHandler(this.btnRegistrarVenta_Click);
             // 
+            // mcRango
+            // 
+            this.mcRango.Location = new System.Drawing.Point(652, 207);
+            this.mcRango.MaxSelectionCount = 10000;
+            this.mcRango.Name = "mcRango";
+            this.mcRango.TabIndex = 21;
+            this.mcRango.TitleBackColor = System.Drawing.Color.DarkSalmon;
+            this.mcRango.Visible = false;
+            this.mcRango.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.mcRango_DateSelected);
+            // 
             // dgwVentas
             // 
             this.dgwVentas.AllowUserToAddRows = false;
@@ -268,7 +286,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(305, 44);
+            this.pictureBox5.Location = new System.Drawing.Point(307, 44);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(450, 120);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -282,6 +300,9 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(219, 22);
             this.txtBuscar.TabIndex = 13;
+            this.txtBuscar.Enter += new System.EventHandler(this.txtBuscar_Enter);
+            this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
+            this.txtBuscar.Leave += new System.EventHandler(this.txtBuscar_Leave);
             // 
             // btnBuscar
             // 
@@ -297,6 +318,7 @@
             this.btnBuscar.TabIndex = 11;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // pnlBuscar
             // 
@@ -307,14 +329,95 @@
             this.pnlBuscar.Size = new System.Drawing.Size(302, 22);
             this.pnlBuscar.TabIndex = 14;
             // 
+            // pnlFiltrarVenta
+            // 
+            this.pnlFiltrarVenta.Controls.Add(this.button2);
+            this.pnlFiltrarVenta.Controls.Add(this.button1);
+            this.pnlFiltrarVenta.Controls.Add(this.btnFiltrar);
+            this.pnlFiltrarVenta.Controls.Add(this.label7);
+            this.pnlFiltrarVenta.Controls.Add(this.cmbFiltrarCliente);
+            this.pnlFiltrarVenta.Location = new System.Drawing.Point(457, 179);
+            this.pnlFiltrarVenta.Name = "pnlFiltrarVenta";
+            this.pnlFiltrarVenta.Size = new System.Drawing.Size(491, 22);
+            this.pnlFiltrarVenta.TabIndex = 20;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Chocolate;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(419, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(77, 22);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "Limpiar";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DarkSalmon;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(195, -1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 22);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Rango Fechas";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.BackColor = System.Drawing.Color.Chocolate;
+            this.btnFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltrar.FlatAppearance.BorderSize = 0;
+            this.btnFiltrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Chocolate;
+            this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrar.Location = new System.Drawing.Point(336, 0);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(77, 22);
+            this.btnFiltrar.TabIndex = 22;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = false;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 5);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 17);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Cliente:";
+            // 
+            // cmbFiltrarCliente
+            // 
+            this.cmbFiltrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbFiltrarCliente.FormattingEnabled = true;
+            this.cmbFiltrarCliente.Location = new System.Drawing.Point(64, 2);
+            this.cmbFiltrarCliente.Name = "cmbFiltrarCliente";
+            this.cmbFiltrarCliente.Size = new System.Drawing.Size(124, 21);
+            this.cmbFiltrarCliente.TabIndex = 16;
+            // 
             // FrmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.Controls.Add(this.pnlFiltrarVenta);
             this.Controls.Add(this.pnlBuscar);
             this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.mcRango);
             this.Controls.Add(this.pnlVentaRegistrar);
             this.Controls.Add(this.dgwVentas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -332,6 +435,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
+            this.pnlFiltrarVenta.ResumeLayout(false);
+            this.pnlFiltrarVenta.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -356,5 +461,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAgregarDetalle;
         private System.Windows.Forms.DataGridView dgwVentaDetalles;
+        private System.Windows.Forms.Panel pnlFiltrarVenta;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbFiltrarCliente;
+        private System.Windows.Forms.MonthCalendar mcRango;
+        private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -13,8 +13,15 @@ namespace Vistas
     public partial class FrmVenta : Form
     {
         #region Atributos
+
         private FrmVentaDetalle frmVentaDetalle = new FrmVentaDetalle();
         internal static int nroCompraActual = -1;
+        private string action = "new";
+        public string Action
+        {
+            set { this.action = value; }
+            get { return this.action; }
+        }
 
         private int indiceRowEliminar = -1;
         public int IndiceRowEliminar
@@ -22,6 +29,9 @@ namespace Vistas
             set { this.indiceRowEliminar = value; }
             get { return this.indiceRowEliminar; }
         }
+
+        private bool fechasSeleccionadas = false;
+
         #endregion
 
         public FrmVenta()
@@ -38,9 +48,16 @@ namespace Vistas
         #region Metodos Formulario
         private void load_cmb_cliente()
         {
-            cmbDNICliente.DisplayMember = "DNI";
+            DataTable dt = TrabajarCliente.list_clientes_resumen();
+            //load combo para DNI de Detalles de venta
+            cmbDNICliente.DisplayMember = "Abreviacion";
             cmbDNICliente.ValueMember = "DNI";
-            cmbDNICliente.DataSource = TrabajarCliente.list_clientes();
+            cmbDNICliente.DataSource = dt;
+            
+            //load combo para el DNI de filtrar venta
+            cmbFiltrarCliente.DisplayMember = "Abreviacion";
+            cmbFiltrarCliente.ValueMember = "DNI";
+            cmbFiltrarCliente.DataSource = dt; 
         }
         internal void load_detalles()
         {
@@ -52,6 +69,8 @@ namespace Vistas
             FrmVenta.nroCompraActual = -1;
             btnAgregarDetalle.Enabled = false;
             dgwVentaDetalles.DataSource = null;
+            txtBuscar.Text = "Buscar por Nro. Venta";
+            dtpFecha.Value = DateTime.Now;
         }
         private void load_ventas()
         {
@@ -85,17 +104,29 @@ namespace Vistas
 
             venta.Cli_DNI = cmbDNICliente.SelectedValue.ToString();
             venta.Ven_Fecha = dtpFecha.Value;
+            venta.Ven_Nro = FrmVenta.nroCompraActual;
 
+            string msg = this.action == "new" ? "Desea agregar la venta?" : "Confirme actualizacion";
             var mb = MessageBox.Show(
-                "Desea agregar la venta?", "Confirmacion", MessageBoxButtons.OKCancel);
+                msg, "Confirmacion", MessageBoxButtons.OKCancel);
 
             if (mb == DialogResult.OK)
             {
-                TrabajarVenta.insert_venta(venta);
-                FrmVenta.nroCompraActual = TrabajarVenta.get_current_index();
-                btnAgregarDetalle.Enabled = true;
-                load_ventas();
-                load_detalles();
+                if (this.action == "new")
+                {
+                    TrabajarVenta.insert_venta(venta);
+                    FrmVenta.nroCompraActual = TrabajarVenta.get_current_index();
+                    btnAgregarDetalle.Enabled = true;
+                    load_ventas();
+                    load_detalles();
+                }
+                else if (this.action == "edit")
+                {
+                    TrabajarVenta.update_venta(venta);
+                    clear_data_form();
+                    load_ventas();
+                }
+                
             }
         }
         private void dgwVentas_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -107,10 +138,12 @@ namespace Vistas
 
             //set propiedades
             pnlBuscar.Visible = false;
+            pnlFiltrarVenta.Visible = false;
             dgwVentas.Visible = false;
-            FrmVenta.nroCompraActual = Convert.ToInt32(row.Cells["Nro."].Value);
+            FrmVenta.nroCompraActual = Convert.ToInt32(row.Cells["Nro. Venta"].Value);
             btnAgregarDetalle.Enabled = true;
             load_detalles();
+            this.action = "edit";
             pnlVentaRegistrar.Visible = true;
            
         }
@@ -133,9 +166,72 @@ namespace Vistas
         {
             this.indiceRowEliminar = e.RowIndex;
         }
+
+        private void filtrarRangoFecha(string dni)
+        {
+            if (this.fechasSeleccionadas)
+            {
+                DateTime end = new DateTime(
+                    mcRango.SelectionRange.End.Year,
+                    mcRango.SelectionRange.End.Month,
+                    mcRango.SelectionRange.End.Day,
+                    23, 59, 59);
+
+                dgwVentas.DataSource = TrabajarVenta.filter_by_dni_date(dni,mcRango.SelectionRange.Start,end);
+            }
+            else
+            {
+               dgwVentas.DataSource = TrabajarVenta.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
+            }
+            fechasSeleccionadas = false;
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if (cmbFiltrarCliente.SelectedValue == null) filtrarRangoFecha("%%");
+            else filtrarRangoFecha(cmbFiltrarCliente.SelectedValue.ToString());
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            mcRango.Visible = !mcRango.Visible;
+        }
+        private void mcRango_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            mcRango.Visible = false;
+            this.fechasSeleccionadas = true;
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            load_ventas();
+        }
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text != "Buscar por Nro. Venta")
+                dgwVentas.DataSource = TrabajarVenta.search_ventas(Convert.ToInt32(txtBuscar.Text));
+            else
+                load_ventas();
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar) || char.IsControl(e.KeyChar)) e.Handled = false;
+            else e.Handled = true;
+        }
+        private void txtBuscar_Enter(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "Buscar por Nro. Venta")
+                txtBuscar.Text = "";
+        }
+
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "")
+                txtBuscar.Text = "Buscar por Nro. Venta";
+        }
         #endregion  
 
 
 
+        
     }
 }

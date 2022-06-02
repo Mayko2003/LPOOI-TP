@@ -88,7 +88,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::Vistas.Properties.Resources.bloquear;
+            this.pictureBox4.Image = global::Vistas.Properties.Resources.telephone;
             this.pictureBox4.Location = new System.Drawing.Point(16, 227);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(38, 38);
@@ -98,7 +98,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::Vistas.Properties.Resources.bloquear;
+            this.pictureBox3.Image = global::Vistas.Properties.Resources.prod_description;
             this.pictureBox3.Location = new System.Drawing.Point(16, 116);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 38);
@@ -108,7 +108,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox1.Image = global::Vistas.Properties.Resources.direction;
             this.pictureBox1.Location = new System.Drawing.Point(16, 172);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(38, 38);
@@ -118,7 +118,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Vistas.Properties.Resources.iniciar_sesion;
+            this.pictureBox2.Image = global::Vistas.Properties.Resources.os_cuit;
             this.pictureBox2.Location = new System.Drawing.Point(16, 61);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(38, 38);
@@ -235,7 +235,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(305, 44);
+            this.pictureBox5.Location = new System.Drawing.Point(307, 44);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(450, 120);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -296,6 +296,8 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(219, 22);
             this.txtBuscar.TabIndex = 13;
+            this.txtBuscar.Enter += new System.EventHandler(this.txtBuscar_Enter);
+            this.txtBuscar.Leave += new System.EventHandler(this.txtBuscar_Leave);
             // 
             // btnBuscar
             // 
@@ -319,10 +321,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1064, 572);
-            this.Controls.Add(this.dgwObrasSocial);
             this.Controls.Add(this.pnlBuscar);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pnlOSRegistrar);
+            this.Controls.Add(this.dgwObrasSocial);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmObraSocial";
             this.Text = "FrmObraSocial";

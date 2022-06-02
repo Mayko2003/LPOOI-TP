@@ -12,8 +12,6 @@ namespace Vistas
 {
     public partial class FrmVentaDetalle : Form
     {
-        private int indiceRowEliminar = -1;
-
         public FrmVentaDetalle()
         {
             InitializeComponent();
@@ -31,9 +29,9 @@ namespace Vistas
         #region Metodos Formulario
         private void load_combo_productos()
         {
-            cmbProductos.DisplayMember = "Codigo";
+            cmbProductos.DisplayMember = "Abreviacion";
             cmbProductos.ValueMember = "Codigo";
-            cmbProductos.DataSource = TrabajarProducto.list_productos();
+            cmbProductos.DataSource = TrabajarProducto.list_productos_resumen();
 
         }
         internal void clear_data_form()

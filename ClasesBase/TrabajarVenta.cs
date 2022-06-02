@@ -42,7 +42,7 @@ namespace ClasesBase
             SqlCommand cmd = new SqlCommand();
 
             // crear query
-            cmd.CommandText = "SELECT ven_nro as 'Nro.', ";
+            cmd.CommandText = "SELECT ven_nro as 'Nro. Venta', ";
             cmd.CommandText += "ven_fecha as 'Fecha', ";
             cmd.CommandText += "cli_dni as 'DNI Cliente' ";
             cmd.CommandText += "FROM Venta";
@@ -75,6 +75,58 @@ namespace ClasesBase
             cmd.ExecuteNonQuery();
             cnn.Close();
         }
+        public static DataTable search_ventas(int nro)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            // crear query
+            cmd.CommandText = "SELECT ven_nro as 'Nro. Venta', ";
+            cmd.CommandText += "ven_fecha as 'Fecha', ";
+            cmd.CommandText += "cli_dni as 'DNI Cliente' ";
+            cmd.CommandText += "FROM Venta WHERE ven_nro = @ven_nro";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            cmd.Parameters.AddWithValue("@ven_nro", nro);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
+        }
+        public static void update_venta(Venta venta)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            // crear query
+            cmd.CommandText = "UPDATE Venta SET ";
+            cmd.CommandText += "cli_dni = @cli_dni, ";
+            cmd.CommandText += "ven_fecha = @ven_fecha ";
+            cmd.CommandText += "WHERE ven_nro = @ven_nro";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            cmd.Parameters.AddWithValue("@ven_nro", venta.Ven_Nro);
+            cmd.Parameters.AddWithValue("@ven_fecha", venta.Ven_Fecha);
+            cmd.Parameters.AddWithValue("@cli_dni", venta.Cli_DNI);
+
+            cnn.Open();
+
+            cmd.ExecuteNonQuery();
+
+            cnn.Close();
+        }
 
         public static int get_current_index()
         {
@@ -96,6 +148,46 @@ namespace ClasesBase
             da.Fill(dt);
 
             return Convert.ToInt32(dt.Rows[0][0].ToString());
+        }
+
+        public static DataTable filter_by_dni_date(string dni, DateTime start, DateTime end)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            // crear query
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = cnn;
+
+            cmd.CommandText = "FiltrarVentaDNIFecha";
+
+            SqlParameter param = new SqlParameter("@dni", SqlDbType.VarChar);
+            param.Value = dni;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@start", SqlDbType.DateTime);
+            param.Value = start;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+            param = new SqlParameter("@end", SqlDbType.DateTime);
+            param.Value = end;
+            param.Direction = ParameterDirection.Input;
+            cmd.Parameters.Add(param);
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
+
         }
     }
 }
