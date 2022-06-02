@@ -40,7 +40,6 @@ namespace Vistas
             this.Visible = false;
             this.TopLevel = false;
             this.Dock = DockStyle.Fill;
-            this.SendToBack();
         }
         
 

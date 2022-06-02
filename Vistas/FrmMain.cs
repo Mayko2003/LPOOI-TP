@@ -190,6 +190,7 @@ namespace Vistas
             frmObraSocial.Controls["dgwObrasSocial"].Visible = false;
             frmObraSocial.Controls["pnlBuscar"].Visible = false;
             frmObraSocial.Controls["pnlOSRegistrar"].Visible = true;
+            
             frmObraSocial.clear_data_form();
             AbrirForm(frmObraSocial);
         }
@@ -200,6 +201,7 @@ namespace Vistas
             frmObraSocial.Controls["dgwObrasSocial"].Visible = true;
             frmObraSocial.Controls["pnlBuscar"].Visible = true;
             frmObraSocial.Controls["pnlOSRegistrar"].Visible = false;
+            
             frmObraSocial.clear_data_form();
             AbrirForm(frmObraSocial);
         }
@@ -224,6 +226,7 @@ namespace Vistas
             frmUsuario.Controls["pnlUsuarioRegistrar"].Visible = true;
             frmUsuario.Controls["pnlBuscar"].Visible = false;
             frmUsuario.Controls["dgwUsuarios"].Visible = false;
+            
             frmUsuario.clear_data_form();
             AbrirForm(frmUsuario);
         }
@@ -234,6 +237,7 @@ namespace Vistas
             frmUsuario.Controls["pnlUsuarioRegistrar"].Visible = false;
             frmUsuario.Controls["pnlBuscar"].Visible = true;
             frmUsuario.Controls["dgwUsuarios"].Visible = true;
+            
             frmUsuario.clear_data_form();
             AbrirForm(frmUsuario);
         }

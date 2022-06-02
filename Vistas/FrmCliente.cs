@@ -78,7 +78,6 @@ namespace Vistas
         {
             dgwClientes.DataSource = TrabajarCliente.list_clientes();
 
-            var dt = dgwClientes.DataSource as DataTable;
         }
         internal void clear_data_form() 
         {

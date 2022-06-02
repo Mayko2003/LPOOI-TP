@@ -409,8 +409,8 @@
             this.pnlContenedor.Controls.Add(this.subMenuVenta);
             this.pnlContenedor.Controls.Add(this.subMenuUsuario);
             this.pnlContenedor.Controls.Add(this.subMenuObraSocial);
-            this.pnlContenedor.Controls.Add(this.subMenuProducto);
             this.pnlContenedor.Controls.Add(this.subMenuCliente);
+            this.pnlContenedor.Controls.Add(this.subMenuProducto);
             this.pnlContenedor.Location = new System.Drawing.Point(220, 40);
             this.pnlContenedor.Name = "pnlContenedor";
             this.pnlContenedor.Size = new System.Drawing.Size(1080, 610);
