@@ -434,7 +434,7 @@
             this.cmbOptions.Name = "cmbOptions";
             this.cmbOptions.Size = new System.Drawing.Size(121, 21);
             this.cmbOptions.TabIndex = 23;
-            this.cmbOptions.SelectedValueChanged += new System.EventHandler(this.cmbOptions_SelectedValueChanged);
+            this.cmbOptions.SelectedIndexChanged += new System.EventHandler(this.cmbOptions_SelectedIndexChanged);
             // 
             // pnlBuscar
             // 

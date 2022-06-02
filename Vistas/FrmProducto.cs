@@ -199,8 +199,8 @@ namespace Vistas
 
         private void cmbOrderBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbOrden.SelectedValue != null)
-                dgwProductos.DataSource = TrabajarProducto.sort_by(
+            if(cmbOrden.SelectedValue != null)
+            dgwProductos.DataSource = TrabajarProducto.sort_by(
                     cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
         }
 
@@ -246,9 +246,8 @@ namespace Vistas
             }
             fechasSeleccionadas = false;
         }
-        private void cmbOptions_SelectedValueChanged(object sender, EventArgs e)
+        private void cmbOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbOptions.SelectedValue == null) return;
             if (cmbOptions.SelectedValue.ToString() == "Buscar")
             {
                 pnlBuscar.Visible = true;
