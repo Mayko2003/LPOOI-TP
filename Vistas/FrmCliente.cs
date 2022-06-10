@@ -12,12 +12,14 @@ namespace Vistas
 {
     public partial class FrmCliente : Form
     {
+        #region Atributes
         private int indiceRowEliminar = -1;
         public int IndiceRowEliminar
         {
             set { this.indiceRowEliminar = value; }
             get { return this.indiceRowEliminar; }
         }
+        #endregion
 
         public FrmCliente()
         {
@@ -28,8 +30,9 @@ namespace Vistas
         }
         private void FrmCliente_Load(object sender, EventArgs e)
         {
-            load_combos();
-            load_clientes();
+            this.SendToBack();
+            this.load_combos();
+            this.load_clientes();
         }
 
 

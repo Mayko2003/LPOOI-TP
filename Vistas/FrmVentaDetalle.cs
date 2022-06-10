@@ -20,9 +20,10 @@ namespace Vistas
             this.Dock = DockStyle.Fill;
             this.SendToBack();
         }
-        private void FrmCliente_Load(object sender, EventArgs e)
+        private void FrmVentaDetalle_Load(object sender, EventArgs e)
         {
-            load_combo_productos();
+            this.SendToBack();
+            this.load_combo_productos();
         }
 
 

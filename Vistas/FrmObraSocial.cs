@@ -12,12 +12,15 @@ namespace Vistas
 {
     public partial class FrmObraSocial : Form
     {
+        #region Atributos
         private int indiceRowEliminar = -1;
         public int IndiceRowEliminar
         {
             set { this.indiceRowEliminar = value; }
             get { return this.indiceRowEliminar; }
         }
+        #endregion
+
         public FrmObraSocial()
         {
             InitializeComponent();
@@ -27,7 +30,8 @@ namespace Vistas
         }
         private void frmObraSocial_Load(object sender, EventArgs e)
         {
-            cargar_obrasSocial();
+            this.SendToBack();
+            this.cargar_obrasSocial();
         }
 
         #region Metodos Formulario

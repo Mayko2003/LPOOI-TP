@@ -12,6 +12,7 @@ namespace Vistas
 {
     public partial class FrmUsuario : Form
     {
+        #region Atributos
         private int indiceRowEliminar = -1;
 
         public int IndiceRowEliminar
@@ -19,7 +20,7 @@ namespace Vistas
             get { return this.indiceRowEliminar; }
             set { this.indiceRowEliminar = value;  }
         }
-
+        #endregion
         public FrmUsuario()
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace Vistas
         #region Metodos Formulario
         private void FrmUsuario_Load(object sender, EventArgs e)
         {
+            SendToBack();
             load_combo_rol();
             load_usuarios();
         }

@@ -45,7 +45,7 @@ namespace Vistas
 
 
         #region Metodos Formulario
-        private void load_cmb_cliente()
+        private void load_combos()
         {
             DataTable dt = TrabajarCliente.list_clientes_resumen();
             //load combo para DNI de Detalles de venta
@@ -56,7 +56,36 @@ namespace Vistas
             //load combo para el DNI de filtrar venta
             cmbFiltrarCliente.DisplayMember = "Abreviacion";
             cmbFiltrarCliente.ValueMember = "DNI";
-            cmbFiltrarCliente.DataSource = dt; 
+            cmbFiltrarCliente.DataSource = dt;
+
+            //.......................................................
+            //load combo clientes
+            cmbFiltrarCliente.DisplayMember = "Abreviacion";
+            cmbFiltrarCliente.ValueMember = "DNI";
+
+            dt = new DataTable();
+            dt.Columns.Add("Abreviacion");
+            dt.Columns.Add("DNI");
+            dt.Rows.Add("Todos", "%%");
+
+            //asi la palabra para seleccionar a todos esta al principio
+            dt.Merge(TrabajarCliente.list_clientes_resumen());
+
+            cmbFiltrarCliente.DataSource = dt;
+
+            //load combo opciones
+            dt = new DataTable();
+
+            //agregar columnas
+            dt.Columns.Add("option");
+
+            //agregar filas
+            dt.Rows.Add("Buscar");
+            dt.Rows.Add("Filtrar por DNI o Fechas");
+
+            cmbOptions.DisplayMember = "option";
+            cmbOptions.ValueMember = "option";
+            cmbOptions.DataSource = dt;
         }
         internal void load_detalles()
         {
@@ -78,9 +107,10 @@ namespace Vistas
 
         private void FrmVenta_Load(object sender, EventArgs e)
         {
-            load_cmb_cliente();
-            load_detalles();
-            load_ventas();
+            this.SendToBack();
+            this.load_combos();
+            this.load_detalles();
+            this.load_ventas();
             frmVentaDetalle.Parent = this.Parent;
         }
         private void FrmVenta_VisibleChanged(object sender, EventArgs e)
@@ -128,6 +158,7 @@ namespace Vistas
                 
             }
         }
+        
         private void dgwVentas_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewRow row = dgwVentas.Rows[e.RowIndex];
@@ -146,6 +177,7 @@ namespace Vistas
             pnlVentaRegistrar.Visible = true;
            
         }
+        
         private void dgwVentas_KeyDown(object sender, KeyEventArgs e)
         {
             if (this.indiceRowEliminar != -1 && e.KeyCode == Keys.Delete)
@@ -166,43 +198,31 @@ namespace Vistas
             this.indiceRowEliminar = e.RowIndex;
         }
 
-        private void filtrarRangoFecha(string dni)
+        private void btnFiltrar_Click(object sender, EventArgs e)
         {
+            string dni = cmbFiltrarCliente.SelectedValue.ToString();
             if (this.fechasSeleccionadas)
             {
                 DateTime end = new DateTime(
-                    mcRango.SelectionRange.End.Year,
-                    mcRango.SelectionRange.End.Month,
-                    mcRango.SelectionRange.End.Day,
+                    dtpFin.Value.Year,
+                    dtpFin.Value.Month,
+                    dtpFin.Value.Day,
                     23, 59, 59);
 
-                dgwVentas.DataSource = TrabajarVenta.filter_by_dni_date(dni,mcRango.SelectionRange.Start,end);
+                dgwVentas.DataSource = TrabajarVenta.filter_by_dni_date(dni, dtpInicio.Value, end);
             }
             else
             {
-               dgwVentas.DataSource = TrabajarVenta.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
+                dgwVentas.DataSource = TrabajarVenta.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
             }
-            fechasSeleccionadas = false;
-        }
 
-        private void btnFiltrar_Click(object sender, EventArgs e)
-        {
-            if (cmbFiltrarCliente.SelectedValue == null) filtrarRangoFecha("%%");
-            else filtrarRangoFecha(cmbFiltrarCliente.SelectedValue.ToString());
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            mcRango.Visible = !mcRango.Visible;
-        }
-        private void mcRango_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            mcRango.Visible = false;
-            this.fechasSeleccionadas = true;
-        }
-        private void button2_Click(object sender, EventArgs e)
+        
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
             load_ventas();
         }
+        
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             if (txtBuscar.Text != "Buscar por Nro. Venta")
@@ -216,6 +236,7 @@ namespace Vistas
             if (char.IsNumber(e.KeyChar) || char.IsControl(e.KeyChar)) e.Handled = false;
             else e.Handled = true;
         }
+        
         private void txtBuscar_Enter(object sender, EventArgs e)
         {
             if (txtBuscar.Text == "Buscar por Nro. Venta")
@@ -227,7 +248,35 @@ namespace Vistas
             if (txtBuscar.Text == "")
                 txtBuscar.Text = "Buscar por Nro. Venta";
         }
+
+        private void cmbOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbOptions.SelectedValue.ToString() == "Buscar")
+            {
+                pnlBuscar.Visible = true;
+                pnlFiltrarVenta.Visible = false;
+            }
+            else
+            {
+                pnlBuscar.Visible = false;
+                pnlFiltrarVenta.Visible = true;
+            }
+                
+                
+        }
+        
+        private void cbRangoFechas_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpFin.Enabled = !dtpFin.Enabled;
+            dtpInicio.Enabled = !dtpInicio.Enabled;
+            this.fechasSeleccionadas = !this.fechasSeleccionadas;
+        }
+        
         #endregion  
+
+        
+
+        
 
 
 

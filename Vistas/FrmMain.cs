@@ -260,8 +260,7 @@ namespace Vistas
         {
             subMenuVenta.Visible = false;
             frmVenta.Controls["pnlVentaRegistrar"].Visible = true;
-            frmVenta.Controls["pnlFiltrarVenta"].Visible = false;
-            frmVenta.Controls["pnlBuscar"].Visible = false;
+            frmVenta.Controls["pnlOptions"].Visible = false;
             frmVenta.Controls["dgwVentas"].Visible = false;
 
             frmVenta.Action = "new";
@@ -271,10 +270,9 @@ namespace Vistas
 
         private void btnMostrarVentas_click(object sender, EventArgs e)
         {
-            subMenuUsuario.Visible = false;
+            subMenuVenta.Visible = false;
             frmVenta.Controls["pnlVentaRegistrar"].Visible = false;
-            frmVenta.Controls["pnlFiltrarVenta"].Visible = true;
-            frmVenta.Controls["pnlBuscar"].Visible = true;
+            frmVenta.Controls["pnlOptions"].Visible = true;
             frmVenta.Controls["dgwVentas"].Visible = true;
 
             frmVenta.clear_data_form();

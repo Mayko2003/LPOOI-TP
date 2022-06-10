@@ -30,8 +30,9 @@ namespace Vistas
         #region Metodos Formulario
         private void FrmProducto_Load(object sender, EventArgs e)
         {
-            load_productos();
-            load_combos();
+            this.SendToBack();
+            this.load_productos();
+            this.load_combos();
         }
 
         internal void clear_data_form()
@@ -82,11 +83,16 @@ namespace Vistas
             cmbOrden.DataSource = dt;
 
             //load combo clientes
-            dt = TrabajarCliente.list_clientes_resumen();
             cmbFiltrarCliente.DisplayMember = "Abreviacion";
             cmbFiltrarCliente.ValueMember = "DNI";
 
-            dt.Rows.Add("------", "%%");
+            dt = new DataTable();
+            dt.Columns.Add("Abreviacion");
+            dt.Columns.Add("DNI");
+            dt.Rows.Add("Todos","%%");
+
+            //asi la palabra para seleccionar a todos esta al principio
+            dt.Merge(TrabajarCliente.list_clientes_resumen());
 
             cmbFiltrarCliente.DataSource = dt;
             
@@ -110,6 +116,7 @@ namespace Vistas
 
 
         #region Events
+        
         private void btnRegistrarProducto_Click(object sender, EventArgs e)
         {
             Producto producto = new Producto();
@@ -170,6 +177,7 @@ namespace Vistas
             pnlProductoRegistrar.Visible = true;
             txtCodigo.Enabled = false; //se desabilita para evitar problemas de pk
         }
+        
         private void dgwProductos_KeyDown(object sender, KeyEventArgs e)
         {
             if (this.indiceRowEliminar != -1 && e.KeyCode == Keys.Delete)
@@ -209,43 +217,32 @@ namespace Vistas
             dgwProductos.DataSource = TrabajarProducto.sort_by(
                     cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
         }
-        private void button2_Click(object sender, EventArgs e)
+        
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
             load_productos();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            mcRango.Visible = !mcRango.Visible;
-        }
-
-        private void mcRango_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            mcRango.Visible = false;
-            this.fechasSeleccionadas = true;
-        }
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             string dni = cmbFiltrarCliente.SelectedValue.ToString();
             if (this.fechasSeleccionadas)
             {
-                //se obtiene la fecha de fin del rango pero se crea una nueva que 
-                // incluye el dia completo es decir el dia de fin pero no a las 00:00
-                //sino a las 23:59:59
-                DateTime end = new DateTime(
-                    mcRango.SelectionRange.End.Year,
-                    mcRango.SelectionRange.End.Month,
-                    mcRango.SelectionRange.End.Day,
-                    23, 59, 59);
 
-                dgwProductos.DataSource = TrabajarProducto.filter_by_dni_date(dni, mcRango.SelectionRange.Start, end);
+                DateTime end = new DateTime(
+                    dtpFin.Value.Year,
+                    dtpFin.Value.Month,
+                    dtpFin.Value.Day,
+                    23, 59, 59);
+                
+                dgwProductos.DataSource = TrabajarProducto.filter_by_dni_date(dni, dtpInicio.Value, end);
             }
             else
             {
                 dgwProductos.DataSource = TrabajarProducto.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
             }
-            fechasSeleccionadas = false;
         }
+        
         private void cmbOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbOptions.SelectedValue.ToString() == "Buscar")
@@ -264,6 +261,7 @@ namespace Vistas
                 pnlBuscar.Visible = pnlSortProducto.Visible = false;
             }
         }
+        
         private void txtBuscar_Leave(object sender, EventArgs e)
         {
             if (txtBuscar.Text == "")
@@ -283,13 +281,14 @@ namespace Vistas
             else
                 load_productos();
         }
-        private void mcRango_DateSelected_1(object sender, DateRangeEventArgs e)
-        {
-            this.fechasSeleccionadas = true;
-            this.mcRango.Visible = false;
-        }
-        #endregion
-
         
+        private void cbRangoFechas_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpInicio.Enabled = !dtpInicio.Enabled;
+            dtpFin.Enabled = !dtpFin.Enabled;
+            this.fechasSeleccionadas = !this.fechasSeleccionadas;
+        }
+        
+        #endregion
     }
 }
