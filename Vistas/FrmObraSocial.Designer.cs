@@ -41,7 +41,7 @@
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtCuit = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
@@ -52,6 +52,7 @@
             this.pnlBuscar = new System.Windows.Forms.Panel();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.lblCantidad = new System.Windows.Forms.Label();
             this.pnlOSRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -75,13 +76,13 @@
             this.pnlOSRegistrar.Controls.Add(this.txtDireccion);
             this.pnlOSRegistrar.Controls.Add(this.txtCuit);
             this.pnlOSRegistrar.Controls.Add(this.panel5);
-            this.pnlOSRegistrar.Controls.Add(this.label3);
+            this.pnlOSRegistrar.Controls.Add(this.lblTitulo);
             this.pnlOSRegistrar.Controls.Add(this.label4);
             this.pnlOSRegistrar.Controls.Add(this.label1);
             this.pnlOSRegistrar.Controls.Add(this.txtTelefono);
             this.pnlOSRegistrar.Controls.Add(this.btnRegistrarObraSocial);
             this.pnlOSRegistrar.Controls.Add(this.txtRazonSocial);
-            this.pnlOSRegistrar.Location = new System.Drawing.Point(258, 207);
+            this.pnlOSRegistrar.Location = new System.Drawing.Point(275, 207);
             this.pnlOSRegistrar.Name = "pnlOSRegistrar";
             this.pnlOSRegistrar.Size = new System.Drawing.Size(531, 358);
             this.pnlOSRegistrar.TabIndex = 11;
@@ -170,15 +171,15 @@
             this.panel5.Size = new System.Drawing.Size(13, 40);
             this.panel5.TabIndex = 6;
             // 
-            // label3
+            // lblTitulo
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(112, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(315, 24);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Formulario Registrar Obra Social";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(112, 16);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(315, 24);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Formulario Registrar Obra Social";
             // 
             // label4
             // 
@@ -262,7 +263,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgwObrasSocial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgwObrasSocial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwObrasSocial.Location = new System.Drawing.Point(89, 207);
+            this.dgwObrasSocial.Location = new System.Drawing.Point(111, 207);
             this.dgwObrasSocial.Name = "dgwObrasSocial";
             this.dgwObrasSocial.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -315,12 +316,22 @@
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // lblCantidad
+            // 
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Location = new System.Drawing.Point(875, 576);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(85, 13);
+            this.lblCantidad.TabIndex = 16;
+            this.lblCantidad.Text = "Cantidad de OS:";
+            // 
             // FrmObraSocial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.ClientSize = new System.Drawing.Size(1080, 610);
+            this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.pnlBuscar);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pnlOSRegistrar);
@@ -340,6 +351,7 @@
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -356,7 +368,7 @@
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.TextBox txtCuit;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTelefono;
@@ -366,5 +378,6 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DataGridView dgwObrasSocial;
+        private System.Windows.Forms.Label lblCantidad;
     }
 }

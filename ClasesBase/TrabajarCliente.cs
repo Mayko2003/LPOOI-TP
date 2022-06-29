@@ -132,12 +132,41 @@ namespace ClasesBase
             cmd.CommandText += "C.os_cuit as 'OS Cuit' ";
             cmd.CommandText += "FROM Cliente as C ";
             cmd.CommandText += "LEFT JOIN ObraSocial as OS ON (OS.os_cuit=C.os_cuit) ";
-            cmd.CommandText += "WHERE cli_apellido LIKE @pattern OR cli_dni LIKE @pattern";
+            cmd.CommandText += "WHERE cli_apellido LIKE @pattern OR cli_dni LIKE @pattern OR cli_nombre LIKE @pattern";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cnn;
 
             cmd.Parameters.AddWithValue("@pattern", "%" + sPattern + "%");
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            return dt;
+        }
+
+        public static DataTable seach_cliente_dni(string dni)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT cli_dni as 'DNI', ";
+            cmd.CommandText += "cli_apellido as 'Apellido', ";
+            cmd.CommandText += "cli_nombre as 'Nombre', ";
+            cmd.CommandText += "cli_direccion as 'Direccion', ";
+            cmd.CommandText += "cli_nro_carnet as 'Nro Carnet', ";
+            cmd.CommandText += "os_cuit as 'OS Cuit' ";
+            cmd.CommandText += "FROM Cliente ";
+            cmd.CommandText += "WHERE cli_dni = @dni";
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
+
+            cmd.Parameters.AddWithValue("@dni", dni);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 
@@ -211,6 +240,36 @@ namespace ClasesBase
             param.Value = orden;
 
             cmd.Parameters.Add(param);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
+        }
+
+        public static DataTable filter_by_os(string osCuit)
+        {
+            // conexion a la base de datos
+            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.conexion);
+
+            //operaciones
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "SELECT cli_dni as 'DNI', ";
+            cmd.CommandText += "cli_apellido as 'Apellido', ";
+            cmd.CommandText += "cli_nombre as 'Nombre', ";
+            cmd.CommandText += "cli_direccion as 'Direccion', ";
+            cmd.CommandText += "cli_nro_carnet as 'Nro Carnet', ";
+            cmd.CommandText += "C.os_cuit as 'OS Cuit' ";
+            cmd.CommandText += "FROM Cliente as C ";
+            cmd.CommandText += "WHERE os_cuit = @os_cuit";
+
+            cmd.Parameters.AddWithValue("@os_cuit", osCuit);
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 

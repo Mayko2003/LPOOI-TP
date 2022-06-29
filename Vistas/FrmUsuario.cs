@@ -12,6 +12,7 @@ namespace Vistas
 {
     public partial class FrmUsuario : Form
     {
+        #region Atributos
         private int indiceRowEliminar = -1;
 
         public int IndiceRowEliminar
@@ -19,7 +20,7 @@ namespace Vistas
             get { return this.indiceRowEliminar; }
             set { this.indiceRowEliminar = value;  }
         }
-
+        #endregion
         public FrmUsuario()
         {
             InitializeComponent();
@@ -31,8 +32,10 @@ namespace Vistas
         #region Metodos Formulario
         private void FrmUsuario_Load(object sender, EventArgs e)
         {
+            SendToBack();
             load_combo_rol();
             load_usuarios();
+            lblCantidad.Text = "Cantidad de Usuarios: " + dgwUsuarios.Rows.Count.ToString();
         }
         private void load_combo_rol()
         {
@@ -53,6 +56,7 @@ namespace Vistas
             txtContraseña.Text = "";
             txtApellidoYNombre.Text = "";
             txtBuscar.Text = "Buscar por Nombre Usuario o AyN";
+            lblTitulo.Text = "Formulario Crear Usuario";
         }
 
         #endregion
@@ -105,6 +109,7 @@ namespace Vistas
                 dgwUsuarios.DataSource = TrabajarUsuario.search_usuarios(txtBuscar.Text);
             else
                 load_usuarios();
+            this.lblCantidad.Text = "Cantidad de Usuarios: " + dgwUsuarios.Rows.Count.ToString();
         }
         private void dgwUsuarios_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -120,6 +125,8 @@ namespace Vistas
             dgwUsuarios.Visible = false;
             pnlBuscar.Visible = false;
             txtUsuario.Enabled = false; // por cuestiones de unicidad
+            lblCantidad.Visible = false;
+            lblTitulo.Text = "Formulario Actualizar Usuario";
         }
         private void dgwUsuarios_KeyDown(object sender, KeyEventArgs e)
         {

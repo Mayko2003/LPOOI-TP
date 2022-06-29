@@ -18,5 +18,10 @@ namespace Vistas
             this.TopLevel = false;
             this.Dock = DockStyle.Fill;
         }
+
+        private void FrmInicio_Load(object sender, EventArgs e)
+        {
+            this.SendToBack();
+        }
     }
 }

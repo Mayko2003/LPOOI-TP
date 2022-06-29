@@ -65,6 +65,11 @@ namespace Vistas
         }
         #endregion
 
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter) btnIngresar.PerformClick();
+        }
+
         
     }
 }

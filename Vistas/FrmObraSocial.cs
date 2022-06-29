@@ -12,12 +12,15 @@ namespace Vistas
 {
     public partial class FrmObraSocial : Form
     {
+        #region Atributos
         private int indiceRowEliminar = -1;
         public int IndiceRowEliminar
         {
             set { this.indiceRowEliminar = value; }
             get { return this.indiceRowEliminar; }
         }
+        #endregion
+
         public FrmObraSocial()
         {
             InitializeComponent();
@@ -27,7 +30,9 @@ namespace Vistas
         }
         private void frmObraSocial_Load(object sender, EventArgs e)
         {
-            cargar_obrasSocial();
+            this.SendToBack();
+            this.cargar_obrasSocial();
+            this.lblCantidad.Text = "Cantidad de OS: " + this.dgwObrasSocial.Rows.Count.ToString();
         }
 
         #region Metodos Formulario
@@ -42,6 +47,7 @@ namespace Vistas
             txtRazonSocial.Text = "";
             txtTelefono.Text = "";
             txtBuscar.Text = "Buscar por CUIT";
+            lblTitulo.Text = "Formulario Registrar Obra Social";
         }
         #endregion
 
@@ -81,14 +87,14 @@ namespace Vistas
         }
 
 
-        
-
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             if (txtBuscar.Text != "Buscar por CUIT")
                 dgwObrasSocial.DataSource = TrabajarObraSocial.search_obrasSocial(txtBuscar.Text);
             else
                 cargar_obrasSocial();
+
+            this.lblCantidad.Text = "Cantidad de OS:" + dgwObrasSocial.Rows.Count.ToString();
         }
 
         private void dgwObrasSocial_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -103,7 +109,8 @@ namespace Vistas
             dgwObrasSocial.Visible = false;
             pnlOSRegistrar.Visible = true;
             txtCuit.Enabled = false;
-
+            lblCantidad.Visible = false;
+            lblTitulo.Text = "Formulario Actualizar Obra Social";
         }
 
         private void dgwObrasSocial_KeyDown(object sender, KeyEventArgs e)
@@ -111,18 +118,11 @@ namespace Vistas
             if (this.indiceRowEliminar != -1 && e.KeyCode == Keys.Delete)
             {
                 var cell = this.dgwObrasSocial.Rows[this.indiceRowEliminar].Cells[0];
-                if (TrabajarObraSocial.exists_cliente_cuit(cell.Value.ToString()))
+                var mb = MessageBox.Show("De verdad desea eliminar la obra social?", "Eliminar Obra social", MessageBoxButtons.OKCancel);
+                if (mb == DialogResult.OK)
                 {
-                    MessageBox.Show("No puede eliminar esta obra social");
-                }
-                else
-                {
-                    var mb = MessageBox.Show("De verdad desea eliminar la obra social?", "Eliminar Obra social", MessageBoxButtons.OKCancel);
-                    if (mb == DialogResult.OK)
-                    {
-                        TrabajarObraSocial.delete_obraSocial(cell.Value.ToString());
-                        cargar_obrasSocial();
-                    }
+                    TrabajarObraSocial.delete_obraSocial(cell.Value.ToString());
+                    cargar_obrasSocial();
                 }
             }
         }

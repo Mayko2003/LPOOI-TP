@@ -109,6 +109,7 @@ namespace ClasesBase
             //operaciones
             SqlCommand cmd = new SqlCommand();
 
+
             // crear query
             cmd.CommandText = "UPDATE Venta SET ";
             cmd.CommandText += "cli_dni = @cli_dni, ";
