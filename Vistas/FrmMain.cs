@@ -118,19 +118,23 @@ namespace Vistas
         {
             subMenuCliente.Visible = false;
             frmCliente.Controls["dgwClientes"].Visible = false;
-            frmCliente.Controls["pnlBuscar"].Visible = false;
-            frmCliente.Controls["pnlSortCliente"].Visible = false;
+            frmCliente.Controls["pnlOptions"].Visible = false;
             frmCliente.Controls["pnlClienteRegistrar"].Visible = true;
+            frmCliente.Controls["lblCantidad"].Visible = false;
+
             frmCliente.clear_data_form();
             AbrirForm(frmCliente);
         }
-        private void btnMostrarClientes_Click(object sender, EventArgs e)
+        internal void btnMostrarClientes_Click(object sender, EventArgs e)
         {
+            if (sender != null && sender as string == "select") frmCliente.action = sender as string;
+            else frmCliente.action = "show";
             subMenuCliente.Visible = false;
             frmCliente.Controls["dgwClientes"].Visible = true;
-            frmCliente.Controls["pnlBuscar"].Visible = true;
-            frmCliente.Controls["pnlSortCliente"].Visible = true;
+            frmCliente.Controls["pnlOptions"].Visible = true;
             frmCliente.Controls["pnlClienteRegistrar"].Visible = false;
+            frmCliente.Controls["lblCantidad"].Visible = true;
+
             frmCliente.clear_data_form();
             AbrirForm(frmCliente);
         }
@@ -154,8 +158,9 @@ namespace Vistas
             subMenuProducto.Visible = false;
             frmProducto.Controls["dgwProductos"].Visible = false;
             frmProducto.Controls["pnlOptions"].Visible = false;
-
             frmProducto.Controls["pnlProductoRegistrar"].Visible = true;
+            frmProducto.Controls["lblCantidad"].Visible = false;
+
             frmProducto.clear_data_form();
             AbrirForm(frmProducto);
         }
@@ -166,6 +171,8 @@ namespace Vistas
             frmProducto.Controls["dgwProductos"].Visible = true;
             frmProducto.Controls["pnlOptions"].Visible = true;
             frmProducto.Controls["pnlProductoRegistrar"].Visible = false;
+            frmProducto.Controls["lblCantidad"].Visible = true;
+
             frmProducto.clear_data_form();
             AbrirForm(frmProducto);
         }
@@ -190,6 +197,7 @@ namespace Vistas
             frmObraSocial.Controls["dgwObrasSocial"].Visible = false;
             frmObraSocial.Controls["pnlBuscar"].Visible = false;
             frmObraSocial.Controls["pnlOSRegistrar"].Visible = true;
+            frmObraSocial.Controls["lblCantidad"].Visible = false;
             
             frmObraSocial.clear_data_form();
             AbrirForm(frmObraSocial);
@@ -201,6 +209,7 @@ namespace Vistas
             frmObraSocial.Controls["dgwObrasSocial"].Visible = true;
             frmObraSocial.Controls["pnlBuscar"].Visible = true;
             frmObraSocial.Controls["pnlOSRegistrar"].Visible = false;
+            frmObraSocial.Controls["lblCantidad"].Visible = true;
             
             frmObraSocial.clear_data_form();
             AbrirForm(frmObraSocial);
@@ -226,6 +235,7 @@ namespace Vistas
             frmUsuario.Controls["pnlUsuarioRegistrar"].Visible = true;
             frmUsuario.Controls["pnlBuscar"].Visible = false;
             frmUsuario.Controls["dgwUsuarios"].Visible = false;
+            frmUsuario.Controls["lblCantidad"].Visible = false;
             
             frmUsuario.clear_data_form();
             AbrirForm(frmUsuario);
@@ -237,6 +247,7 @@ namespace Vistas
             frmUsuario.Controls["pnlUsuarioRegistrar"].Visible = false;
             frmUsuario.Controls["pnlBuscar"].Visible = true;
             frmUsuario.Controls["dgwUsuarios"].Visible = true;
+            frmUsuario.Controls["lblCantidad"].Visible = true;
             
             frmUsuario.clear_data_form();
             AbrirForm(frmUsuario);
@@ -256,15 +267,24 @@ namespace Vistas
             subMenuCliente.Visible = false;
         }
 
-        private void btnNuevaVenta_click(object sender, EventArgs e)
+        internal void btnNuevaVenta_click(object sender, EventArgs e)
         {
+            if (sender is Cliente) frmVenta.clienteSeleccionado = (Cliente)sender;
+            else
+            {
+                frmVenta.clienteSeleccionado = null;
+                frmVenta.Action = "new";
+                frmVenta.clear_data_form();
+            }
+            
             subMenuVenta.Visible = false;
             frmVenta.Controls["pnlVentaRegistrar"].Visible = true;
             frmVenta.Controls["pnlOptions"].Visible = false;
             frmVenta.Controls["dgwVentas"].Visible = false;
+            frmVenta.Controls["lblCantidad"].Visible = false;
+            frmVenta.Controls["lblCantidadLineas"].Visible = true;
 
-            frmVenta.Action = "new";
-            frmVenta.clear_data_form();
+            
             AbrirForm(frmVenta);
         }
 
@@ -274,6 +294,8 @@ namespace Vistas
             frmVenta.Controls["pnlVentaRegistrar"].Visible = false;
             frmVenta.Controls["pnlOptions"].Visible = true;
             frmVenta.Controls["dgwVentas"].Visible = true;
+            frmVenta.Controls["lblCantidad"].Visible = true;
+            frmVenta.Controls["lblCantidadLineas"].Visible = false;
 
             frmVenta.clear_data_form();
             AbrirForm(frmVenta);

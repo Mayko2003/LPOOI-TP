@@ -183,7 +183,7 @@
             this.pnlDetalleRegistrar.Controls.Add(this.label1);
             this.pnlDetalleRegistrar.Controls.Add(this.btnAgregarProducto);
             this.pnlDetalleRegistrar.Controls.Add(this.txtTotal);
-            this.pnlDetalleRegistrar.Location = new System.Drawing.Point(89, 207);
+            this.pnlDetalleRegistrar.Location = new System.Drawing.Point(111, 207);
             this.pnlDetalleRegistrar.Name = "pnlDetalleRegistrar";
             this.pnlDetalleRegistrar.Size = new System.Drawing.Size(859, 353);
             this.pnlDetalleRegistrar.TabIndex = 11;
@@ -243,7 +243,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.ClientSize = new System.Drawing.Size(1080, 610);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pnlDetalleRegistrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -251,6 +251,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "FrmCliente";
             this.Load += new System.EventHandler(this.FrmVentaDetalle_Load);
+            this.VisibleChanged += new System.EventHandler(this.FrmVentaDetalle_VisibleChanged);
             this.pnlDetalleRegistrar.ResumeLayout(false);
             this.pnlDetalleRegistrar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

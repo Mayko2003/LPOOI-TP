@@ -12,6 +12,11 @@ namespace Vistas
 {
     public partial class FrmVentaDetalle : Form
     {
+        #region Atributos
+        internal VentaDetalle vdActual;
+        internal int detalleRowIndex = -1;
+        #endregion
+
         public FrmVentaDetalle()
         {
             InitializeComponent();
@@ -38,51 +43,99 @@ namespace Vistas
         internal void clear_data_form()
         {
             txtCantidad.Text = "";
-            txtPrecio.Text = "";
             txtTotal.Text = "";
         }
         #endregion
 
         #region Events
-        private void cmbProductos_SelectedValueChanged(object sender, EventArgs e)
+        private void calcularTotal()
         {
-            DataTable dt = (DataTable)cmbProductos.DataSource;
-            int index = cmbProductos.SelectedIndex;
-            if (index > -1) txtPrecio.Text = dt.Rows[index]["Precio"].ToString();
-        }
-        private void txtCantidad_TextChanged(object sender, EventArgs e)
-        {
-            if (txtCantidad.Text != "")
+            try
             {
                 decimal cantidad = Convert.ToInt32(this.txtCantidad.Text);
                 decimal precioActual = Convert.ToDecimal(txtPrecio.Text);
 
                 this.txtTotal.Text = (cantidad * precioActual).ToString();
             }
+            catch (FormatException e) { }
+        }
+        private void cmbProductos_SelectedValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)cmbProductos.DataSource;
+            int index = cmbProductos.SelectedIndex;
+            if (index > -1)
+            {
+                txtPrecio.Text = dt.Rows[index]["Precio"].ToString();
+                calcularTotal();
+            }
+        }
+        
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCantidad.Text != "")
+            {
+                calcularTotal();
+            }
         }
         private void btnRegistrarProducto_Click(object sender, EventArgs e)
         {
-            VentaDetalle vd = new VentaDetalle();
 
-            vd.Det_Cantidad = Convert.ToDecimal(txtCantidad.Text);
-            vd.Det_Precio = Convert.ToDecimal(txtPrecio.Text);
-            vd.Det_Total = Convert.ToDecimal(txtTotal.Text);
-            vd.Prod_Codigo = cmbProductos.SelectedValue.ToString();
-            vd.Ven_Nro = FrmVenta.nroCompraActual;
+            vdActual.Det_Cantidad = Convert.ToDecimal(txtCantidad.Text);
+            vdActual.Det_Precio = Convert.ToDecimal(txtPrecio.Text);
+            vdActual.Det_Total = Convert.ToDecimal(txtTotal.Text);
+            vdActual.Prod_Codigo = cmbProductos.SelectedValue.ToString();
 
             var mb = MessageBox.Show(
-                "Codigo de producto: " + vd.Prod_Codigo +
-                "\nCantidad: " + vd.Det_Cantidad +
-                "\nTotal: " + vd.Det_Total, "Confirmacion", MessageBoxButtons.OKCancel);
+                "Codigo de producto: " + vdActual.Prod_Codigo +
+                "\nCantidad: " + vdActual.Det_Cantidad +
+                "\nTotal: " + vdActual.Det_Total, "Confirmacion", MessageBoxButtons.OKCancel);
 
             if (mb == DialogResult.OK)
             {
-                TrabajarVentaDetalle.insert_venta_detalle(vd);
+                //agregar linea de venta al data table temporal si esta en modo crear
+                if(this.detalleRowIndex == -1)
+                {
+                    FrmVenta.dtVentaDetalle.Rows.Add(
+                        -1,
+                        vdActual.Prod_Codigo,
+                        vdActual.Det_Precio,
+                        vdActual.Det_Cantidad,
+                        vdActual.Det_Total
+                    );
+                }
+                //modificar linea de venta sino
+                else
+                {
+                    Object[] datos = new Object[]{
+                        vdActual.Det_Nro,
+                        vdActual.Prod_Codigo,
+                        vdActual.Det_Precio,
+                        vdActual.Det_Cantidad,
+                        vdActual.Det_Total
+                    };
+                    FrmVenta.dtVentaDetalle.Rows[this.detalleRowIndex].ItemArray = datos;
+                }
+                    
+                
                 clear_data_form();
                 this.Visible = false;
                 this.Parent.Controls["frmVenta"].Visible = true;
             }
         }
         #endregion  
+
+        private void FrmVentaDetalle_VisibleChanged(object sender, EventArgs e)
+        {
+            if (vdActual != null)
+            {
+                this.txtCantidad.Text = vdActual.Det_Cantidad.ToString();
+                this.txtPrecio.Text = vdActual.Det_Precio.ToString();
+                this.txtTotal.Text = vdActual.Det_Total.ToString();
+
+                this.cmbProductos.SelectedValue = vdActual.Prod_Codigo;
+            }
+            else vdActual = new VentaDetalle();
+            
+        }
     }
 }

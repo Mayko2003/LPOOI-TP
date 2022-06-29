@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuario));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlUsuarioRegistrar = new System.Windows.Forms.Panel();
             this.cmbRol = new System.Windows.Forms.ComboBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -42,7 +42,7 @@
             this.txtApellidoYNombre = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnRegistrarUsuario = new System.Windows.Forms.Button();
@@ -52,6 +52,7 @@
             this.pnlBuscar = new System.Windows.Forms.Panel();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.lblCantidad = new System.Windows.Forms.Label();
             this.pnlUsuarioRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -76,12 +77,12 @@
             this.pnlUsuarioRegistrar.Controls.Add(this.txtApellidoYNombre);
             this.pnlUsuarioRegistrar.Controls.Add(this.txtUsuario);
             this.pnlUsuarioRegistrar.Controls.Add(this.panel5);
-            this.pnlUsuarioRegistrar.Controls.Add(this.label3);
+            this.pnlUsuarioRegistrar.Controls.Add(this.lblTitulo);
             this.pnlUsuarioRegistrar.Controls.Add(this.label4);
             this.pnlUsuarioRegistrar.Controls.Add(this.label1);
             this.pnlUsuarioRegistrar.Controls.Add(this.btnRegistrarUsuario);
             this.pnlUsuarioRegistrar.Controls.Add(this.txtContraseña);
-            this.pnlUsuarioRegistrar.Location = new System.Drawing.Point(286, 207);
+            this.pnlUsuarioRegistrar.Location = new System.Drawing.Point(275, 207);
             this.pnlUsuarioRegistrar.Name = "pnlUsuarioRegistrar";
             this.pnlUsuarioRegistrar.Size = new System.Drawing.Size(531, 353);
             this.pnlUsuarioRegistrar.TabIndex = 1;
@@ -178,15 +179,16 @@
             this.panel5.Size = new System.Drawing.Size(13, 40);
             this.panel5.TabIndex = 6;
             // 
-            // label3
+            // lblTitulo
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(147, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(245, 24);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Formulario Crear Usuario";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(143, 16);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(245, 24);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Formulario Crear Usuario";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label4
             // 
@@ -254,27 +256,27 @@
             this.dgwUsuarios.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dgwUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgwUsuarios.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgwUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwUsuarios.GridColor = System.Drawing.SystemColors.Info;
-            this.dgwUsuarios.Location = new System.Drawing.Point(89, 207);
+            this.dgwUsuarios.Location = new System.Drawing.Point(111, 207);
             this.dgwUsuarios.Name = "dgwUsuarios";
             this.dgwUsuarios.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgwUsuarios.Size = new System.Drawing.Size(859, 353);
             this.dgwUsuarios.TabIndex = 12;
             this.dgwUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgwUsuarios_CellFormatting);
@@ -286,7 +288,7 @@
             // 
             this.pnlBuscar.Controls.Add(this.txtBuscar);
             this.pnlBuscar.Controls.Add(this.btnBuscar);
-            this.pnlBuscar.Location = new System.Drawing.Point(89, 179);
+            this.pnlBuscar.Location = new System.Drawing.Point(111, 179);
             this.pnlBuscar.Name = "pnlBuscar";
             this.pnlBuscar.Size = new System.Drawing.Size(302, 22);
             this.pnlBuscar.TabIndex = 15;
@@ -317,12 +319,22 @@
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // lblCantidad
+            // 
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Location = new System.Drawing.Point(850, 575);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(111, 13);
+            this.lblCantidad.TabIndex = 16;
+            this.lblCantidad.Text = "Cantidad de Usuarios:";
+            // 
             // FrmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.ClientSize = new System.Drawing.Size(1080, 610);
+            this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.pnlBuscar);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pnlUsuarioRegistrar);
@@ -343,6 +355,7 @@
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -358,7 +371,7 @@
         private System.Windows.Forms.TextBox txtApellidoYNombre;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnRegistrarUsuario;
@@ -369,5 +382,6 @@
         private System.Windows.Forms.Panel pnlBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Label lblCantidad;
     }
 }

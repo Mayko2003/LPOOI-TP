@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProducto));
             this.pnlProductoRegistrar = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -41,7 +41,7 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
@@ -55,6 +55,7 @@
             this.cmbOrderBy = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.pnlFiltrarProducto = new System.Windows.Forms.Panel();
+            this.cbRangoFechas = new System.Windows.Forms.CheckBox();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.dtpInicio = new System.Windows.Forms.DateTimePicker();
@@ -68,7 +69,7 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.pnlOptions = new System.Windows.Forms.Panel();
-            this.cbRangoFechas = new System.Windows.Forms.CheckBox();
+            this.lblCantidad = new System.Windows.Forms.Label();
             this.pnlProductoRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -95,13 +96,13 @@
             this.pnlProductoRegistrar.Controls.Add(this.txtDescripcion);
             this.pnlProductoRegistrar.Controls.Add(this.txtCodigo);
             this.pnlProductoRegistrar.Controls.Add(this.panel5);
-            this.pnlProductoRegistrar.Controls.Add(this.label3);
+            this.pnlProductoRegistrar.Controls.Add(this.lblTitulo);
             this.pnlProductoRegistrar.Controls.Add(this.label4);
             this.pnlProductoRegistrar.Controls.Add(this.label1);
             this.pnlProductoRegistrar.Controls.Add(this.txtPrecio);
             this.pnlProductoRegistrar.Controls.Add(this.btnRegistrarProducto);
             this.pnlProductoRegistrar.Controls.Add(this.txtCategoria);
-            this.pnlProductoRegistrar.Location = new System.Drawing.Point(258, 207);
+            this.pnlProductoRegistrar.Location = new System.Drawing.Point(255, 207);
             this.pnlProductoRegistrar.Name = "pnlProductoRegistrar";
             this.pnlProductoRegistrar.Size = new System.Drawing.Size(570, 357);
             this.pnlProductoRegistrar.TabIndex = 9;
@@ -190,15 +191,15 @@
             this.panel5.Size = new System.Drawing.Size(13, 40);
             this.panel5.TabIndex = 6;
             // 
-            // label3
+            // lblTitulo
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(131, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(290, 24);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Formulario Registrar Producto";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(131, 16);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(290, 24);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Formulario Registrar Producto";
             // 
             // label4
             // 
@@ -262,29 +263,29 @@
             this.dgwProductos.BackgroundColor = System.Drawing.SystemColors.Info;
             this.dgwProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgwProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgwProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwProductos.GridColor = System.Drawing.SystemColors.Info;
-            this.dgwProductos.Location = new System.Drawing.Point(89, 207);
+            this.dgwProductos.Location = new System.Drawing.Point(111, 207);
             this.dgwProductos.MultiSelect = false;
             this.dgwProductos.Name = "dgwProductos";
             this.dgwProductos.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgwProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.dgwProductos.Size = new System.Drawing.Size(859, 390);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgwProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgwProductos.Size = new System.Drawing.Size(859, 353);
             this.dgwProductos.TabIndex = 11;
             this.dgwProductos.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwProductos_RowHeaderMouseClick);
             this.dgwProductos.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwProductos_RowHeaderMouseDoubleClick_1);
@@ -365,6 +366,17 @@
             this.pnlFiltrarProducto.Name = "pnlFiltrarProducto";
             this.pnlFiltrarProducto.Size = new System.Drawing.Size(656, 29);
             this.pnlFiltrarProducto.TabIndex = 21;
+            // 
+            // cbRangoFechas
+            // 
+            this.cbRangoFechas.AutoSize = true;
+            this.cbRangoFechas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRangoFechas.Location = new System.Drawing.Point(184, 10);
+            this.cbRangoFechas.Name = "cbRangoFechas";
+            this.cbRangoFechas.Size = new System.Drawing.Size(12, 11);
+            this.cbRangoFechas.TabIndex = 29;
+            this.cbRangoFechas.UseVisualStyleBackColor = true;
+            this.cbRangoFechas.CheckedChanged += new System.EventHandler(this.cbRangoFechas_CheckedChanged);
             // 
             // dtpFin
             // 
@@ -515,28 +527,27 @@
             this.pnlOptions.Controls.Add(this.pnlFiltrarProducto);
             this.pnlOptions.Controls.Add(this.pnlBuscar);
             this.pnlOptions.Controls.Add(this.pnlSortProducto);
-            this.pnlOptions.Location = new System.Drawing.Point(89, 170);
+            this.pnlOptions.Location = new System.Drawing.Point(111, 170);
             this.pnlOptions.Name = "pnlOptions";
             this.pnlOptions.Size = new System.Drawing.Size(859, 31);
             this.pnlOptions.TabIndex = 27;
             // 
-            // cbRangoFechas
+            // lblCantidad
             // 
-            this.cbRangoFechas.AutoSize = true;
-            this.cbRangoFechas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRangoFechas.Location = new System.Drawing.Point(184, 10);
-            this.cbRangoFechas.Name = "cbRangoFechas";
-            this.cbRangoFechas.Size = new System.Drawing.Size(12, 11);
-            this.cbRangoFechas.TabIndex = 29;
-            this.cbRangoFechas.UseVisualStyleBackColor = true;
-            this.cbRangoFechas.CheckedChanged += new System.EventHandler(this.cbRangoFechas_CheckedChanged);
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Location = new System.Drawing.Point(842, 578);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(118, 13);
+            this.lblCantidad.TabIndex = 28;
+            this.lblCantidad.Text = "Cantidad de Productos:";
             // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.ClientSize = new System.Drawing.Size(1064, 572);
+            this.ClientSize = new System.Drawing.Size(1080, 610);
+            this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pnlOptions);
             this.Controls.Add(this.pnlProductoRegistrar);
@@ -561,6 +572,7 @@
             this.pnlBuscar.PerformLayout();
             this.pnlOptions.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -577,7 +589,7 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPrecio;
@@ -604,5 +616,6 @@
         private System.Windows.Forms.DateTimePicker dtpInicio;
         private System.Windows.Forms.DateTimePicker dtpFin;
         private System.Windows.Forms.CheckBox cbRangoFechas;
+        private System.Windows.Forms.Label lblCantidad;
     }
 }

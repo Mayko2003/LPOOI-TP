@@ -13,7 +13,8 @@ namespace Vistas
     public partial class FrmVenta : Form
     {
         #region Atributos
-
+        internal Cliente clienteSeleccionado;
+        internal static DataTable dtVentaDetalle = new DataTable();
         private FrmVentaDetalle frmVentaDetalle = new FrmVentaDetalle();
         internal static int nroCompraActual = -1;
         private string action = "new";
@@ -32,6 +33,13 @@ namespace Vistas
 
         private bool fechasSeleccionadas = false;
 
+        internal int detalleRowIndex = -1;
+        public int DetalleRowIndex
+        {
+            set { this.detalleRowIndex = value;}
+            get { return this.detalleRowIndex; }
+        }
+
         #endregion
 
         public FrmVenta()
@@ -40,6 +48,13 @@ namespace Vistas
             this.Visible = false;
             this.TopLevel = false;
             this.Dock = DockStyle.Fill;
+
+            //columnas para la tabla de detalles de venta
+            dtVentaDetalle.Columns.Add("Det. Nro.");
+            dtVentaDetalle.Columns.Add("Codigo Producto");
+            dtVentaDetalle.Columns.Add("Precio Unidad");
+            dtVentaDetalle.Columns.Add("Cantidad");
+            dtVentaDetalle.Columns.Add("Total");
         }
         
 
@@ -48,10 +63,6 @@ namespace Vistas
         private void load_combos()
         {
             DataTable dt = TrabajarCliente.list_clientes_resumen();
-            //load combo para DNI de Detalles de venta
-            cmbDNICliente.DisplayMember = "Abreviacion";
-            cmbDNICliente.ValueMember = "DNI";
-            cmbDNICliente.DataSource = dt;
             
             //load combo para el DNI de filtrar venta
             cmbFiltrarCliente.DisplayMember = "Abreviacion";
@@ -81,7 +92,7 @@ namespace Vistas
 
             //agregar filas
             dt.Rows.Add("Buscar");
-            dt.Rows.Add("Filtrar por DNI o Fechas");
+            dt.Rows.Add("Filtrar");
 
             cmbOptions.DisplayMember = "option";
             cmbOptions.ValueMember = "option";
@@ -89,16 +100,19 @@ namespace Vistas
         }
         internal void load_detalles()
         {
-            if(FrmVenta.nroCompraActual != -1)
-                dgwVentaDetalles.DataSource = TrabajarVentaDetalle.list_venta_detalle(FrmVenta.nroCompraActual);
+            dgwVentaDetalles.DataSource = dtVentaDetalle;
+            this.lblCantidadLineas.Text = "Cantidad de Productos: " + dtVentaDetalle.Rows.Count.ToString();
         }
+
         internal void clear_data_form()
         {
             FrmVenta.nroCompraActual = -1;
-            btnAgregarDetalle.Enabled = false;
-            dgwVentaDetalles.DataSource = null;
+            dtVentaDetalle.Rows.Clear();
+            dgwVentaDetalles.DataSource = dtVentaDetalle;
             txtBuscar.Text = "Buscar por Nro. Venta";
             dtpFecha.Value = DateTime.Now;
+            txtCliente.Text = "--NO SELECCIONADO--";
+            load_ventas();
         }
         private void load_ventas()
         {
@@ -111,11 +125,33 @@ namespace Vistas
             this.load_combos();
             this.load_detalles();
             this.load_ventas();
+            this.lblCantidad.Text = "Cantidad de Ventas: " + dgwVentas.Rows.Count.ToString();
+            this.lblCantidadLineas.Text = "Cantidad de Productos: " + dgwVentaDetalles.Rows.Count.ToString();
             frmVentaDetalle.Parent = this.Parent;
         }
         private void FrmVenta_VisibleChanged(object sender, EventArgs e)
         {
+            if (clienteSeleccionado != null) txtCliente.Text = clienteSeleccionado.Cli_DNI + ", " + clienteSeleccionado.Cli_Apellido + " " + clienteSeleccionado.Cli_Nombre;
             load_detalles();
+        }
+
+        private void guardarLineasVenta(){
+            foreach (DataRow dr in dtVentaDetalle.Rows) {
+                VentaDetalle vd = new VentaDetalle();
+                try
+                {
+                    vd.Det_Nro = Convert.ToInt32(dr["Det. Nro."]);
+                    vd.Ven_Nro = FrmVenta.nroCompraActual;
+                    vd.Det_Cantidad = Convert.ToDecimal(dr["Cantidad"]);
+                    vd.Prod_Codigo = dr["Codigo Producto"].ToString();
+                    vd.Det_Total = Convert.ToDecimal(dr["Total"]);
+                    vd.Det_Precio = Convert.ToDecimal(dr["Precio Unidad"]);
+
+                    if (vd.Det_Nro == -1) TrabajarVentaDetalle.insert_venta_detalle(vd);
+                    else TrabajarVentaDetalle.update_vd(vd);
+                }
+                catch (Exception e) { }
+            }
         }
         #endregion
 
@@ -124,38 +160,47 @@ namespace Vistas
         private void btnAgregarDetalle_Click(object sender, EventArgs e)
         {
             this.Visible = false;
+            frmVentaDetalle.detalleRowIndex = -1;
             frmVentaDetalle.Visible = true;
         }
 
         private void btnRegistrarVenta_Click(object sender, EventArgs e)
         {
+            //evaluar si se selecciono un cliente
+            if (clienteSeleccionado == null)
+            {
+                MessageBox.Show("Seleccione un cliente por favor", "Error");
+                return;
+            }
+            //crear venta
             Venta venta = new Venta();
-
-            venta.Cli_DNI = cmbDNICliente.SelectedValue.ToString();
+            venta.Cli_DNI = clienteSeleccionado.Cli_DNI;
             venta.Ven_Fecha = dtpFecha.Value;
             venta.Ven_Nro = FrmVenta.nroCompraActual;
 
-            string msg = this.action == "new" ? "Desea agregar la venta?" : "Confirme actualizacion";
+            //mensaje de confirmacion
+            string msg = this.action == "edit" ? "Confirme actualizacion":"Desea agregar la venta?";
             var mb = MessageBox.Show(
                 msg, "Confirmacion", MessageBoxButtons.OKCancel);
-
+            
             if (mb == DialogResult.OK)
             {
-                if (this.action == "new")
+                //si esta en modo editar, modificar la compra actual
+                if (this.action == "edit")
                 {
+                    //actualizar venta
+                    TrabajarVenta.update_venta(venta);
+                }
+                //sino guardar como nueva
+                else
+                {
+                    //insertar venta
                     TrabajarVenta.insert_venta(venta);
                     FrmVenta.nroCompraActual = TrabajarVenta.get_current_index();
-                    btnAgregarDetalle.Enabled = true;
-                    load_ventas();
-                    load_detalles();
                 }
-                else if (this.action == "edit")
-                {
-                    TrabajarVenta.update_venta(venta);
-                    clear_data_form();
-                    load_ventas();
-                }
-                
+                guardarLineasVenta();//insertar o actualizar cada linea de venta
+                load_ventas();
+                clear_data_form();
             }
         }
         
@@ -163,19 +208,40 @@ namespace Vistas
         {
             DataGridViewRow row = dgwVentas.Rows[e.RowIndex];
 
-            cmbDNICliente.SelectedValue = row.Cells["DNI Cliente"].Value.ToString();
+            //recuperamos el cliente
+            DataTable dt = TrabajarCliente.seach_cliente_dni(row.Cells["DNI Cliente"].Value.ToString());
+
+            //cargamos el cliente seleccionado
+            this.clienteSeleccionado = new Cliente()
+            {
+                Cli_DNI=dt.Rows[0].ItemArray[0].ToString(),//DNI
+                Cli_Apellido = dt.Rows[0].ItemArray[1].ToString(),//Apellido
+                Cli_Nombre = dt.Rows[0].ItemArray[2].ToString(),//Nombre
+                Cli_Direccion = dt.Rows[0].ItemArray[3].ToString(),//Direccion
+                Os_CUIT = dt.Rows[0].ItemArray[4].ToString(),//OS CUIT
+                Cli_NroCarnet = dt.Rows[0].ItemArray[5].ToString()//Nro Carnet
+            };
+
+            //cargamos el text box para mostrar la info del cliente que hizo la compra
+            txtCliente.Text = clienteSeleccionado.Cli_DNI + ", " + clienteSeleccionado.Cli_Apellido + " " + clienteSeleccionado.Cli_Nombre;
+            
             dtpFecha.Value = (DateTime)row.Cells["Fecha"].Value;
 
             //set propiedades
-            pnlBuscar.Visible = false;
-            pnlFiltrarVenta.Visible = false;
             dgwVentas.Visible = false;
             FrmVenta.nroCompraActual = Convert.ToInt32(row.Cells["Nro. Venta"].Value);
-            btnAgregarDetalle.Enabled = true;
-            load_detalles();
-            this.action = "edit";
-            pnlVentaRegistrar.Visible = true;
+            dtVentaDetalle = TrabajarVentaDetalle.list_venta_detalle(FrmVenta.nroCompraActual);
+            
+            load_detalles(); // cargar detalles
+            this.action = "edit"; // cambiar modo edicion
+            lblCantidad.Visible = false; //ocultar cantidad de ventas
+            lblCantidadLineas.Visible = true; // mostrar cantidad de productos
+
+            this.lblCantidadLineas.Text = "Cantidad de Productos: " + dgwVentaDetalles.Rows.Count.ToString();
+            lblTitulo.Text = "Formulario Actualizar Venta";
            
+            pnlOptions.Visible = false;
+            pnlVentaRegistrar.Visible = true;
         }
         
         private void dgwVentas_KeyDown(object sender, KeyEventArgs e)
@@ -189,6 +255,7 @@ namespace Vistas
                     var cell = this.dgwVentas.Rows[this.indiceRowEliminar].Cells[0];
                     TrabajarVenta.delete_venta(cell.Value.ToString());
                     load_ventas();
+                    this.lblCantidad.Text = "Cantidad de Ventas: " + dgwVentas.Rows.Count.ToString();
                 }
             }
         }
@@ -215,12 +282,13 @@ namespace Vistas
             {
                 dgwVentas.DataSource = TrabajarVenta.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
             }
-
+            this.lblCantidad.Text = "Cantidad de Ventas: " + dgwVentas.Rows.Count.ToString();
         }
         
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             load_ventas();
+            this.lblCantidad.Text = "Cantidad de Ventas: " + dgwVentas.Rows.Count.ToString();
         }
         
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -229,6 +297,7 @@ namespace Vistas
                 dgwVentas.DataSource = TrabajarVenta.search_ventas(Convert.ToInt32(txtBuscar.Text));
             else
                 load_ventas();
+            this.lblCantidad.Text = "Cantidad de Ventas: " + dgwVentas.Rows.Count.ToString();
         }
 
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
@@ -271,15 +340,57 @@ namespace Vistas
             dtpInicio.Enabled = !dtpInicio.Enabled;
             this.fechasSeleccionadas = !this.fechasSeleccionadas;
         }
-        
+
+        private void btnSeleCliente_Click(object sender, EventArgs e)
+        {
+            ((FrmMain)this.ParentForm).btnMostrarClientes_Click("select", new EventArgs());
+        }
+
+        private void dgwVentaDetalles_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            this.detalleRowIndex = e.RowIndex;
+        }
+
+        private void dgwVentaDetalles_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            VentaDetalle vdActual = new VentaDetalle();
+
+            vdActual.Det_Nro = Convert.ToInt32(dgwVentaDetalles["Det. Nro.", e.RowIndex].Value);
+            vdActual.Det_Cantidad = Convert.ToDecimal(dgwVentaDetalles["Cantidad", e.RowIndex].Value);
+            vdActual.Det_Precio = Convert.ToDecimal(dgwVentaDetalles["Precio Unidad", e.RowIndex].Value);
+            vdActual.Det_Total = Convert.ToDecimal(dgwVentaDetalles["Total", e.RowIndex].Value);
+            vdActual.Prod_Codigo = dgwVentaDetalles["Codigo Producto", e.RowIndex].Value.ToString();
+
+            frmVentaDetalle.vdActual = vdActual;
+            frmVentaDetalle.detalleRowIndex = this.detalleRowIndex;
+
+
+            this.Visible = false;
+            frmVentaDetalle.Visible = true;
+        }
+
+        private void dgwVentaDetalles_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.detalleRowIndex != -1 && e.KeyCode == Keys.Delete)
+            {
+                var mb = MessageBox.Show("Confirme eliminacion", "Eliminar Detalle", MessageBoxButtons.OKCancel);
+
+                if (mb == DialogResult.OK)
+                {
+                    int detNro = Convert.ToInt32(this.dgwVentaDetalles.Rows[this.detalleRowIndex].Cells[0].Value);
+                    if (detNro == -1) dtVentaDetalle.Rows.RemoveAt(detalleRowIndex);
+                    else TrabajarVentaDetalle.delete_vd(detNro);
+                    load_detalles();
+                    this.lblCantidadLineas.Text = "Cantidad de Productos: " + dtVentaDetalle.Rows.Count.ToString();
+                }
+            }
+        }
         #endregion  
 
         
 
         
 
-
-
-        
+ 
     }
 }

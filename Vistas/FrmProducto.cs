@@ -32,7 +32,9 @@ namespace Vistas
         {
             this.SendToBack();
             this.load_productos();
+            this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
             this.load_combos();
+
         }
 
         internal void clear_data_form()
@@ -43,6 +45,7 @@ namespace Vistas
             txtDescripcion.Text = "";
             txtPrecio.Text = "";
             txtBuscar.Text = "Buscar por Codigo";
+            lblTitulo.Text = "Formulario Registrar Producto";
         }
         private void load_productos()
         {
@@ -104,7 +107,7 @@ namespace Vistas
 
             //agregar filas
             dt.Rows.Add("Buscar");
-            dt.Rows.Add("Filtrar por Venta (DNI o Fechas)");
+            dt.Rows.Add("Filtrar");
             dt.Rows.Add("Ordenar");
 
             cmbOptions.DisplayMember = "option";
@@ -124,7 +127,8 @@ namespace Vistas
             producto.Prod_Codigo = txtCodigo.Text;
             producto.Prod_Categoria = txtCategoria.Text;
             producto.Prod_Descripcion = txtDescripcion.Text;
-            producto.Prod_precio = decimal.Parse(txtPrecio.Text);
+            producto.Prod_precio = Convert.ToDecimal(txtPrecio.Text);
+
 
             //si elcodigo exist avisar de error
             if (TrabajarProducto.exist_producto(txtCodigo.Text))
@@ -176,6 +180,8 @@ namespace Vistas
             dgwProductos.Visible = false;
             pnlProductoRegistrar.Visible = true;
             txtCodigo.Enabled = false; //se desabilita para evitar problemas de pk
+            lblCantidad.Visible = false;
+            lblTitulo.Text = "Formulario Actualizar Producto";
         }
         
         private void dgwProductos_KeyDown(object sender, KeyEventArgs e)
@@ -207,20 +213,25 @@ namespace Vistas
 
         private void cmbOrderBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cmbOrden.SelectedValue != null)
-            dgwProductos.DataSource = TrabajarProducto.sort_by(
+            if (cmbOrden.SelectedValue != null)
+            {
+                dgwProductos.DataSource = TrabajarProducto.sort_by(
                     cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
+                this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
+            }
         }
 
         private void cmbOrden_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgwProductos.DataSource = TrabajarProducto.sort_by(
                     cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
+            this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
         }
         
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             load_productos();
+            this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
@@ -241,6 +252,7 @@ namespace Vistas
             {
                 dgwProductos.DataSource = TrabajarProducto.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
             }
+            this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
         }
         
         private void cmbOptions_SelectedIndexChanged(object sender, EventArgs e)
@@ -280,6 +292,7 @@ namespace Vistas
                 dgwProductos.DataSource = TrabajarProducto.search_productos(txtBuscar.Text);
             else
                 load_productos();
+            this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
         }
         
         private void cbRangoFechas_CheckedChanged(object sender, EventArgs e)

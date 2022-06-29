@@ -13,6 +13,7 @@ namespace Vistas
     public partial class FrmCliente : Form
     {
         #region Atributes
+        internal string action;
         private int indiceRowEliminar = -1;
         public int IndiceRowEliminar
         {
@@ -33,6 +34,7 @@ namespace Vistas
             this.SendToBack();
             this.load_combos();
             this.load_clientes();
+            this.lblCantidad.Text = "Cantidad de Clientes: " + this.dgwClientes.Rows.Count.ToString();
         }
 
 
@@ -76,6 +78,27 @@ namespace Vistas
             cmbOrden.ValueMember = "orden";
             cmbOrden.DataSource = dt;
 
+            //load combo opciones
+            dt = new DataTable();
+
+            //agregar columnas
+            dt.Columns.Add("option");
+
+            //agregar filas
+            dt.Rows.Add("Buscar");
+            dt.Rows.Add("Filtrar");
+            dt.Rows.Add("Ordenar");
+
+            cmbOptions.DisplayMember = "option";
+            cmbOptions.ValueMember = "option";
+            cmbOptions.DataSource = dt;
+
+            //load obras sociales combo
+            dt = TrabajarObraSocial.list_obrasSocial();
+            cmbFiltrarOS.DataSource = dt;
+            cmbFiltrarOS.DisplayMember = "CUIT";
+            cmbFiltrarOS.ValueMember = "CUIT";
+
         }
         private void load_clientes()
         {
@@ -90,7 +113,9 @@ namespace Vistas
             txtDireccion.Text = "";
             txtNombre.Text = "";
             txtNumeroCarnet.Text = "";
-            txtBuscar.Text = "Buscar por DNI o Apellido";
+            txtBuscar.Text = "Buscar por DNI, Nombre o Apellido";
+            lblTitulo.Text = "Formulario Registrar Cliente";
+            load_combos();
         }
         #endregion
 
@@ -141,15 +166,30 @@ namespace Vistas
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (txtBuscar.Text != "Buscar por DNI o Apellido")
+            if (txtBuscar.Text != "Buscar por DNI, Nombre o Apellido")
                 dgwClientes.DataSource = TrabajarCliente.search_clientes(txtBuscar.Text);
             else
                 load_clientes();
+
+            this.lblCantidad.Text = "Cantidad de Clientes:" + dgwClientes.Rows.Count.ToString();
         }
 
         private void dgwClientes_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewRow row = dgwClientes.Rows[e.RowIndex];
+            if (action == "select")
+            {
+                Cliente seleccionado = new Cliente(){
+                    Cli_Apellido=row.Cells["Apellido"].Value.ToString(),
+                    Cli_DNI=row.Cells["DNI"].Value.ToString(),
+                    Cli_Nombre=row.Cells["Nombre"].Value.ToString(),
+                    Cli_Direccion=row.Cells["Direccion"].Value.ToString(),
+                    Cli_NroCarnet=row.Cells["Nro Carnet"].Value.ToString(),
+                    Os_CUIT=row.Cells["OS CUIT"].Value.ToString()
+                };
+                ((FrmMain)this.ParentForm).btnNuevaVenta_click(seleccionado,new EventArgs());
+                return;
+            }
 
             txtDNI.Text = row.Cells["DNI"].Value as string;
             txtApellido.Text = row.Cells["Apellido"].Value as string;
@@ -163,6 +203,8 @@ namespace Vistas
             dgwClientes.Visible = false;
             pnlClienteRegistrar.Visible = true;
             pnlSortCliente.Visible = false;
+            lblCantidad.Visible = false;
+            lblTitulo.Text = "Formulario Actualizar Cliente";
             txtDNI.Enabled = false; //se desabilita para evitar problemas de pk
         }
         private void dgwClientes_KeyDown(object sender, KeyEventArgs e)
@@ -187,27 +229,70 @@ namespace Vistas
 
         private void cmbOrderBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cmbOrden.SelectedValue != null)
-            dgwClientes.DataSource = TrabajarCliente.sort_by(
-                cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
+            if (cmbOrden.SelectedValue != null)
+            {
+                dgwClientes.DataSource = TrabajarCliente.sort_by(
+                    cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
+
+                this.lblCantidad.Text = "Cantidad de Clientes:" + dgwClientes.Rows.Count.ToString();
+            }
+
+
         }
         private void cmbOrden_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgwClientes.DataSource = TrabajarCliente.sort_by(
                 cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
+
+            this.lblCantidad.Text = "Cantidad de Clientes:" + dgwClientes.Rows.Count.ToString();
         }
         private void txtBuscar_Enter(object sender, EventArgs e)
         {
-            if (txtBuscar.Text == "Buscar por DNI o Apellido")
+            if (txtBuscar.Text == "Buscar por DNI, Nombre o Apellido")
                 txtBuscar.Text = "";
         }
 
         private void txtBuscar_Leave(object sender, EventArgs e)
         {
             if (txtBuscar.Text == "")
-                txtBuscar.Text = "Buscar por DNI o Apellido";
+                txtBuscar.Text = "Buscar por DNI, Nombre o Apellido";
+        }
+        private void cmbOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbOptions.SelectedValue.ToString() == "Buscar")
+            {
+                pnlBuscar.Visible = true;
+                pnlFiltrarCliente.Visible = pnlSortCliente.Visible = false;
+            }
+            else if (cmbOptions.SelectedValue.ToString() == "Filtrar")
+            {
+                pnlFiltrarCliente.Visible = true;
+                pnlSortCliente.Visible = pnlBuscar.Visible = false;
+            }
+            else
+            {
+                pnlSortCliente.Visible = true;
+                pnlFiltrarCliente.Visible = pnlBuscar.Visible = false;
+            }
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            string cuit = cmbFiltrarOS.SelectedValue.ToString();
+
+            dgwClientes.DataSource = TrabajarCliente.filter_by_os(cuit);
+
+            lblCantidad.Text = "Cantidad de Clientes: " + dgwClientes.Rows.Count.ToString();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            load_clientes();
+            lblCantidad.Text = "Cantidad de Clientes: " + dgwClientes.Rows.Count.ToString();
         }
         #endregion  
+
+        
 
         
 
