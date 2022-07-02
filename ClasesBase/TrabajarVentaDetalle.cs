@@ -43,11 +43,11 @@ namespace ClasesBase
             SqlCommand cmd = new SqlCommand();
 
             // crear query
-            cmd.CommandText = "SELECT det_nro as 'Det. Nro.', ";
-            cmd.CommandText += "prod_codigo as 'Codigo Producto', ";
+            cmd.CommandText = "SELECT prod_codigo as 'Codigo Producto', ";
             cmd.CommandText += "det_precio as 'Precio Unidad', ";
             cmd.CommandText += "det_cantidad as 'Cantidad', ";
-            cmd.CommandText += "det_total as 'Total' ";
+            cmd.CommandText += "det_total as 'Total', ";
+            cmd.CommandText += "det_nro as 'Det. Nro.' ";
             cmd.CommandText += "FROM VentaDetalle WHERE ven_nro = @ven_nro";
 
             cmd.CommandType = CommandType.Text;

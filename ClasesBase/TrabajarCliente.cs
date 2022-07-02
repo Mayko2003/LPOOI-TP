@@ -19,7 +19,7 @@ namespace ClasesBase
             SqlCommand cmd = new SqlCommand();
 
             // crear query
-            cmd.CommandText = "INSERT INTO Cliente(cli_dni,cli_apellido,cli_nombre,cli_direccion,os_cuit,cli_nro_carnet) VALUES(@dni,@apellido,@nombre,@direccion,@oscuit,@nrocarnet)";
+            cmd.CommandText = "INSERT INTO Cliente(cli_dni,cli_apellido,cli_nombre,cli_direccion,os_cuit,cli_nro_carnet,cli_estado) VALUES(@dni,@apellido,@nombre,@direccion,@oscuit,@nrocarnet,1)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cnn;
 
@@ -79,9 +79,8 @@ namespace ClasesBase
             cmd.CommandText += "cli_nombre as 'Nombre', ";
             cmd.CommandText += "cli_direccion as 'Direccion', ";
             cmd.CommandText += "cli_nro_carnet as 'Nro Carnet', ";
-            cmd.CommandText += "C.os_cuit as 'OS Cuit' ";
-            cmd.CommandText += "FROM Cliente as C ";
-            cmd.CommandText += "LEFT JOIN ObraSocial as OS ON (OS.os_cuit=C.os_cuit)";
+            cmd.CommandText += "os_cuit as 'OS Cuit' ";
+            cmd.CommandText += "FROM Cliente WHERE cli_estado = 1";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cnn;
@@ -206,7 +205,7 @@ namespace ClasesBase
             //operaciones
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "DELETE FROM Cliente WHERE cli_dni LIKE @dni";
+            cmd.CommandText = "UPDATE Cliente SET cli_estado = 0 WHERE cli_dni = @dni";
             cmd.Parameters.AddWithValue("@dni", pk);
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cnn;

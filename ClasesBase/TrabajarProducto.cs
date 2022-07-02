@@ -48,12 +48,16 @@ namespace ClasesBase
             param.Direction = ParameterDirection.Input;
             cmd.Parameters.Add(param);
 
-            param = new SqlParameter("@precio", SqlDbType.Decimal);
+            param = new SqlParameter("@precio", SqlDbType.Decimal, 16) {
+                Precision = 16,
+                Scale = 2
+            };
             param.Value = producto.Prod_precio;
             param.Direction = ParameterDirection.Input;
             cmd.Parameters.Add(param);
 
             cnn.Open();//abrir conexion
+
             cmd.ExecuteNonQuery(); //ejecutar transaccion
             cnn.Close(); // cerrar conexion
 
@@ -129,7 +133,7 @@ namespace ClasesBase
             cmd.CommandText += "prod_categoria as 'Categoria', ";
             cmd.CommandText += "prod_descripcion as 'Descripcion', ";
             cmd.CommandText += "prod_precio as 'Precio' ";
-            cmd.CommandText += "FROM Producto as P ";
+            cmd.CommandText += "FROM Producto WHERE prod_estado = 1";
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cnn;

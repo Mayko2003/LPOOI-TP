@@ -117,10 +117,15 @@ namespace Vistas
             lblTitulo.Text = "Formulario Registrar Cliente";
             load_combos();
         }
+
+        private void actualizar_label_cantidad()
+        {
+            this.lblCantidad.Text = "Cantidad Clientes: " + this.dgwClientes.Rows.Count.ToString();
+        }
         #endregion
 
         #region Events
-        private void btnRegistrarProducto_Click(object sender, EventArgs e)
+        private void btnRegistrarCliente_Click(object sender, EventArgs e)
         {
             //recuperar datos
             Cliente cliente = new Cliente();
@@ -130,6 +135,7 @@ namespace Vistas
             cliente.Cli_Direccion = txtDireccion.Text;
             cliente.Os_CUIT = cmbOS_Cuit.Text;
             cliente.Cli_NroCarnet = txtNumeroCarnet.Text;
+            cliente.Cli_Estado = true;
 
             //si el dni existe, actualizar o avisar de error
             if (TrabajarCliente.exist_cliente(txtDNI.Text))
@@ -161,6 +167,7 @@ namespace Vistas
             {
                 TrabajarCliente.insert_cliente(cliente);
                 load_clientes();
+                actualizar_label_cantidad();
                 clear_data_form();
             }
         }
@@ -171,7 +178,7 @@ namespace Vistas
             else
                 load_clientes();
 
-            this.lblCantidad.Text = "Cantidad de Clientes:" + dgwClientes.Rows.Count.ToString();
+            actualizar_label_cantidad();
         }
 
         private void dgwClientes_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -218,6 +225,7 @@ namespace Vistas
                     var cell = this.dgwClientes.Rows[this.indiceRowEliminar].Cells[0];
                     TrabajarCliente.delete_cliente(cell.Value.ToString());
                     load_clientes();
+                    actualizar_label_cantidad();
                 }
             }
         }
@@ -234,7 +242,7 @@ namespace Vistas
                 dgwClientes.DataSource = TrabajarCliente.sort_by(
                     cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
 
-                this.lblCantidad.Text = "Cantidad de Clientes:" + dgwClientes.Rows.Count.ToString();
+                actualizar_label_cantidad();
             }
 
 
@@ -244,7 +252,7 @@ namespace Vistas
             dgwClientes.DataSource = TrabajarCliente.sort_by(
                 cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
 
-            this.lblCantidad.Text = "Cantidad de Clientes:" + dgwClientes.Rows.Count.ToString();
+            actualizar_label_cantidad();
         }
         private void txtBuscar_Enter(object sender, EventArgs e)
         {
@@ -282,13 +290,13 @@ namespace Vistas
 
             dgwClientes.DataSource = TrabajarCliente.filter_by_os(cuit);
 
-            lblCantidad.Text = "Cantidad de Clientes: " + dgwClientes.Rows.Count.ToString();
+            actualizar_label_cantidad();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             load_clientes();
-            lblCantidad.Text = "Cantidad de Clientes: " + dgwClientes.Rows.Count.ToString();
+            actualizar_label_cantidad();
         }
         #endregion  
 
