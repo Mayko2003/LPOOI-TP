@@ -50,11 +50,11 @@ namespace Vistas
             this.Dock = DockStyle.Fill;
 
             //columnas para la tabla de detalles de venta
-            dtVentaDetalle.Columns.Add("Det. Nro.");
-            dtVentaDetalle.Columns.Add("Codigo Producto");
-            dtVentaDetalle.Columns.Add("Precio Unidad");
-            dtVentaDetalle.Columns.Add("Cantidad");
-            dtVentaDetalle.Columns.Add("Total");
+            if (!dtVentaDetalle.Columns.Contains("Codigo Producto")) dtVentaDetalle.Columns.Add("Codigo Producto");
+            if (!dtVentaDetalle.Columns.Contains("Precio Unidad")) dtVentaDetalle.Columns.Add("Precio Unidad");
+            if (!dtVentaDetalle.Columns.Contains("Cantidad")) dtVentaDetalle.Columns.Add("Cantidad");
+            if (!dtVentaDetalle.Columns.Contains("Total")) dtVentaDetalle.Columns.Add("Total");
+            if (!dtVentaDetalle.Columns.Contains("Det. Nro.")) dtVentaDetalle.Columns.Add("Det. Nro.");
         }
         
 
@@ -147,11 +147,20 @@ namespace Vistas
                     vd.Det_Total = Convert.ToDecimal(dr["Total"]);
                     vd.Det_Precio = Convert.ToDecimal(dr["Precio Unidad"]);
 
-                    if (vd.Det_Nro == -1) TrabajarVentaDetalle.insert_venta_detalle(vd);
+                    if (vd.Det_Nro == 0) TrabajarVentaDetalle.insert_venta_detalle(vd);
                     else TrabajarVentaDetalle.update_vd(vd);
                 }
                 catch (Exception e) { }
             }
+        }
+
+        private void actualizar_label_cantidad()
+        {
+            this.lblCantidad.Text = "Cantidad Ventas:" + this.dgwVentaDetalles.Rows.Count.ToString();
+        }
+        private void actualizar_label_cantidad_detalles()
+        {
+            this.lblCantidadLineas.Text = "Cantidad Detalles: " + this.dgwVentaDetalles.Rows.Count.ToString();
         }
         #endregion
 
@@ -200,6 +209,7 @@ namespace Vistas
                 }
                 guardarLineasVenta();//insertar o actualizar cada linea de venta
                 load_ventas();
+                actualizar_label_cantidad();
                 clear_data_form();
             }
         }
@@ -255,7 +265,7 @@ namespace Vistas
                     var cell = this.dgwVentas.Rows[this.indiceRowEliminar].Cells[0];
                     TrabajarVenta.delete_venta(cell.Value.ToString());
                     load_ventas();
-                    this.lblCantidad.Text = "Cantidad de Ventas: " + dgwVentas.Rows.Count.ToString();
+                    actualizar_label_cantidad();
                 }
             }
         }
@@ -282,13 +292,13 @@ namespace Vistas
             {
                 dgwVentas.DataSource = TrabajarVenta.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
             }
-            this.lblCantidad.Text = "Cantidad de Ventas: " + dgwVentas.Rows.Count.ToString();
+            actualizar_label_cantidad();
         }
         
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             load_ventas();
-            this.lblCantidad.Text = "Cantidad de Ventas: " + dgwVentas.Rows.Count.ToString();
+            actualizar_label_cantidad();
         }
         
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -297,7 +307,7 @@ namespace Vistas
                 dgwVentas.DataSource = TrabajarVenta.search_ventas(Convert.ToInt32(txtBuscar.Text));
             else
                 load_ventas();
-            this.lblCantidad.Text = "Cantidad de Ventas: " + dgwVentas.Rows.Count.ToString();
+            actualizar_label_cantidad();
         }
 
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
@@ -381,16 +391,11 @@ namespace Vistas
                     if (detNro == -1) dtVentaDetalle.Rows.RemoveAt(detalleRowIndex);
                     else TrabajarVentaDetalle.delete_vd(detNro);
                     load_detalles();
-                    this.lblCantidadLineas.Text = "Cantidad de Productos: " + dtVentaDetalle.Rows.Count.ToString();
+                    this.actualizar_label_cantidad_detalles();
                 }
             }
         }
-        #endregion  
+        #endregion
 
-        
-
-        
-
- 
     }
 }

@@ -50,5 +50,11 @@ namespace ClasesBase
             get { return cli_Direccion; }
             set { cli_Direccion = value; }
         }
+
+        private bool cli_Estado;
+        public bool Cli_Estado {
+            get { return this.cli_Estado; }
+            set { this.cli_Estado = value; }
+        }
     }
 }

@@ -59,6 +59,10 @@ namespace Vistas
             lblTitulo.Text = "Formulario Crear Usuario";
         }
 
+        private void actualizar_label_cantidad()
+        {
+            this.lblCantidad.Text = "Cantidad Usuarios: " + this.dgwUsuarios.Rows.Count.ToString();
+        }
         #endregion
 
 
@@ -100,6 +104,7 @@ namespace Vistas
             {
                 TrabajarUsuario.insert_usuario(usuario);
                 load_usuarios();
+                actualizar_label_cantidad();
                 clear_data_form();
             }
         }
@@ -109,7 +114,7 @@ namespace Vistas
                 dgwUsuarios.DataSource = TrabajarUsuario.search_usuarios(txtBuscar.Text);
             else
                 load_usuarios();
-            this.lblCantidad.Text = "Cantidad de Usuarios: " + dgwUsuarios.Rows.Count.ToString();
+            actualizar_label_cantidad();
         }
         private void dgwUsuarios_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -139,6 +144,7 @@ namespace Vistas
                     var cell = this.dgwUsuarios.Rows[this.indiceRowEliminar].Cells[0];
                     TrabajarUsuario.delete_usuario(cell.Value.ToString());
                     load_usuarios();
+                    actualizar_label_cantidad();
                 }
             }
         }

@@ -96,22 +96,22 @@ namespace Vistas
                 if(this.detalleRowIndex == -1)
                 {
                     FrmVenta.dtVentaDetalle.Rows.Add(
-                        -1,
                         vdActual.Prod_Codigo,
                         vdActual.Det_Precio,
                         vdActual.Det_Cantidad,
-                        vdActual.Det_Total
+                        vdActual.Det_Total,
+                        0
                     );
                 }
                 //modificar linea de venta sino
                 else
                 {
                     Object[] datos = new Object[]{
-                        vdActual.Det_Nro,
                         vdActual.Prod_Codigo,
                         vdActual.Det_Precio,
                         vdActual.Det_Cantidad,
-                        vdActual.Det_Total
+                        vdActual.Det_Total,
+                        vdActual.Det_Nro,
                     };
                     FrmVenta.dtVentaDetalle.Rows[this.detalleRowIndex].ItemArray = datos;
                 }

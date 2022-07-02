@@ -49,6 +49,10 @@ namespace Vistas
             txtBuscar.Text = "Buscar por CUIT";
             lblTitulo.Text = "Formulario Registrar Obra Social";
         }
+        private void actualizar_label_cantidad()
+        {
+            this.lblCantidad.Text = "Cantidad Obras Sociales: " + this.dgwObrasSocial.Rows.Count.ToString();
+        }
         #endregion
 
         #region Events
@@ -82,6 +86,7 @@ namespace Vistas
             TrabajarObraSocial.insert_obraSocial(obraSocial);
             //Agrega la obra social en el dataGridView
             cargar_obrasSocial();
+            actualizar_label_cantidad();
             //Limpia el formulario
             clear_data_form();
         }
@@ -94,7 +99,7 @@ namespace Vistas
             else
                 cargar_obrasSocial();
 
-            this.lblCantidad.Text = "Cantidad de OS:" + dgwObrasSocial.Rows.Count.ToString();
+            actualizar_label_cantidad();
         }
 
         private void dgwObrasSocial_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -123,6 +128,7 @@ namespace Vistas
                 {
                     TrabajarObraSocial.delete_obraSocial(cell.Value.ToString());
                     cargar_obrasSocial();
+                    actualizar_label_cantidad();
                 }
             }
         }

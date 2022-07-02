@@ -31,10 +31,9 @@ namespace Vistas
         private void FrmProducto_Load(object sender, EventArgs e)
         {
             this.SendToBack();
+            this.load_combos();
             this.load_productos();
             this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
-            this.load_combos();
-
         }
 
         internal void clear_data_form()
@@ -50,7 +49,6 @@ namespace Vistas
         private void load_productos()
         {
             dgwProductos.DataSource = TrabajarProducto.list_productos();
-            dgwProductos.Refresh();
         }
 
         private void load_combos()
@@ -115,6 +113,10 @@ namespace Vistas
             cmbOptions.DataSource = dt;
         }
 
+        private void actualizar_label_cantidad()
+        {
+            this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
+        }
         #endregion
 
 
@@ -128,7 +130,7 @@ namespace Vistas
             producto.Prod_Categoria = txtCategoria.Text;
             producto.Prod_Descripcion = txtDescripcion.Text;
             producto.Prod_precio = Convert.ToDecimal(txtPrecio.Text);
-
+            producto.Prod_Estado = true;
 
             //si elcodigo exist avisar de error
             if (TrabajarProducto.exist_producto(txtCodigo.Text))
@@ -161,6 +163,7 @@ namespace Vistas
                 {
                     TrabajarProducto.insert_producto(producto);
                     load_productos();
+                    actualizar_label_cantidad();
                     clear_data_form();
                 }
             }
@@ -193,15 +196,9 @@ namespace Vistas
                 if (mb == DialogResult.OK)
                 {
                     var cell = this.dgwProductos.Rows[this.indiceRowEliminar].Cells[0];
-                    try
-                    {
-                        TrabajarProducto.delete_producto(cell.Value.ToString());
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Hay ventas que ocupan el producto, primero revise las ventas");
-                    }
+                    TrabajarProducto.delete_producto(cell.Value.ToString());
                     load_productos();
+                    actualizar_label_cantidad();
                 }
             }
         }
@@ -217,7 +214,7 @@ namespace Vistas
             {
                 dgwProductos.DataSource = TrabajarProducto.sort_by(
                     cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
-                this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
+                this.actualizar_label_cantidad();
             }
         }
 
@@ -225,13 +222,13 @@ namespace Vistas
         {
             dgwProductos.DataSource = TrabajarProducto.sort_by(
                     cmbOrderBy.SelectedValue.ToString(), cmbOrden.SelectedValue.ToString());
-            this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
+            this.actualizar_label_cantidad();
         }
         
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             load_productos();
-            this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
+            this.actualizar_label_cantidad();
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
@@ -252,7 +249,7 @@ namespace Vistas
             {
                 dgwProductos.DataSource = TrabajarProducto.filter_by_dni_date(dni, new DateTime(1900, 1, 1), DateTime.Now);
             }
-            this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
+            this.actualizar_label_cantidad();
         }
         
         private void cmbOptions_SelectedIndexChanged(object sender, EventArgs e)
@@ -292,7 +289,7 @@ namespace Vistas
                 dgwProductos.DataSource = TrabajarProducto.search_productos(txtBuscar.Text);
             else
                 load_productos();
-            this.lblCantidad.Text = "Cantidad de Productos: " + this.dgwProductos.Rows.Count.ToString();
+            this.actualizar_label_cantidad();
         }
         
         private void cbRangoFechas_CheckedChanged(object sender, EventArgs e)

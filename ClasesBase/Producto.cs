@@ -35,5 +35,13 @@ namespace ClasesBase
             get { return prod_precio; }
             set { prod_precio = value; }
         }
+
+        private bool prod_estado;
+
+        public bool Prod_Estado
+        {
+            get { return this.prod_estado; }
+            set { this.prod_estado = value; }
+        }
     }
 }
